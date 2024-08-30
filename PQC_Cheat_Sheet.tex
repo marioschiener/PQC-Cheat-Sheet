@@ -1,0 +1,964 @@
+% Author: Mario Schiener, 2024
+% LinkedIn: https://www.linkedin.com/in/mario-schiener/
+% Github: https://github.com/marioschiener
+
+% Compile this with LuaLaTeX!
+
+
+\documentclass[11pt,english,a4paper, landscape]{scrartcl}
+
+\input{Preamble}
+
+
+% Color palette: themewhite, themegreylight, themegreymedium, themegreydark, themegreen, themeblue, themered, themeyellow,themeorange
+\colorlet{themeaccent}{themewhite}
+\colorlet{themeaccentsecondary}{themeblue}
+
+% ============================================================================================================
+% Title,Date, Version, Document Status
+% ============================================================================================================
+
+\newcommand{\docstatus}{\textcolor{themered}{\scshape Draft}}
+%\newcommand{\docstatus}{\textcolor{themeorangemedium}{\scshape Review}}
+%\newcommand{\docstatus}{\textcolor{themewhite}{\scshape Released}}
+%\newcommand{\docstatus}{\textcolor{themered}{\scshape Obsolete}}
+
+\setpagetheme{%
+Post-Quantum Cryptography Algorithm Cheat Sheets}{%	Title
+\copyright\, Mario Schiener\quad%	Author details for footer
+\href{https://www.linkedin.com/in/mario-schiener/}{\textcolor{themegreylight}{\faLinkedin}}\quad%
+\href{https://github.com/marioschiener}{\textcolor{themegreylight}{\faGithub}}}%
+{August 2024 -- v0.1}% Date, Version
+
+
+\begin{document}
+	% ============================================================================================================
+	% Explanations
+	% ============================================================================================================
+	%\vspace{-0.1\baselineskip}
+	%Explanations\\[0.5\baselineskip]
+	\begin{minipage}[t]{0.34\textwidth} % left
+		\tiny
+		{\bfseries  Symbols}\\[0.5\baselineskip]
+		\textcolor{themegreydark}{\faKey}\quad Key Generation\quad
+		\textcolor{themegreydark}{\faLock}\quad Encryption\quad
+		\textcolor{themegreydark}{\faUnlock}\quad Decryption\quad
+		\textcolor{themegreydark}{\faPen}\quad Signing\quad
+		\textcolor{themegreydark}{\faQuestionCircle}\quad Verification\\
+		\textcolor{themegreydark}{\faCalendar}\quad Not yet standardized by NIST\quad
+		\textcolor{themegreydark}{\faExclamationCircle}\quad Recommendations differ depending on organization\\
+		\textcolor{themegreydark}{\faMicrochip}\quad CPU Cycles\quad\textcolor{themegreydark}{\faCode}\quad Implementation Code\quad\lettericon{themewhite}{themegreydark}{C}{1}\quad Complexity\quad\lettericon{themewhite}{themegreydark}{S}{1}\quad Size\\[0.25\baselineskip]
+		{\bfseries  General color coding}\\[0.5\baselineskip]
+		Best to Worst: \textcolor{themegreen}{$\blacksquare$} \textcolor{themeyellow}{$\blacksquare$} \textcolor{themeorange}{$\blacksquare$} \textcolor{themered}{$\blacksquare$} \textcolor{themered!65!black}{$\blacksquare$}\quad TBD: \textcolor{themeblue}{$\blacksquare$}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.32\textwidth} % center
+		\tiny
+		{\bfseries Rating scale of algorithm parameter sizes and performance} (less is better in all cases):
+		\vspace{-0.75\baselineskip}
+		\begin{tabbing}
+			\=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faAsterisk}= $\mathcal{O}(10^n)$ CPU kilo cycles for \faAsterisk\hspace{1cm}
+			\=\doubleicon{\montserratbold n}{\faPen}{themegreylight!50}{0.6}= $\mathcal{O}(10^n)$ kB of signature size\\[0.5\baselineskip]
+			\>\doubleicon{\montserratbold n}{\faLock}{themegreylight!50}{0.6}= $\mathcal{O}(10^n)$ kB of ciphertext size
+			\>\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}= $\mathcal{O}(10^n)$ kB of public key size\\[\baselineskip]
+			Best to Worst: \textcolor{themegreen}{$\blacksquare$} $n\leq2$, \textcolor{themeyellow}{$\blacksquare$} $n\{3,4\}$, \textcolor{themeorange}{$\blacksquare$} $n\in\{5,6\}$, \textcolor{themered}{$\blacksquare$} $n\in\{7,8\}$, \textcolor{themered!65!black}{$\blacksquare$} $n\geq9$
+		\end{tabbing}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.32\textwidth} % right
+		\tiny
+		{\bfseries Security category ranking of parameter sets} (higher number is more secure):\\[0.5\baselineskip]
+		\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+		\doubleicon{\montserratbold IV}{\faSun[regular]}{themeyellow}{0.6}
+		\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
+		\doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}
+		\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}= NIST Security Categories V, IV, III, II, I\\[0.5\baselineskip]
+		{\bfseries Algorithm implementation complexity and size} (Low/Medium/High, lower is better):\\[0.25\baselineskip]
+		\tripleicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries C}
+		\tripleicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries C}
+		\tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C}= Code Complexity\quad
+		\tripleicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries S}
+		\tripleicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries S}
+		\tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries S}= Code Size
+	\end{minipage}
+
+
+
+	% ============================================================================================================
+	% Main Content
+	% ============================================================================================================
+
+	\begin{minipage}[t]{0.7\textwidth}
+		\vspace{0pt}
+		% ============================================================================================================
+		% Orders of Preference
+		% ============================================================================================================
+		\begin{algorithmbox}{Algorithm Choice Guidance: Rules Of Thumb}
+			{\scriptsize The following orders of preference should be considered as general rules of thumb applicable to most use cases. They should however not be considered to be universal truths. Unstandardized algorithms are listed for the sake of completeness.\\}
+			% ============================================================================================================
+			% Signature Algorithms
+			% ============================================================================================================
+			\begin{minipage}[t]{0.5\textwidth}
+				\vspace{0pt}
+				{\scshape \faPen\, Signature Algorithms}\\
+				{\scriptsize \bfseries Objective: Best All-Around Package \tbv}\\[0.1\baselineskip]
+				\ranking{}{%
+				\bfseries{ML-DSA},\bfseries{Falcon} \faCalendar,\bfseries{SLH-DSA},\bfseries{XMSS/LMS}*,\textcolor{themewhite}{\bfseries{New Candidates**} \faCalendar}}{}{0.6}\\[0.75\baselineskip]
+				{\scriptsize \bfseries Objective: Performance of Key Generation \tbv}\\[0.1\baselineskip]
+				\ranking{}{\bfseries{ML-DSA},\bfseries{SLH-DSA\\f variants},\bfseries{SLH-DSA\\s variants},\bfseries{Falcon} \faCalendar}{}{0.6}\\[0.75\baselineskip]
+				{\scriptsize \bfseries Objective: Performance of Signing \tbv}\\[0.1\baselineskip]
+				\ranking{}{\bfseries{ML-DSA},\bfseries{Falcon} \faCalendar, \bfseries{SLH-DSA\\f variants},\bfseries{SLH-DSA\\s variants}}{}{0.6}\\[0.75\baselineskip]
+				{\scriptsize \bfseries Objective: Performance of Verification \tbv}\\[0.1\baselineskip]
+				\ranking{}{\bfseries{Falcon} \faCalendar,\bfseries{ML-DSA},\bfseries{SLH-DSA\\s variants},\bfseries{SLH-DSA\\f variants}}{}{0.6}\\[0.75\baselineskip]
+				{\scriptsize \bfseries Objective: Small Signatures \tbv}\\[0.1\baselineskip]
+				\ranking{}{\bfseries{Falcon} \faCalendar,\bfseries{ML-DSA},\bfseries{SLH-DSA\\s variants},\bfseries{SLH-DSA\\f variants}}{}{0.6}\\[0.75\baselineskip]
+				{\scriptsize \bfseries Objective: Small Public Keys \tbv}\\[0.1\baselineskip]
+				\ranking{}{\bfseries{SLH-DSA},\bfseries{Falcon} \faCalendar,\bfseries{ML-DSA}}{}{0.6}\\[0.75\baselineskip]
+				{\tiny * \,\,XMSS/LMS is not suitable for general purpose signatures}\\[-0.5\baselineskip]
+				{\tiny ** Security still unclear, none recommended yet at the moment}
+			\end{minipage}
+			\hfill
+			% ============================================================================================================
+			% Page 1: Encryption/KEM Algorithms
+			% ============================================================================================================
+			\begin{minipage}[t]{0.5\textwidth}
+				\vspace{0pt}
+				{\scshape \faLock\, Encryption/Key Encapsulation Algorithms}\\
+				{\scriptsize \bfseries Objective: Best All-Around Package \tbv}\\[0.1\baselineskip]
+				\ranking{}{\bfseries{ML-KEM},\bfseries{HQC} \faCalendar, {\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle}, \bfseries{BIKE} \faCalendar, \textcolor{themewhite}{\bfseries{FrodoKEM} \faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
+				{\scriptsize \bfseries Objective: Performance of Key Generation \tbv}\\[0.1\baselineskip]
+				\ranking{}{\bfseries{ML-KEM},\bfseries{HQC} \faCalendar, \bfseries{BIKE} \faCalendar, \bfseries{FrodoKEM} \faExclamationCircle, {\textcolor{themewhite}{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle}}}{}{0.6}\\[0.75\baselineskip]
+				{\scriptsize \bfseries Objective: Performance of Encryption \tbv}\\[0.1\baselineskip]
+				\ranking{}{{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle},\bfseries{ML-KEM},\bfseries{BIKE} \faCalendar,  \bfseries{HQC} \faCalendar, \textcolor{themewhite}{\bfseries{FrodoKEM} \faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
+				{\scriptsize \bfseries Objective: Performance of Decryption \tbv}\\[0.1\baselineskip]
+				\ranking{}{\bfseries{ML-KEM}, {\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle},\bfseries{HQC} \faCalendar, \bfseries{FrodoKEM} \faExclamationCircle, \textcolor{themewhite}{\bfseries{BIKE}} \faCalendar}{}{0.6}\\[0.75\baselineskip]
+				{\scriptsize \bfseries Objective: Small Ciphertext \tbv}\\[0.1\baselineskip]
+				\ranking{}{{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle}, \bfseries{ML-KEM},\bfseries{BIKE} \faCalendar, \bfseries{HQC} \faCalendar, \textcolor{themewhite}{\bfseries{FrodoKEM} \faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
+				{\scriptsize \bfseries Objective: Small Public Keys \tbv}\\[0.1\baselineskip]
+				\ranking{}{\bfseries{ML-KEM},\bfseries{BIKE} \faCalendar, \bfseries{HQC} \faCalendar, \bfseries{FrodoKEM} \faExclamationCircle, {\textcolor{themewhite}{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle}}}{}{0.6}\\[0.75\baselineskip]
+			\end{minipage}
+		\end{algorithmbox}
+		\begin{algorithmbox}{Pure PQC vs PQ/T Hybrid}
+			\scriptsize
+			This topic depends on too many factors (e.g. cost of migration, security considerations, risk profile, GRC requirements) to give general advice. {\bfseries For PQ/T hybrids, consider  ECC (e.g. secp256r1, Curve25519)} over RSA for the traditional component.
+			\vspace{-1mm}
+		\end{algorithmbox}
+	\end{minipage}
+	\begin{minipage}[t]{0.28\textwidth}
+		\vspace{0pt}
+		\begin{algorithmbox}{Security Category Choices}
+			\scriptsize
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{0em}
+				\item First, consider using \doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}\hspace{-3mm} as a baseline.\\
+				\item Use \doubleicon{\montserratbold IV}{\faSun[regular]}{themeyellow}{0.6}\hspace{-3mm} or
+				\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}\hspace{-3mm} for more security if possible (i.e., if a decrease in performance is not a concern and if no constraints apply).\\
+				\item Use \doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}\hspace{-3mm} or
+				\doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}\hspace{-3mm} {\bfseries if and only if} \doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}\hspace{-3mm} or higher is not an option due to constraints (e.g. performance, memory, etc.).\\[\baselineskip]
+			\end{itemize}
+		\end{algorithmbox}
+		\begin{algorithmbox}{Pure vs. Pre-Hashing}
+			\scriptsize
+			%\vspace{-2mm}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{0em}
+				\item {\bfseries First, consider using  pure} (i.e., without pre-hashing) as this is the general recommendation.\\
+				\item {\bfseries Pre-Hashing may be considered if one or more of the following applies:}
+				\begin{itemize}[leftmargin=*]
+					\setlength\itemsep{0em}
+					\item The message $M$ is too large to be sent to cryptographic module (CM) for hashing without significantly impacting performance. This may be the case e.g. in CMS related use cases such as S/MIME or code signing, or in cases of very narrow communication channels to the CM (e.g. between APDUs exchanged between smartcard and smartcard reader).
+					\item The hash needs to be signed with different algorithms and would be computed repeatedly without pre-hashing.
+					\item The specific hash function is not supported in a CM.
+				\end{itemize}
+			\end{itemize}
+			\vspace{0.75mm}
+		\end{algorithmbox}
+	\end{minipage}
+
+
+
+
+	% ============================================================================================================
+	% ML-DSA
+	% ============================================================================================================
+	\newpage
+	{\large \scshape \faPen\, Signature Algorithm Overview \& ID Cards}\\
+
+	\begin{algorithmbox}{ML-DSA (Module-Lattice-Based Digital Signature Algorithm)}
+		\begin{minipage}[t]{0.35\textwidth}
+			\scriptsize
+			\begin{center}
+				\adjustbox{valign=t}{%
+					\GreenAbsoluteSpeedometer(0,-10)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{8.55}{10}{\tiny}{\tiny \montserratsemibold}\hspace{1.5cm}}
+			\end{center}
+
+			\begin{tabbing}
+				\bfseries \scshape Previous Name\hspace{2.5cm}\=CRYSTALS-DILITHIUM\\
+				\bfseries \scshape Specification\>\iconhref[\faLink]{https://csrc.nist.gov/pubs/fips/204/final}{FIPS 204}\\
+				\bfseries \scshape Type\>Signature\\
+				\bfseries \scshape Family\>Lattice\\
+				\bfseries \scshape Standardization Status\>Standardized\\
+				\bfseries \scshape Recommended By\>NIST, BSI, ANSSI\\
+				\bfseries \scshape Hashing\>Pure, Pre-Hashing\\
+				\bfseries \scshape Naming\>by $k\times l$ matrix $A$\\
+				\>(e.g. $6\times5\,\rightarrow$ ML-DSA-65)
+			\end{tabbing}
+			\begin{tabular}[t]{l c  c  c}
+				\scshape\bfseries Algorithm Implementation &\textcolor{themegreydark}{\faKey}&\textcolor{themegreydark}{\faPen}&\textcolor{themegreydark}{\faQuestionCircle}\\
+				&&&\\
+				\hline\\
+
+				\scshape Complexity
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}\\[2mm]
+				\scshape Size
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+			\end{tabular}\\[1.5\baselineskip]
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.64\textwidth}
+			\scshape \scriptsize
+			\begin{tabular}[t]{c c  c  c  c  c c}
+				\bfseries \makecell{Version\\{}} &  \bfseries \makecell{OID\\{}} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faPen\,\quad\quad\faQuestionCircle}} &  \bfseries \makecell{Signature\\Size} & \bfseries \makecell{Public Key\\Size} & \bfseries \makecell{Suitable\\Pre-Hashing} \\
+				&&&&&&\\
+				\hline\\
+
+
+				ML-DSA-44
+				& 2.16.840.1.101.3.4.3.17
+				& \hspace{3mm}\doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faKey}
+				\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faPen}
+				\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-256, SHA3-256\\
+
+				ML-DSA-65
+				& 2.16.840.1.101.3.4.3.18
+				& \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeyellow}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faKey}
+				\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faPen}
+				\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-384, SHA3-384\\
+
+				ML-DSA-87
+				& 2.16.840.1.101.3.4.3.19
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faKey}
+				\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faPen}
+				\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-512, SHA3-512
+			\end{tabular}
+			\vfill
+		\end{minipage}\\[\baselineskip]
+		\hrule
+		\vspace{1\baselineskip}
+		\begin{minipage}[t]{0.49\textwidth}
+			\scriptsize\faThumbsUp\, {\bfseries / Pros / Use If:}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{0em}
+				\item You need a general-purpose signature algorithm with decent specs in all categories
+			\end{itemize}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.49\textwidth}
+			\scriptsize \faThumbsDown\, {\bfseries / Cons / Don't Use If:}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{0em}
+				\item You don't want a lattice-based algorithm
+			\end{itemize}
+		\end{minipage}\\[\baselineskip]
+		{\tiny  {\bfseries \scshape Note:} Cycle counts for key generation, signing and verification depend on the CPU used. Values may vary on different CPUs and thus only a rough indicator.}
+	\end{algorithmbox}
+
+
+	% ============================================================================================================
+	% Falcon
+	% ============================================================================================================
+	\begin{algorithmbox}{Falcon (Fast-Fourier Lattice-Based Compact Signatures over NTRU)}
+		\begin{minipage}[t]{0.35\textwidth}
+			\scriptsize
+			\begin{center}
+				\adjustbox{valign=t}{%
+					\GreenAbsoluteSpeedometer(0,-10)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{7.52}{10}{\tiny}{\tiny \montserratsemibold}\hspace{1.5cm}}
+			\end{center}
+
+			\begin{tabbing}
+				\bfseries \scshape Previous Name\hspace{2.5cm}\=Falcon\\
+				\bfseries \scshape Specification\>\iconhref[\faLink]{https://falcon-sign.info/}{Project Page}\\
+				\bfseries \scshape Type\>Signature\\
+				\bfseries \scshape Family\>Lattice\\
+				\bfseries \scshape Standardization Status\>\faCalendar\, Pending\\
+				\bfseries \scshape Recommended By\>\tbd\\
+				\bfseries \scshape Hashing\>\tbd\\
+				\bfseries \scshape Naming\>\tbd
+			\end{tabbing}
+			\begin{tabular}[t]{l c  c  c}
+				\scshape\bfseries Algorithm Implementation &\textcolor{themegreydark}{\faKey}&\textcolor{themegreydark}{\faPen}&\textcolor{themegreydark}{\faQuestionCircle}\\
+				&&&\\
+				\hline\\
+
+
+				\scshape Complexity
+				&\hspace{3mm}\tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C}
+				&\hspace{3mm}\tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}\\[2mm]
+				\scshape Size
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}\\
+			\end{tabular}\\[1.5\baselineskip]
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.64\textwidth}
+			\scshape \scriptsize
+			\begin{tabular}[t]{c c  c  c  c  c c}
+				\bfseries \makecell{Version\\{}} &  \bfseries \makecell{OID\\{}} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faPen\,\quad\quad\faQuestionCircle}} &  \bfseries \makecell{Signature\\Size} & \bfseries \makecell{Public Key\\Size} & \bfseries \makecell{Suitable\\Pre-Hashing} \\
+				&&&&&&\\
+				\hline\\
+
+				Falcon-512
+				& \tbd
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faKey}
+				\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faPen}
+				\tripleicon{\montserratbold 1}{\faMicrochip}{themegreen}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& \tbd\\
+
+				Falcon-1024
+				& \tbd
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faKey}
+				\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faPen}
+				\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& \tbd\\
+			\end{tabular}
+		\end{minipage}\\[\baselineskip]
+		\hrule
+		\vspace{1\baselineskip}
+		\begin{minipage}[t]{0.49\textwidth}
+			\scriptsize \faThumbsUp\, {\bfseries / Pros / Use If:}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{0em}
+				\item Falcon has even smaller values for signature and public key sizes than ML-DSA, even though the values are in the same order of magnitude (\doubleicon{\montserratbold <1}{\faPen}{themegreen}{0.6}\hspace{-2mm},
+				\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}\hspace{-2mm} for both algorithms)
+			\end{itemize}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.49\textwidth}
+			\scriptsize \faThumbsDown\, {\bfseries / Cons / Don't Use If:}
+			\begin{itemize}[leftmargin=*]
+			\setlength\itemsep{0em}
+			\item You need a medium security category between \doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6} \hspace{-4mm} and \doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+			\item The algorithm is not yet standardized
+			\item The algorithm requires expensive floating point arithmetic
+			\end{itemize}
+
+		\end{minipage}\\[\baselineskip]
+
+		{\tiny  {\bfseries \scshape Note:} Cycle counts for key generation, signing and verification depend on the CPU used. Values may vary on different CPUs and thus only a rough indicator.}
+		\vspace{0cm}
+	\end{algorithmbox}
+
+	% ============================================================================================================
+	% SLH-DSA
+	% ============================================================================================================
+	\begin{algorithmbox}{SLH-DSA (Stateless Hash-Based Digital Signature Standard)}
+		\begin{minipage}[t]{0.3\textwidth}
+			\scriptsize
+			\begin{center}
+				\adjustbox{valign=t}{%
+					\GreenAbsoluteSpeedometer(0,-10)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{7.29}{10}{\tiny}{\tiny \montserratsemibold}\hspace{0.5cm}}
+			\end{center}
+			\begin{tabbing}
+				\bfseries \scshape Previous Name\hspace{2cm}\=SPHINCS+\\
+				\bfseries \scshape Specification\>\iconhref[\faLink]{https://csrc.nist.gov/pubs/fips/205/final}{FIPS 205}\\
+				\bfseries \scshape Type\>Signature\\
+				\bfseries \scshape Family\>Hash (stateless)\\
+				\bfseries \scshape Standardization Status\>Standardized\\
+				\bfseries \scshape Recommended By\>NIST, BSI, ANSSI\\
+				\bfseries \scshape Hashing\>Pure, Pre-Hashing\\
+				\bfseries \scshape Naming\>based on various characteristics\\
+				\>(*s=small signatures, *f=fast)
+			\end{tabbing}
+			\begin{tabular}[t]{l c  c  c}
+				\scshape\bfseries Algorithm Implementation &\textcolor{themegreydark}{\faKey}&\textcolor{themegreydark}{\faPen}&\textcolor{themegreydark}{\faQuestionCircle}\\
+				&&&\\
+				\hline\\
+
+
+				\scshape Complexity
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}\\[2mm]
+				\scshape Size
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}\\
+			\end{tabular}\\[1.5\baselineskip]
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.68\textwidth}
+			\scshape \scriptsize
+			\begin{tabular}[t]{c c c c c c c}
+				\bfseries \makecell{Version\\{}} &  \bfseries \makecell{OID\\{}} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faPen\,\quad\quad\faQuestionCircle}} &  \bfseries \makecell{Signature\\Size} & \bfseries \makecell{Public Key\\Size} & \bfseries \makecell{Suitable\\Pre-Hashing} \\
+				&&&&&&\\
+				\hline\\
+
+				SLH-DSA-SHA2-128s
+				& 2.16.840.1.101.3.4.3.20
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faKey}
+				\tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faPen}
+				\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-256, SHA3-256\\
+
+				SLH-DSA-SHA2-128f
+				& 2.16.840.1.101.3.4.3.21
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+				\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faPen}
+				\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-256, SHA3-256\\
+
+
+				SLH-DSA-SHA2-192s
+				& 2.16.840.1.101.3.4.3.22
+				& \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faKey}
+				\tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faPen}
+				\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-384, SHA3-384\\
+
+				SLH-DSA-SHA2-192f
+				& 2.16.840.1.101.3.4.3.23
+				& \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+				\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faPen}
+				\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-384, SHA3-384\\
+
+
+				SLH-DSA-SHA2-256s
+				& 2.16.840.1.101.3.4.3.24
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faKey}
+				\tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faPen}
+				\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-512, SHA3-512\\
+
+				SLH-DSA-SHA2-256f
+				& 2.16.840.1.101.3.4.3.25
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+				\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faPen}
+				\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-512, SHA3-512\\
+
+
+
+
+
+
+
+
+				SLH-DSA-SHAKE-128s
+				& 2.16.840.1.101.3.4.3.26
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faKey}
+				\tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faPen}
+				\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-256, SHA3-256\\
+
+				SLH-DSA-SHAKE-128f
+				& 2.16.840.1.101.3.4.3.27
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+				\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faPen}
+				\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-256, SHA3-256\\
+
+
+				SLH-DSA-SHAKE-192s
+				& 2.16.840.1.101.3.4.3.28
+				& \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faKey}
+				\tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faPen}
+				\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-384, SHA3-384\\
+
+				SLH-DSA-SHAKE-192f
+				& 2.16.840.1.101.3.4.3.29
+				& \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+				\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faPen}
+				\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-384, SHA3-384\\
+
+
+				SLH-DSA-SHAKE-256s
+				& 2.16.840.1.101.3.4.3.30
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faKey}
+				\tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faPen}
+				\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-512, SHA3-512\\
+
+				SLH-DSA-SHAKE-256f
+				& 2.16.840.1.101.3.4.3.31
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+				\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faPen}
+				\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}
+				& SHA-512, SHA3-512\\
+			\end{tabular}
+		\end{minipage}\\[\baselineskip]
+		\hrule
+		\vspace{1\baselineskip}
+		\begin{minipage}[t]{0.49\textwidth}
+			\scriptsize\faThumbsUp\, {\bfseries / Pros / Use If:}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{0em}
+				\item Alternative to ML-DSA and Falcon that is not based on lattices
+				\item Small public keys
+			\end{itemize}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.49\textwidth}
+			\scriptsize \faThumbsDown\, {\bfseries / Cons / Don't Use If:}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{0em}
+				\item Poor Performance compared to other algorithms
+				\item High Complexity of the algorithm and the implementation
+				\item Possible interoperability issues due to the many variants that may not all be supported everywhere
+			\end{itemize}
+		\end{minipage}\\[\baselineskip]
+
+		{\tiny  {\bfseries \scshape Note:} Cycle counts for key generation, signing and verification depend on the CPU used. Values may vary on different CPUs and thus only a rough indicator.}
+	\end{algorithmbox}
+
+
+
+	% ============================================================================================================
+	% XMSS/LMS
+	% ============================================================================================================
+	\begin{algorithmbox}{XMSS / XMSS-MT (eXtended Merkle Signature Scheme / eXtended Merkle Signature Scheme Multi Tree)}
+		\begin{minipage}[t]{0.35\textwidth}
+			\scriptsize
+			\begin{center}
+				\adjustbox{valign=t}{%
+					\GreenAbsoluteSpeedometer(0,-10)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{0}{10}{\tiny}{\tiny \montserratsemibold}\hspace{1.5cm}}
+			\end{center}
+			\begin{tabbing}
+				\bfseries \scshape Previous Name\hspace{2.5cm}\=XMSS/XMSSMT\\
+				\bfseries \scshape Specification\>\iconhref[\faLink]{https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-208.pdf}{SP 800-208}, \iconhref[\faLink]{https://datatracker.ietf.org/doc/html/rfc8391}{RFC 8391}\\
+
+
+				\bfseries \scshape Type\>Signature\\
+				\bfseries \scshape Family\>Merkle Trees (stateful hash trees)\\
+				\bfseries \scshape Standardization Status\>Standardized\\
+				\bfseries \scshape Recommended By\>NIST, BSI, ANSSI\\
+				\bfseries \scshape Hashing\>\tbd\\
+				\bfseries \scshape Naming\>XMSS-[Hashfamily]\_[h]\_[n]\\
+				\>XMSSMT-[Hashfamily]\_[h]/[d]\_[n]\\
+				\> where h is the tree height,\\
+				\> d is the number of layers, and\\
+				\> n is the message length in bits
+			\end{tabbing}
+			\begin{tabular}[t]{l c  c  c}
+				\scshape\bfseries Algorithm Implementation &\textcolor{themegreydark}{\faKey}&\textcolor{themegreydark}{\faPen}&\textcolor{themegreydark}{\faQuestionCircle}\\
+				&&&\\
+				\hline\\
+
+
+				\scshape Complexity
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}\\[2mm]
+				\scshape Size
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+			\end{tabular}\\[1.5\baselineskip]
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.64\textwidth}
+			\scshape \scriptsize
+			\begin{tabular}[t]{c c  c  c  c  c  c}
+				\bfseries \makecell{Version\\{}} &  \bfseries \makecell{Numeric\\Identifier} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faPen\,\quad\quad\faQuestionCircle}} &  \bfseries \makecell{Signature\\Size} & \bfseries \makecell{Maxiumum \\Signatures} & \bfseries \makecell{Number of\\layers} \\
+				&&&&&&\\
+				\hline\\
+
+
+				XMSS-SHA2\_10\_256
+				& 0x00000001
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+				& 2\textsuperscript{10}
+				& 1\\
+
+				XMSS-SHA2\_16\_256
+				& 0x00000002
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+				& 2\textsuperscript{16}
+				& 1\\
+
+				XMSS-SHA2\_20\_256
+				& 0x00000003
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+				& 2\textsuperscript{20}
+				& 1\\[\baselineskip]
+				&&&&&&\\
+
+				\hline\\
+				XMSSMT-SHA2\_20/2\_256
+				& 0x00000001
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+				& 2\textsuperscript{20}
+				& 2\\
+
+				XMSSMT-SHA2\_20/4\_256
+				& 0x00000002
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+				& 2\textsuperscript{20}
+				& 4\\
+
+				XMSSMT-SHA2\_40/2\_256
+				& 0x00000003
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+				& 2\textsuperscript{40}
+				& 2\\
+
+				XMSSMT-SHA2\_40/4\_256
+				& 0x00000004
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+				& 2\textsuperscript{40}
+				& 4\\
+
+				XMSSMT-SHA2\_40/8\_256
+				& 0x00000005
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+				& 2\textsuperscript{40}
+				& 8\\
+
+				XMSSMT-SHA2\_60/3\_256
+				& 0x00000006
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+				& 2\textsuperscript{60}
+				& 3\\
+
+				XMSSMT-SHA2\_60/6\_256
+				& 0x00000007
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+				& 2\textsuperscript{60}
+				& 6\\
+
+				XMSSMT-SHA2\_60/12\_256
+				& 0x00000008
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+				\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+				& 2\textsuperscript{60}
+				& 12
+			\end{tabular}\\[2.5\baselineskip]
+
+			{\bfseries Note:}\\
+			\normalfont\iconhref[\faLink]{https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-208.pdf}{SP 800-208} defines further parameter sets not listed in \iconhref[\faLink]{https://datatracker.ietf.org/doc/html/rfc8391}{RFC 8391} using other hash functions (SHA256/192, SHAKE256/256, SHAKE256/192). Furthermore, \iconhref[\faLink]{https://datatracker.ietf.org/doc/html/rfc8391}{RFC 8391} lists optional parameter sets that are not approved in\\ \iconhref[\faLink]{https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-208.pdf}{SP 800-208}. All of those variants are omitted here as they are not likely to be widely used, in particular not after ML-DSA and SLH-DSA have been standardized in the meantime.
+		\end{minipage}\\
+		\hrule
+		\vspace{1\baselineskip}
+		\begin{minipage}[t]{0.49\textwidth}
+			\scriptsize\faThumbsUp\, {\bfseries / Pros / Use If:}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{0em}
+				\item You can predict the maximum number of signatures that are going to be required
+				\item Firmware signing use cases
+				\item You want a signature scheme where the security only relies on the security of the hash function used without assuming the hardness of another mathematical problem.
+				\item Cf. \iconhref[\faLink]{https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-208.pdf}{SP 800-208, Section 1.1} for additional explanations
+			\end{itemize}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.49\textwidth}
+			\scriptsize \faThumbsDown\, {\bfseries / Cons / Don't Use If:}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{0em}
+				\item You require an algorithm for general use
+				\item You cannot predict the maximum number of signatures that are going to be required, or the number of required signatures exceeds the maximum number of signatures enabled through the approved parameter sets
+				\item Your application does not allow for the careful state management and tracking of signatures performed that is required with this algorithm
+			\end{itemize}
+		\end{minipage}\\[\baselineskip]
+
+		{\tiny  {\bfseries \scshape Note:} Cycle counts for key generation, signing and verification depend on the CPU used. Values may vary on different CPUs and thus only a rough indicator.}
+	\end{algorithmbox}
+	\begin{algorithmbox}{LMS (Leighton-Micali Signature)}
+		\textcolor{themeblue}{TBD}
+	\end{algorithmbox}
+
+
+	% ============================================================================================================
+	% ML-KEM
+	% ============================================================================================================
+	\newpage
+	{\large \scshape \faLock\, Encryption Algorithm Overview \& ID Cards}\\
+
+	\begin{algorithmbox}{ML-KEM (Module-Lattice-Based Key-Encapsulation Mechanism Standard)}
+	\begin{minipage}[t]{0.38\textwidth}
+			\scriptsize
+			\begin{center}
+				\adjustbox{valign=t}{%
+					\GreenAbsoluteSpeedometer(0,-10)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{8.75}{10}{\tiny}{\tiny \montserratsemibold}\hspace{1.5cm}}
+			\end{center}
+			\begin{tabbing}
+				\bfseries \scshape Previous Name\hspace{2.5cm}\=CRYSTALS-KYBER\\
+				\bfseries \scshape Specification\>\iconhref[\faLink]{https://csrc.nist.gov/pubs/fips/203/final}{FIPS 203}\\
+				\bfseries \scshape Type\>Encryption/KEM\\
+				\bfseries \scshape Family\>Lattice\\
+				\bfseries \scshape Standardization Status\>Standardized\\
+				\bfseries \scshape Recommended By\>NIST, BSI, ANSSI\\
+				\bfseries \scshape Naming\>\tbd
+			\end{tabbing}
+			\begin{tabular}[t]{l c  c  c}
+				\scshape\bfseries Algorithm Implementation &\textcolor{themegreydark}{\faKey}&\textcolor{themegreydark}{\faPen}&\textcolor{themegreydark}{\faQuestionCircle}\\
+				&&&\\
+				\hline\\
+
+
+				\scshape Complexity
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}\\[2mm]
+				\scshape Size
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+				&\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}\\
+			\end{tabular}\\[1.5\baselineskip]
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.6\textwidth}
+			\scshape \scriptsize
+			\begin{tabular}[t]{c c  c  c  c  c}
+				\bfseries \makecell{Version\\{}} &  \bfseries \makecell{OID\\{}} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faLock\,\quad\quad\faUnlock}} &  \bfseries \makecell{Ciphertext\\Size} & \bfseries \makecell{Public Key\\Size}\\
+				&&&&&\\
+				\hline\\
+
+
+				ML-KEM-512
+				& 2.16.840.1.101.3.4.4.7
+				& \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 1}{\faMicrochip}{themegreen}{0.6}{\faKey}
+				\tripleicon{\montserratbold 1}{\faMicrochip}{themegreen}{0.6}{\faLock}
+				\tripleicon{\montserratbold 1}{\faMicrochip}{themegreen}{0.6}{\faUnlock}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faLock}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}\\
+
+				ML-KEM-768
+				& 2.16.840.1.101.3.4.4.2
+				& \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeyellow}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faKey}
+				\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faLock}
+				\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faUnlock}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faLock}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}\\
+
+				ML-KEM-1024
+				& 2.16.840.1.101.3.4.4.3
+				& \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+				& \hspace{3mm}\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faKey}
+				\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faLock}
+				\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faUnlock}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faLock}{themegreen}{0.6}
+				& \hspace{3mm}\doubleicon{\montserratbold <1}{\faKey}{themegreen}{0.6}\\
+			\end{tabular}
+		\end{minipage}\\[\baselineskip]
+		\hrule
+		\vspace{1\baselineskip}
+		\begin{minipage}[t]{0.49\textwidth}
+			\scriptsize\faThumbsUp\, {\bfseries / Pros / Use If:}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{0em}
+				\item Currently the only post-quantum algorithm standardized by NIST
+				\item Need a general-purpose encryption / key-encapsulation algorithm with decent specs in all categories
+			\end{itemize}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[t]{0.49\textwidth}
+			\scriptsize \faThumbsDown\, {\bfseries / Cons / Don't Use If:}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{0em}
+				\item You don't want a lattice-based algorithm
+			\end{itemize}
+		\end{minipage}\\[\baselineskip]
+
+		{\tiny  {\bfseries \scshape Note:} Cycle counts for key generation, encryption and decryption depend on the CPU used. Values may vary on different CPUs and thus only a rough indicator.}
+	\end{algorithmbox}
+
+
+	\begin{algorithmbox}{Classic McEliece}
+		\textcolor{themeblue}{TBD}
+
+
+		{\tiny  {\bfseries \scshape Note:} Cycle counts for key generation, encryption and decryption depend on the CPU used. Values may vary on different CPUs and thus only a rough indicator.}
+	\end{algorithmbox}
+
+	\begin{algorithmbox}{BIKE}
+		\textcolor{themeblue}{TBD}\\
+		{\tiny  {\bfseries \scshape Note:} No data available for BIKE-L5 for cycle counts. Algorithm score is computed over BIKE-l1 and BIKE-L3 only.}\\
+		{\tiny  {\bfseries \scshape Note:} Cycle counts for key generation, encryption and decryption depend on the CPU used. Values may vary on different CPUs and thus only a rough indicator.}
+
+	\end{algorithmbox}
+
+	\begin{algorithmbox}{HQC}
+		\textcolor{themeblue}{TBD}\\
+		{\tiny  {\bfseries \scshape Note:} Cycle counts for key generation, encryption and decryption depend on the CPU used. Values may vary on different CPUs and thus only a rough indicator.}
+	\end{algorithmbox}
+
+	\begin{algorithmbox}{FrodoKEM}
+		\textcolor{themeblue}{TBD}\\
+		{\tiny  {\bfseries \scshape Note:} Cycle counts for key generation, encryption and decryption depend on the CPU used. Values may vary on different CPUs and thus only a rough indicator.}
+	\end{algorithmbox}
+
+
+	\newpage
+	{\large \scshape \faInfo\, Algorithm Scoring: Algorithm Overall Usability Score}\\
+
+	\scriptsize
+	We try to measure an algorithm's overall usability by calculating a single number between 0 (worst) and 10 (best), taking into account all performance and size metrics, the number of security categories provided and whether or not is it is suitable for general use. An algorithm's overall score is computed as
+	\begin{align*}
+		\textnormal{score\textsubscript{\itshape algorithm}} = \max\left\{0;\,\avg\{\textnormal{score}_\textnormal{\itshape v}\,|\, \textnormal{{\itshape v} is variant of {\itshape algorithm}}\} - \frac{1}{8}\cdot\left(5-\gamma_\textnormal{\itshape algorithm}\right) - \delta_\textnormal{\itshape algorithm}\right\}
+	\end{align*}
+	where \textnormal{score\textsubscript{\itshape variant}} is a score for an individual algorithm variant computed as
+			\begin{align*}
+			\textnormal{score\textsubscript{\itshape signature-variant}} = 10 - \avg\left({\scriptsize
+			\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faKey} + %
+			\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faPen} + %
+			\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faQuestionCircle} + %
+			\doubleicon{\montserratbold n}{\faPen}{themegreylight!50}{0.6}+ %
+			\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}
+			}\right)
+		\end{align*}
+	respectively
+		\begin{align*}
+			\textnormal{score\textsubscript{\itshape encryption-variant}} = 10 - \avg\left({\scriptsize
+			\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faKey} + %
+			\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faLock} + %
+			\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faUnlock} + %
+			\doubleicon{\montserratbold n}{\faLock}{themegreylight!50}{0.6}+ %
+			\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}
+			}\right)
+		\end{align*}
+
+	and where $1\leq\gamma_\textnormal{\itshape algorithm}\leq 5$ describes the number of different security categories offered by {\itshape algorithm}. Finally, $\delta_\textnormal{\itshape algorithm} = \begin{cases}
+      0 & \textnormal{if {\itshape algorithm} is a general purpose algorithm} \\
+      2 & \textnormal{else}
+   \end{cases}$	takes into account if the algorithm is suitable for general use.\\
+
+   \textcolor{themeaccentsecondary}{TBD: Take into account implementation complexity and size.}\\
+
+	{\large \scshape \faInfo\, Example: ML-DSA}\\
+
+	We calculate
+	\begin{align*}
+		\textnormal{score\textsubscript{\itshape ML-DSA-44}} = \textnormal{score\textsubscript{\itshape ML-DSA-65}} =\textnormal{score\textsubscript{\itshape ML-DSA-87}}&= 10 - \avg\left({\scriptsize
+		\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faKey} + %
+		\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faPen} + %
+		\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faQuestionCircle} + %
+		\doubleicon{\montserratbold 0}{\faPen}{themegreen}{0.6}+ %
+		\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}
+		}\right) = 10 - 1.2 = 8.8
+	\end{align*}
+Furthermore, $\gamma_\textnormal{\itshape ML-DSA} = 3$ since ML-DSA offers the three security categories \doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}\hspace{-1mm}, \doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}\hspace{-1mm}, and \doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}\hspace{-1mm}, and
+	$\delta_\textnormal{\itshape ML-DSA} = 0$ since ML-DSA is a general purpose signature algorithm. This results in an overall usability score of 8.55:\\
+
+	\begin{minipage}[T]{0.25\textwidth}
+		\GreenAbsoluteSpeedometer(0,0)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{8.55}{10}{\tiny}{\tiny \montserratsemibold}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[T]{0.75\textwidth}
+	\vspace{-\baselineskip}
+		\begin{align*}
+			\textnormal{score\textsubscript{\itshape ML-DSA}} &= \max\left\{(0;\,\avg\{\textnormal{score}_\textnormal{\itshape ML-DSA-44},\textnormal{score}_\textnormal{\itshape ML-DSA-65},\textnormal{score}_\textnormal{\itshape ML-DSA-87}\} - \frac{1}{8}\cdot\left(5-\gamma_\textnormal{\itshape ML-DSA}\right) - \delta_\textnormal{\itshape ML-DSA}\right\}\\
+			&=\max\left\{0;\,\avg\{8.8;\,8.8;\,8.8\} - \frac{1}{8}\cdot\left(5-3\right) - 0\right\}\\
+			&=\max\left\{0;\,8.8 - 0.25 - 0\right\}\\
+			&=\max\left\{0;\,8.55\right\}\\
+			&=8.55
+		\end{align*}
+	\end{minipage}
+
+\end{document}

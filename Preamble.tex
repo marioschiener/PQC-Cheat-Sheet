@@ -1,0 +1,471 @@
+% !TeX root = PQC_Cheat_Sheet.tex
+% 
+\usepackage[utf8]{inputenc}
+\usepackage[english,ngerman]{babel}
+\usepackage{tgadventor} % font
+\usepackage{fontspec}% requires XeLaTex or LuaLaTeX
+\usepackage{fontawesome5}
+\usepackage[table, dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{svg}
+\usepackage{wrapfig}
+\usepackage{booktabs}
+\usepackage{rotating}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{odsfile}
+\usepackage{smartdiagram}
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.text,shadings, backgrounds, shapes.misc, positioning, arrows.meta, chains, shapes.symbols}	%for rounded rectangle ``buttons'', Speedometer diagram
+\usepackage{siunitx}
+\usepackage{tabularray}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage{makecell}
+\usepackage{xifthen}
+\usepackage{tikz}
+\usepackage{lipsum}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[toc, acronym]{glossaries} % keep after hyperref
+\usepackage{scrlayer-scrpage}
+\usepackage[a4paper]{geometry}
+
+% ==========================================================================================================
+% COLORS, FONTS, LINKS
+% ==========================================================================================================
+
+% Colors
+\definecolor{themeaccent}{RGB}{251,178,10}
+\definecolor{themeblue}{RGB}{9,102,242}
+\definecolor{themegreen}{RGB}{7,244,50}
+\definecolor{themered}{RGB}{244,14,56}
+\definecolor{themeyellow}{RGB}{255,204,7}
+\definecolor{themeorange}{RGB}{251,178,10}
+\definecolor{themewhite}{RGB}{220,220,220}	% Black!50
+\definecolor{themegreylight}{RGB}{128,128,128}	% Black!50
+\definecolor{themegreymedium}{RGB}{68,70,74}
+\definecolor{themegreydark}{RGB}{64,64,64}	% Black!25
+\definecolor{themegreyverydark}{RGB}{32,32,32}
+
+% Fonts
+\newfontfamily\montserrat{Montserrat-Alt1} % requires XeLaTex or LuaLaTeX
+\newfontfamily\montserratlight{Montserrat-Alt1-ExtraLight} % requires XeLaTex or LuaLaTeX
+\newfontfamily\montserratthin{Montserrat-Alt1-Thin} % requires XeLaTex or LuaLaTeX
+\newfontfamily\montserratmedium{Montserrat-Alt1-Medium} % requires XeLaTex or LuaLaTeX
+\newfontfamily\montserratsemibold{Montserrat-Alt1-SemiBold} % requires XeLaTex or LuaLaTeX
+\newfontfamily\montserratbold{Montserrat-Alt1-Bold} % requires XeLaTex or LuaLaTeX
+
+\setsansfont[Ligatures=TeX]{Tex Gyre Adventor}
+\setmainfont[Ligatures=TeX]{Tex Gyre Adventor}
+\setmonofont[Ligatures=TeX]{NimbusMono}
+\renewcommand{\familydefault}{\sfdefault}
+
+
+\newcommand{\highlight}[1]{\textit{\textcolor{themeaccent}{#1}}}
+
+\parindent=0pt
+
+% Links
+\hypersetup{
+    colorlinks=true,
+    pdfborderstyle={/S/U/W 1},
+    linkcolor=black,
+    linkbordercolor=themeyellow,
+    urlcolor=themeaccentsecondary,
+    urlbordercolor=themeaccent,
+    citecolor=themegreylight
+    }
+
+
+\newcommand{\email}[2][]{\ifthenelse{\equal{#1}{}}{\href{mailto:#2}{\texttt{#2}}}{\href{mailto:#2}{\texttt{#1\,\,#2}}}}
+\newcommand{\iconurl}[2][]{\ifthenelse{\equal{#1}{}}{\url{#2}}{\textcolor{themeaccent}{#1}\,\,\url{#2}}}
+\newcommand{\iconhref}[3][]{\ifthenelse{\equal{#1}{}}{\href{#2}{#3}}{\href{#2}{#1 #3}}}
+
+\newcommand{\tbd}{\textcolor{themeaccentsecondary}{TBD}}
+\newcommand{\tbv}{\textcolor{themeaccentsecondary}{TBV}}
+
+\DeclareMathOperator{\avg}{avg}
+
+
+% ==========================================================================================================
+% Vertically centered inline images
+% ==========================================================================================================
+
+\newcommand{\vcenteredincludesvg}[2]{\begingroup\setbox0=\hbox{\includesvg[#2]{#1}}\parbox{\wd0}{\box0}\endgroup}
+\newcommand{\vcentered}[1]{\begingroup\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+
+
+
+
+% ==========================================================================================================
+% PAGE THEME& GEOMETRY
+% ==========================================================================================================
+
+\newcommand{\setpagetheme}[3]{
+
+	\pagestyle{scrheadings}
+	\clearpairofpagestyles
+	%\clearscrheadfoot
+	\automark[subsection]{section}
+
+
+	% Margins and Background
+	\newgeometry{left=1cm,right=1cm,top=2.4cm,bottom=0.75cm,headsep=0.75cm, footskip=2cm,includefoot}
+
+
+	% Picture
+	\AddToHook{shipout/background}{
+		\begin{tikzpicture}[remember picture,overlay]
+   				 \node[opacity=1] at (current page.center) {\includesvg{resources/Header}};
+		\end{tikzpicture}
+	}
+
+	\addtokomafont{pagenumber}{\scshape\color{themegreylight}}
+
+	%Header
+	\ihead{\Huge \montserrat \textcolor{themeaccent}{#1}}
+
+	%Footer
+	\ofoot{\textcolor{themegreylight}{\pagemark}}
+	\ifoot{\normalfont\scshape \textcolor{themegreylight}{#2}}
+	\cfoot{\normalfont\scshape \textcolor{themegreylight}{#3 -- }\docstatus\\\textcolor{themegreylight}{\tiny No responsibility is taken for the correctness of this information.}}
+}
+
+
+
+
+% ==========================================================================================================
+% ICONS
+% ==========================================================================================================
+
+\newcommand{\icon}[4]{%
+	\vcentered{%}
+		\begin{tikzpicture}[scale=#4, transform shape]%
+		\draw[draw=none,fill=#2] (0,0) circle (0.5);%
+		\node[color=#3](icon) at (0,0) {#1};%
+		\end{tikzpicture}
+	}
+}
+
+
+\newcommand{\doubleicon}[5][themegreydark]{%
+	\vcentered{%}
+	\begin{tikzpicture}[scale=#5, transform shape]%
+		\draw[draw=none,fill=#4] (0,0) circle (0.4);%
+		\draw[draw=none,fill=themegreydark] (0.35,-0.2) circle (0.19);%
+		\node[color=#1](icon) at (0,0) {\normalsize #2};%
+		\node[color=themewhite,scale=0.9](icon) at (0.35,-0.2) {#3};%
+	\end{tikzpicture}
+	}
+}
+
+\newcommand{\tripleicon}[6][themegreydark]{%
+	\vcentered{%}
+	\begin{tikzpicture}[scale=#5, transform shape]%
+		\draw[draw=none,fill=#4] (0,0) circle (0.4);%
+		\draw[draw=none,fill=themegreydark] (0.35,-0.2) circle (0.19);%
+		\draw[draw=none,fill=themegreydark] (0.35,0.2) circle (0.19);%
+		\node[color=#1](icon) at (0,0) {\normalsize #2};%
+		\node[color=themewhite](icon) at (0.35,-0.2) {#3};%
+		\node[color=themewhite,scale=0.9](icon) at (0.35,0.2) {#6};%
+	\end{tikzpicture}
+	}
+}
+
+\newcommand{\tripleicongeneric}[6][themegreydark]{%
+	\vcentered{%}
+	\begin{tikzpicture}[scale=#5, transform shape]%
+		\draw[draw=none,fill=#4] (0,0) circle (0.4);%
+		\draw[draw=none,fill=themegreydark] (0.35,-0.2) circle (0.19);%
+		\draw[color=themegreydark] (0.35,0.2) circle (0.19);%
+		\node[color=#1](icon) at (0,0) {\normalsize #2};%
+		\node[color=themewhite](icon) at (0.35,-0.2) {#3};%
+		\node[color=themegreydark,scale=0.9](icon) at (0.35,0.2) {#6};%
+	\end{tikzpicture}
+	}
+}
+
+\newcommand{\lettericon}[4]{%
+	\vcentered{%}
+		\begin{tikzpicture}[scale=#4, transform shape]%
+		\draw[draw=none,fill=#2] (-0.1,0) circle (0.125);%
+		\node[color=#1](icon) at (-0.1,0) {\bfseries #3};%
+		\end{tikzpicture}
+	}
+}
+
+
+% ==========================================================================================================
+% RANKINGS DIAGRAM
+% ==========================================================================================================
+
+\newcommand{\ranking}[4]{%
+	\scalebox{#4}{
+		\smartdiagramset{%
+		set color list={themegreen,themeyellow,themeorange,themered,themered!75!black},
+		sequence item border color=themegreydark,
+		sequence item font size=\footnotesize,
+		sequence item text color=themegreydark,
+		sequence item width=2cm,
+		sequence item height=1cm
+		}
+		#1\vcentered{\smartdiagram[sequence diagram]{#2}}#3
+	}
+}
+
+
+% ==========================================================================================================
+% BOXES
+% ==========================================================================================================
+
+
+\newenvironment{algorithmbox}[1]{%
+		\begin{tcolorbox}[colback=themewhite,colframe=themegreydark,title=#1, coltitle=themeaccent, fonttitle=\scshape, coltext=themegreydark, halign=left]
+		}%
+		{%
+		\end{tcolorbox}
+		}
+
+
+% ==========================================================================================================
+% Info Graphics
+% ==========================================================================================================
+
+
+\newlength{\heightsymbols}
+\newlength{\heightbutton}
+\newlength{\heighttoraise}
+
+% Scale
+% format: percentage, total number of symbols, symbol, font formatting, color
+\newcommand{\absolutescale}[7][]{%
+   	\pgfmathmultiply{#2}{#3}%
+	\pgfmathdivide{\pgfmathresult}{100}%
+	\pgfmathsetmacro{\bars}{int(round(\pgfmathresult))}
+	\pgfmathadd{\pgfmathresult}{1}
+	\pgfmathsetmacro{\barsnext}{int(round(\pgfmathresult)}
+
+
+
+	%Some measurements for vertically centering everything
+	\settoheight{\heightsymbols}{\hbox{#4}}
+	\settoheight{\heightbutton}{\hbox{\custombutton{#5 30}{white}{white}}}
+	\setlength{\heighttoraise}{\dimexpr(\heightbutton - \heightsymbols)/2\relax}
+
+	{
+	#5 % size
+	\noindent\raisebox{\heighttoraise}{
+		\foreach \j in {1,...,#3}{
+			\ifnum\numexpr\j-1<#2\relax
+				\textcolor{#6}{#4}\ignorespaces
+			\else
+				\textcolor{#7}{#4}\ignorespaces
+			\fi
+		}
+	}\ifthenelse{\isempty{#1}}
+	{}
+	{\ignorespaces\,\,\custombutton{#5 #2/#3}{#6}{#7}}
+	}
+}
+
+
+% Button
+% format: content, fill color, text color
+
+\newcommand{\custombutton}[3]{%
+	\vcentered{%
+		\begin{tikzpicture}
+			\node [rounded rectangle, minimum width=1.25cm, minimum height=4mm, inner sep=2pt, fill=#2, text=#3, baseline=-0.5ex] {#1};
+		\end{tikzpicture}
+		}
+}
+
+
+
+% Speedometer
+
+\pgfdeclarehorizontalshading{grad}{50bp}{
+    color(0cm)=(themered);
+	color(20bp)=(themeorange);
+    color(30bp)=(themeyellow);
+    color(50bp)=(themegreen)
+}
+
+\def\RedAbsoluteSpeedometer(#1)[#2][#3]#4#5#6#7#8#9{%
+	\begin{tikzpicture}
+		\begin{scope}[shift={(#1)}]
+			\edef\Mycount{0}%Variable to get the number of entries in the array
+			\ifthenelse{\isempty{#4}}{\xdef\Mycount{#7}}{
+				\foreach \element in {#4}{%For each element
+					\pgfmathparse{int(\Mycount+1)}%increase in one unit the last value of \Mycount
+					\xdef\Mycount{\pgfmathresult}%Refresh the  \Mycount value
+				}%\Mycount get the value of the number of elements in given by #4 array input.
+			}
+			\pgfmathparse{180/\Mycount)}%Using the value of the number of inputs in the array
+			\edef\Angle{\pgfmathresult}%Get the size of the angle sector for some range of valuis in the Gauje
+			\pgfmathparse{180-(#6/#7)*180}
+			\edef\ValueAngle{\pgfmathresult}
+
+
+			% full half circle, goes in the background
+			\def\leftpath{(180:#2)
+					arc (180:0:#2)
+					-- (0:#2*0.55)
+					arc (0:180:#2*0.55)
+					-- cycle;}
+			\draw[draw=none,thick]\leftpath
+
+
+			% segment to the right (> valueangle)
+			\def\rightpath{(\ValueAngle:#2)
+					arc (\ValueAngle:0:#2)
+					-- (0:#2*0.55)
+					arc (0:\ValueAngle:#2*0.55)
+					-- cycle;}
+			%\draw[draw=none,thick]\rightpath
+
+
+			% full half circle with complete color scale
+			\begin{scope}[on background layer]
+				\shade[
+					shading=grad,
+					shading angle=180
+					]\leftpath
+			\end{scope}
+
+
+			% cover the unused part through above layer
+			\begin{scope}[on above layer]
+				\shade[
+					bottom color=themegreydark,
+					top color=themegreydark,
+					]\rightpath;
+			\end{scope}
+
+
+			\foreach \Stext/\Mtext [count=\i from 0] in {#4}{
+				\def\Mypath{(180-\Angle*\i:#2)
+					arc (180-\Angle*\i:180-\Angle*\i-\Angle:#2)
+					-- (180-\Angle*\i-\Angle:#2*0.55)
+					arc (180-\Angle*\i-\Angle:180-\Angle*\i:#2*0.55)
+					-- cycle;}
+				\draw[draw=none,thick]\Mypath
+
+				% Numbers and text
+				\path[decoration={text along path,text={| #8 |\Stext},text align=center},decorate]
+					(180-\Angle*\i:#2*1.05) arc (180-\Angle*\i:180-\Angle*\i-\Angle:#2*1.05);
+
+
+				\path[decoration={text along path,text={| #9 |\Mtext},text align=center, text color=white},decorate]
+					(180-\Angle*\i:#2*#3) arc (180-\Angle*\i:180-\Angle*\i-\Angle:#2*#3);
+
+			}
+
+			\pgfmathparse{180-((180-\Angle)/#7*#6)}
+			%\xdef\Value{\pgfmathresult} % by Nice cfr observation
+			%\fill[themegreylight,rotate=\pgfmathresult] (90:#2*0.03)--(0:#2*0.75) -- (-90:#2*0.03)--cycle;
+			%\fill [themegreylight](0,0) circle (#2*0.08);
+			%\fill [themegreydark](0,0) circle (#2*0.03);
+
+			% Caption
+			\draw(-90:#2*0.15) node[font=\bfseries] {#5};
+			\draw(-90:#2*-0.15) node[font=\bfseries] {\large \custombutton{#6}{themegreydark}{themewhite}};
+
+		\end{scope}
+	\end{tikzpicture}
+}
+
+
+
+
+\def\GreenAbsoluteSpeedometer(#1)[#2][#3]#4#5#6#7#8#9{%
+	\begin{tikzpicture}
+		\begin{scope}[shift={(#1)}]
+			\edef\Mycount{0}%Variable to get the number of entries in the array
+			\ifthenelse{\isempty{#4}}{\xdef\Mycount{#7}}{
+				\foreach \element in {#4}{%For each element
+					\pgfmathparse{int(\Mycount+1)}%increase in one unit the last value of \Mycount
+					\xdef\Mycount{\pgfmathresult}%Refresh the  \Mycount value
+				}%\Mycount get the value of the number of elements in given by #4 array input.
+			}
+			\pgfmathparse{180/\Mycount)}%Using the value of the number of inputs in the array
+			\edef\Angle{\pgfmathresult}%Get the size of the angle sector for some range of valuis in the Gauje
+			\pgfmathparse{180-(#6/#7)*180}
+			\edef\ValueAngle{\pgfmathresult}
+
+
+			% full half circle, goes in the background
+			\def\leftpath{(180:#2)
+					arc (180:0:#2)
+					-- (0:#2*0.55)
+					arc (0:180:#2*0.55)
+					-- cycle;}
+			\draw[draw=none,thick]\leftpath
+
+
+			% segment to the right (> valueangle)
+			\def\rightpath{(\ValueAngle:#2)
+					arc (\ValueAngle:0:#2)
+					-- (0:#2*0.55)
+					arc (0:\ValueAngle:#2*0.55)
+					-- cycle;}
+			%\draw[draw=none,thick]\rightpath
+
+
+			% full half circle with complete color scale
+			\begin{scope}[on background layer]
+				\shade[
+					shading=grad
+					]\leftpath
+			\end{scope}
+
+
+			% cover the unused part through above layer
+			\begin{scope}[on above layer]
+				\shade[
+					bottom color=themegreydark,
+					top color=themegreydark,
+					]\rightpath;
+			\end{scope}
+
+
+			\foreach \Stext/\Mtext [count=\i from 0] in {#4}{
+				\def\Mypath{(180-\Angle*\i:#2)
+					arc (180-\Angle*\i:180-\Angle*\i-\Angle:#2)
+					-- (180-\Angle*\i-\Angle:#2*0.55)
+					arc (180-\Angle*\i-\Angle:180-\Angle*\i:#2*0.55)
+					-- cycle;}
+				\draw[draw=none,thick]\Mypath
+
+				% Numbers and text
+				\path[decoration={text along path,text={| #8 |\Stext},text align=center},decorate]
+					(180-\Angle*\i:#2*1.05) arc (180-\Angle*\i:180-\Angle*\i-\Angle:#2*1.05);
+
+
+				\path[decoration={text along path,text={| #9 |\Mtext},text align=center, text color=white},decorate]
+					(180-\Angle*\i:#2*#3) arc (180-\Angle*\i:180-\Angle*\i-\Angle:#2*#3);
+
+			}
+
+			\pgfmathparse{180-((180-\Angle)/#7*#6)}
+			%\xdef\Value{\pgfmathresult} % by Nice cfr observation
+			%\fill[themegreylight,rotate=\pgfmathresult] (90:#2*0.03)--(0:#2*0.75) -- (-90:#2*0.03)--cycle;
+			%\fill [themegreylight](0,0) circle (#2*0.08);
+			%\fill [themegreydark](0,0) circle (#2*0.03);
+
+			% Caption
+			\draw(-90:#2*0.15) node[font=\bfseries] {#5};
+			\draw(-90:#2*-0.15) node[font=\bfseries] {\large \custombutton{#6}{themegreydark}{themewhite}};
+
+		\end{scope}
+	\end{tikzpicture}
+}
+
+
