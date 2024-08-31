@@ -43,21 +43,22 @@ All values thus have a lower bound of 0. We do not limit the upper end of scales
 ### Preview
 
 <p align="center">
-    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-1.png"  alt="Page 1" width = 720px>
-    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-2.png"  alt="Page 2" width = 720px>
-    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-3.png"  alt="Page 3" width = 720px>
-    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-4.png"  alt="Page 4" width = 720px>
-    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-5.png"  alt="Page 5" width = 720px>
-    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-6.png"  alt="Page 6" width = 720px>
-    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-7.png"  alt="Page 7" width = 720px>
-    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-8.png"  alt="Page 8" width = 720px>
-    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-9.png"  alt="Page 9" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-01.png"  alt="Page 1" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-02.png"  alt="Page 2" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-03.png"  alt="Page 3" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-04.png"  alt="Page 4" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-05.png"  alt="Page 5" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-06.png"  alt="Page 6" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-07.png"  alt="Page 7" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-08.png"  alt="Page 8" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-09.png"  alt="Page 9" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-10.png"  alt="Page 10" width = 720px>
 </p>
 
 
 
 ## Compiling the Source Files
-Use LuaLaTeX for compiling the .tex files (PQC-Cheat-Sheet.tex is the root document). You may need to install the provided fonts in your system first. Set the -shell-escape option in order to reconvert the *.svg graphics after any change during compilation (this requires inkscape to be installed).
+Use LuaLaTeX for compiling the .tex files (PQC-Cheat-Sheet.tex is the root document). You may need to install the provided fonts in your system first. Set the -shell-escape option in order to reconvert the *.svg graphics after any change during compilation (this requires Inkscape to be installed).
 
 (Currently, all content except for the preamble is in one document on purpose. This is to make it easier to change formatting for each page using search/replace. Once everything stands, the content will be broken down into different smaller files.)
 
