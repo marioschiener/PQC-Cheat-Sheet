@@ -31,57 +31,102 @@ Post-Quantum Cryptography Algorithm Cheat Sheets}{%	Title
 {August 2024 -- v0.1}% Date, Version
 
 
+% TODO Split algorithm ID cards into separate files
+% TODO Implementation complexities and sizes
+% TODO Classic McEliece, BIKE, HQC, FrodoKEM
+% TODO XMSS metrics
+% TODO Export the exact data behind the simplified values as CSV or something similar as auxiliary information
+
+
 \begin{document}
 	% ============================================================================================================
 	% Explanations
 	% ============================================================================================================
-	%\vspace{-0.1\baselineskip}
-	%Explanations\\[0.5\baselineskip]
-	\begin{minipage}[t]{0.34\textwidth} % left
-		\tiny
-		{\bfseries  Symbols}\\[0.5\baselineskip]
-		\textcolor{themegreydark}{\faKey}\quad Key Generation\quad
-		\textcolor{themegreydark}{\faLock}\quad Encryption\quad
-		\textcolor{themegreydark}{\faUnlock}\quad Decryption\quad
-		\textcolor{themegreydark}{\faPen}\quad Signing\quad
-		\textcolor{themegreydark}{\faQuestionCircle}\quad Verification\\
-		\textcolor{themegreydark}{\faCalendar}\quad Not yet standardized by NIST\quad
-		\textcolor{themegreydark}{\faExclamationCircle}\quad Recommendations differ depending on organization\\
-		\textcolor{themegreydark}{\faMicrochip}\quad CPU Cycles\quad\textcolor{themegreydark}{\faCode}\quad Implementation Code\quad\lettericon{themewhite}{themegreydark}{C}{1}\quad Complexity\quad\lettericon{themewhite}{themegreydark}{S}{1}\quad Size\\[0.25\baselineskip]
-		{\bfseries  General color coding}\\[0.5\baselineskip]
-		Best to Worst: \textcolor{themegreen}{$\blacksquare$} \textcolor{themeyellow}{$\blacksquare$} \textcolor{themeorange}{$\blacksquare$} \textcolor{themered}{$\blacksquare$} \textcolor{themered!65!black}{$\blacksquare$}\quad TBD: \textcolor{themeblue}{$\blacksquare$}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.32\textwidth} % center
-		\tiny
-		{\bfseries Rating scale of algorithm parameter sizes and performance} (less is better in all cases):
-		\vspace{-0.75\baselineskip}
-		\begin{tabbing}
-			\=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faAsterisk}= $\mathcal{O}(10^n)$ CPU kilo cycles for \faAsterisk\hspace{1cm}
-			\=\doubleicon{\montserratbold n}{\faPen}{themegreylight!50}{0.6}= $\mathcal{O}(10^n)$ kB of signature size\\[0.5\baselineskip]
-			\>\doubleicon{\montserratbold n}{\faLock}{themegreylight!50}{0.6}= $\mathcal{O}(10^n)$ kB of ciphertext size
-			\>\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}= $\mathcal{O}(10^n)$ kB of public key size\\[\baselineskip]
-			Best to Worst: \textcolor{themegreen}{$\blacksquare$} $n\leq2$, \textcolor{themeyellow}{$\blacksquare$} $n\{3,4\}$, \textcolor{themeorange}{$\blacksquare$} $n\in\{5,6\}$, \textcolor{themered}{$\blacksquare$} $n\in\{7,8\}$, \textcolor{themered!65!black}{$\blacksquare$} $n\geq9$
-		\end{tabbing}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.32\textwidth} % right
-		\tiny
-		{\bfseries Security category ranking of parameter sets} (higher number is more secure):\\[0.5\baselineskip]
-		\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
-		\doubleicon{\montserratbold IV}{\faSun[regular]}{themeyellow}{0.6}
-		\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
-		\doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}
-		\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}= NIST Security Categories V, IV, III, II, I\\[0.5\baselineskip]
-		{\bfseries Algorithm implementation complexity and size} (Low/Medium/High, lower is better):\\[0.25\baselineskip]
-		\tripleicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries C}
-		\tripleicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries C}
-		\tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C}= Code Complexity\quad
-		\tripleicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries S}
-		\tripleicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries S}
-		\tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries S}= Code Size
-	\end{minipage}
+	\begin{minipage}[t]{0.4\textwidth} % left
+		\vspace{-3mm}
+		\begin{algorithmbox}{Symbols}
+			\scriptsize
+			{\bfseries  General color coding}\\[0.5\baselineskip]
+			Best to Worst:
+			\textcolor{themegreen}{$\blacksquare$}
+			\textcolor{themeyellow}{$\blacksquare$}
+			\textcolor{themeorange}{$\blacksquare$}
+			\textcolor{themered}{$\blacksquare$}
+			\textcolor{themered!65!black}{$\blacksquare$}\quad
+			TBD: \textcolor{themeblue}{$\blacksquare$}\\[\baselineskip]
 
+			{\bfseries  Symbols}
+			\vspace{-0.5\baselineskip}
+			\begin{tabbing}
+				\textcolor{themegreydark}{\faExclamationCircle}\quad Recommendations differ depending on organization\\
+				\=\textcolor{themegreydark}{\faSun[regular]}\quad Parameter set\hspace{3cm}
+				\=\textcolor{themegreydark}{\faKey}\quad Key Generation\\
+				\>\textcolor{themegreydark}{\faLock}\quad Encryption
+				\>\textcolor{themegreydark}{\faUnlock}\quad Decryption\\
+				\>\textcolor{themegreydark}{\faPen}\quad Signing
+				\>\textcolor{themegreydark}{\faQuestionCircle}\quad Verification\\
+				\>\textcolor{themegreydark}{\faCalendar}\quad Not yet standardized by NIST
+				\>\textcolor{themegreydark}{\faMicrochip}\quad CPU Cycles\\
+				\>\textcolor{themegreydark}{\faCode}\quad Implementation Code
+				\>\hspace{-0.5mm}\lettericon{themewhite}{themegreydark}{C}{1}\hspace{-2mm} Implementation complexity\\
+				\>\lettericon{themewhite}{themegreydark}{S}{1}\hspace{-1mm} Implementation size
+			\end{tabbing}
+
+			{\bfseries Security categories of parameter sets}\\[0.5\baselineskip]
+			\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+			\doubleicon{\montserratbold IV}{\faSun[regular]}{themeyellow}{0.6}
+			\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
+			\doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}
+			\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6} NIST Security Categories V, IV, III, II, I\\[\baselineskip]
+
+			Higher means more secure.\\[\baselineskip]
+
+			{\bfseries Implementation complexity and size}\\[0.5\baselineskip]
+			\tripleicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries C}
+			\tripleicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries C}
+			\tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C} Low/Medium/High implementation complexity\\
+			\tripleicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries S}
+			\tripleicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries S}
+			\tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries S} Low/Medium/High implementation size\\[\baselineskip]
+			Lower is better.\\[\baselineskip]
+
+			{\bfseries Rating scales for parameter sizes and performance}\\[0.5\baselineskip]
+			Best to Worst: \textcolor{themegreen}{$\blacksquare$} $n\leq2$, \textcolor{themeyellow}{$\blacksquare$} $n\{3,4\}$, \textcolor{themeorange}{$\blacksquare$} $n\in\{5,6\}$, \textcolor{themered}{$\blacksquare$} $n\in\{7,8\}$, \textcolor{themered!65!black}{$\blacksquare$} $n\geq9$
+			\begin{tabbing}
+				\=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faKey}
+				\=$\mathcal{O}(5^n)$ CPU kilo cycles for key generation\\
+
+				\=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faPen}
+				\=$\mathcal{O}(5^n)$ CPU kilo cycles for signing\\
+
+				\=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faQuestionCircle}
+				\=$\mathcal{O}(5^n)$ CPU kilo cycles for signature verification\\
+
+				\=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faLock}
+				\=$\mathcal{O}(5^n)$ CPU kilo cycles for encryption / key encapsulation\\
+
+				\=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faUnlock}
+				\=$\mathcal{O}(5^n)$ CPU kilo cycles for decryption / key decapsulation\\
+
+				\>\doubleicon{\montserratbold n}{\faPen}{themegreylight!50}{0.6}
+				\>$\mathcal{O}(2^n)$ kB of signature size\\
+				\>\doubleicon{\montserratbold n}{\faLock}{themegreylight!50}{0.6}
+				\> $\mathcal{O}(2^n)$ kB of ciphertext size\\
+				\>\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}
+				\> $\mathcal{O}(2^{(n-5)})$ kB of signature algorithm public key size\\
+				\>\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}
+				\> $\mathcal{O}(2^n)$ kB of encryption algorithm public key size\\
+			\end{tabbing}
+			\vspace{-6mm}
+		\end{algorithmbox}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.58\textwidth} % right
+		\vspace{-3mm}
+		\begin{algorithmbox}{How To Work With This Cheat Sheet}
+			\tbd
+		\end{algorithmbox}
+	\end{minipage}
 
 
 	% ============================================================================================================
