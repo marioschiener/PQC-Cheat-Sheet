@@ -27,7 +27,8 @@ No responsibility is taken for the correctness of the information contained in t
 ### Algorithms
 
 **Signature:** ML-DSA (CRYSTALS-DILITHIUM), Falcon, SLH-DSA (SHPINCS+), XMSS/XMSSMT, LMS
-**Encryption/KEM**: ML-KEM (CRYSTALS-KYBER), BIKE, HQC, Classic McEliece, FrodoKEM
+
+**Encryption/KEM:** ML-KEM (CRYSTALS-KYBER), BIKE, HQC, Classic McEliece, FrodoKEM
 
 ### Working with and Interpreting the Cheat Sheet
 **The goal of this cheat sheet is to make it as easy as possible to figure out which algorithm to pick for a given use case. Algorithm ID cards break down algorithm parameter sets, their important values and performance characteristics. The cheat sheet is intended to help users primarily in technical roles, such as engineers, architects or software developers working with post-quantum cryptography.**
