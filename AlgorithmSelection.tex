@@ -1,0 +1,97 @@
+% !TeX root = PQC_Cheat_Sheet.tex
+
+% Author: Mario Schiener, 2024
+% LinkedIn: https://www.linkedin.com/in/mario-schiener/
+% Github: https://github.com/marioschiener
+
+% ============================================================================================================
+% Main Content
+% ============================================================================================================
+
+\begin{minipage}[t]{0.7\textwidth}
+    \vspace{0pt}
+    % ============================================================================================================
+    % Orders of Preference
+    % ============================================================================================================
+    \begin{algorithmbox}{Algorithm Choice Guidance: Rules Of Thumb}
+        {\scriptsize The following orders of preference should be considered as general rules of thumb applicable to most use cases. They should however not be considered to be universal truths. Unstandardized algorithms are listed for the sake of completeness.\\}
+        % ============================================================================================================
+        % Signature Algorithms
+        % ============================================================================================================
+        \begin{minipage}[t]{0.5\textwidth}
+            \vspace{0pt}
+            {\scshape \faPen\, Signature Algorithms}\\
+            {\scriptsize \bfseries Objective: Best All-Around Package \tbv}\\[0.1\baselineskip]
+            \ranking{}{%
+            \bfseries{ML-DSA},\bfseries{Falcon} \faCalendar,\bfseries{SLH-DSA},\bfseries{XMSS/LMS}*,\textcolor{themewhite}{\bfseries{New Candidates**} \faCalendar}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Performance of Key Generation \tbv}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{ML-DSA},\bfseries{SLH-DSA\\f variants},\bfseries{SLH-DSA\\s variants},\bfseries{Falcon} \faCalendar}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Performance of Signing \tbv}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{ML-DSA},\bfseries{Falcon} \faCalendar, \bfseries{SLH-DSA\\f variants},\bfseries{SLH-DSA\\s variants}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Performance of Verification \tbv}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{Falcon} \faCalendar,\bfseries{ML-DSA},\bfseries{SLH-DSA\\s variants},\bfseries{SLH-DSA\\f variants}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Small Signatures \tbv}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{Falcon} \faCalendar,\bfseries{ML-DSA},\bfseries{SLH-DSA\\s variants},\bfseries{SLH-DSA\\f variants}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Small Public Keys \tbv}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{SLH-DSA},\bfseries{Falcon} \faCalendar,\bfseries{ML-DSA}}{}{0.6}\\[0.75\baselineskip]
+            {\tiny * \,\,XMSS/LMS is not suitable for general purpose signatures}\\[-0.5\baselineskip]
+            {\tiny ** Security still unclear, none recommended yet at the moment}
+        \end{minipage}
+        \hfill
+        % ============================================================================================================
+        % Page 1: Encryption/KEM Algorithms
+        % ============================================================================================================
+        \begin{minipage}[t]{0.5\textwidth}
+            \vspace{0pt}
+            {\scshape \faLock\, Encryption/Key Encapsulation Algorithms}\\
+            {\scriptsize \bfseries Objective: Best All-Around Package \tbv}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{ML-KEM},\bfseries{BIKE} \faCalendar, \bfseries{HQC} \faCalendar, \bfseries{FrodoKEM} \faExclamationCircle, \textcolor{themewhite}{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Performance of Key Generation \tbv}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{ML-KEM},\bfseries{HQC} \faCalendar, \bfseries{BIKE} \faCalendar, \bfseries{FrodoKEM} \faExclamationCircle, {\textcolor{themewhite}{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle}}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Performance of Encryption \tbv}\\[0.1\baselineskip]
+            \ranking{}{{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle},\bfseries{ML-KEM},\bfseries{BIKE} \faCalendar,  \bfseries{HQC} \faCalendar, \textcolor{themewhite}{\bfseries{FrodoKEM} \faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Performance of Decryption \tbv}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{ML-KEM}, {\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle},\bfseries{HQC} \faCalendar, \bfseries{BIKE} \faCalendar , \textcolor{themewhite}{\bfseries{FrodoKEM} \faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Small Ciphertext \tbv}\\[0.1\baselineskip]
+            \ranking{}{{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle}, \bfseries{ML-KEM},\bfseries{BIKE} \faCalendar, \bfseries{HQC} \faCalendar, \textcolor{themewhite}{\bfseries{FrodoKEM} \faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Small Public Keys \tbv}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{ML-KEM},\bfseries{BIKE} \faCalendar, \bfseries{HQC} \faCalendar, \bfseries{FrodoKEM} \faExclamationCircle, {\textcolor{themewhite}{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle}}}{}{0.6}\\[0.75\baselineskip]
+        \end{minipage}
+    \end{algorithmbox}
+    \begin{algorithmbox}{Pure PQC vs PQ/T Hybrid}
+        \scriptsize
+        This topic depends on too many factors (e.g. cost of migration, security considerations, risk profile, GRC requirements) to give general advice. {\bfseries For PQ/T hybrids, consider  ECC (e.g. secp256r1, Curve25519)} over RSA for the traditional component.
+        \vspace{-1mm}
+    \end{algorithmbox}
+\end{minipage}
+\begin{minipage}[t]{0.28\textwidth}
+    \vspace{0pt}
+    \begin{algorithmbox}{Security Category Choices}
+        \scriptsize
+        \begin{itemize}[leftmargin=*]
+            \setlength\itemsep{0em}
+            \item First, consider using \doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}\hspace{-3mm} as a baseline.\\
+            \item Use \doubleicon{\montserratbold IV}{\faSun[regular]}{themeyellow}{0.6}\hspace{-3mm} or
+            \doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}\hspace{-3mm} for more security if possible (i.e., if a decrease in performance is not a concern and if no constraints apply).\\
+            \item Use \doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}\hspace{-3mm} or
+            \doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}\hspace{-3mm} {\bfseries if and only if} \doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}\hspace{-3mm} or higher is not an option due to constraints (e.g. performance, memory, etc.).\\[\baselineskip]
+        \end{itemize}
+    \end{algorithmbox}
+    \begin{algorithmbox}{Pure vs. Pre-Hashing}
+        \scriptsize
+        %\vspace{-2mm}
+        \begin{itemize}[leftmargin=*]
+            \setlength\itemsep{0em}
+            \item {\bfseries First, consider using  pure} (i.e., without pre-hashing) as this is the general recommendation.\\
+            \item {\bfseries Pre-Hashing may be considered if one or more of the following applies:}
+            \begin{itemize}[leftmargin=*]
+                \setlength\itemsep{0em}
+                \item The message $M$ is too large to be sent to cryptographic module (CM) for hashing without significantly impacting performance. This may be the case e.g. in CMS related use cases such as S/MIME or code signing, or in cases of very narrow communication channels to the CM (e.g. between APDUs exchanged between smartcard and smartcard reader).
+                \item The hash needs to be signed with different algorithms and would be computed repeatedly without pre-hashing.
+                \item The specific hash function is not supported in a CM.
+            \end{itemize}
+        \end{itemize}
+        \vspace{0.75mm}
+    \end{algorithmbox}
+\end{minipage}
+

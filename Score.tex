@@ -1,0 +1,86 @@
+% !TeX root = PQC_Cheat_Sheet.tex
+
+% Author: Mario Schiener, 2024
+% LinkedIn: https://www.linkedin.com/in/mario-schiener/
+% Github: https://github.com/marioschiener
+\vspace{-5mm}
+\begin{algorithmbox}{Algorithm Overall Usability Score}
+	\tiny
+	We try to measure an algorithm's overall usability for a general use case without any special characteristics by calculating a single number between 0 (worst) and 10 (best) for the algorithm. This calculation is taking into account all parameter sets, performance metrics, public key size, signature/ciphertext size, the number of security categories provided, whether or not it is suitable for general use, and the complexity and size of its implementation. \\
+
+	We define an algorithm's overall score as
+	\begin{align*}
+		\textnormal{\bfseries score\textsubscript{\itshape \bfseries algorithm}} = \textnormal{\bfseries max}\left\{\textnormal{\bfseries 0, }\textnormal{\bfseries avg}\left\{\textnormal{\bfseries score}_\textnormal{\itshape \bfseries parameterSet}\,|\, \textnormal{{\itshape\bfseries  parameterSet} \bfseries is a parameter set of {\itshape algorithm}}\right\} - \frac{\textnormal{\bfseries 1}}{\textnormal{\bfseries 8}}\cdot\left(\textnormal{\bfseries 5}-\textnormal{\bfseries categories}_\textnormal{\itshape\bfseries  algorithm}\right) - \frac{\textnormal{\bfseries 1}}{\textnormal{\bfseries 8}}\cdot\textnormal{\bfseries impl\textsubscript{\itshape\bfseries algorithm}}- \textnormal{\bfseries generality}_\textnormal{\itshape\bfseries  algorithm}\right\}
+	\end{align*}
+	where \textnormal{score\textsubscript{\itshape parameterSet}} is a score for an individual algorithm parameter set. Depending on the type of algorithm, \textnormal{score\textsubscript{\itshape parameterSet}} is defined as
+	\begin{align*}
+		\textnormal{score\textsubscript{\itshape signature-parameterSet}} = \textnormal{10} - \avg\left\{{\scriptsize
+		\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faKey}\hspace{-1mm}\textnormal{, } %
+		\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faPen}\hspace{-1mm}\textnormal{, } %
+		\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faQuestionCircle}\hspace{-1mm}\textnormal{, } %
+		\doubleicon{\montserratbold n}{\faPen}{themegreylight!50}{0.6}\hspace{-1mm}\textnormal{, } %
+		\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}\hspace{-1mm}
+		}\right\}
+		\hspace{2cm}\textnormal{respectively}\hspace{2cm}
+		\textnormal{score\textsubscript{\itshape encryption-parameterSet}} = \textnormal{10} - \avg\left\{{\scriptsize
+		\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faKey}\hspace{-1mm}\textnormal{, } %
+		\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faLock}\hspace{-1mm}\textnormal{, } %
+		\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faUnlock}\hspace{-1mm}\textnormal{, } %
+		\doubleicon{\montserratbold n}{\faLock}{themegreylight!50}{0.6}\hspace{-1mm}\textnormal{, } %
+		\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}\hspace{-1mm}
+		}\right\}\textnormal{.}
+	\end{align*}
+	Furthermore, $\textnormal{1}\leq\textnormal{categories}_\textnormal{\itshape algorithm}\leq\textnormal{5}$ denotes the number of different NIST security categories offered by {\itshape algorithm}. By assigning numeric values of 0 = \tripleicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries C}\hspace{-2mm}= \tripleicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries S}\hspace{-2mm}, 1 = \tripleicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries C}\hspace{-2mm}= \tripleicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries S}\hspace{-2mm} and 2 = \tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C}\hspace{-2mm}= \tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries S}\hspace{-2mm}, we set
+	\begin{align*}
+		\textnormal{impl\textsubscript{\itshape algorithm}} = \avg\left\{{\scriptsize
+		\tripleicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries C}\hspace{-1mm}\textnormal{, }
+		\tripleicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries C}\hspace{-1mm}\textnormal{, }
+		\tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C}\hspace{-1mm}\textnormal{, }
+		\tripleicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries S}\hspace{-1mm}\textnormal{, }
+		\tripleicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries S}\hspace{-1mm}\textnormal{, }
+		\tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries S}\hspace{-1mm}
+		}\right\}\textnormal{.}
+	\end{align*}
+	Finally, we define
+	\begin{align*}
+		\textnormal{generality}_\textnormal{\itshape algorithm} = \begin{cases}
+		\textnormal{0} & \textnormal{if {\itshape algorithm} is a general purpose algorithm} \\
+		\textnormal{2} & \textnormal{else}
+		\end{cases}
+	\end{align*}
+	to take into account if the algorithm is suitable for general use.\\
+
+	\textcolor{themeaccentsecondary}{TBD: In the algorithm scores given in ID cards, we currently use \textnormal{impl\textsubscript{\itshape algorithm}} = 0 in the respective computations because the necessary values for implementation complexity and size are still \tbd. This will be corrected later.}
+\end{algorithmbox}
+\vspace{-2mm}
+\begin{algorithmbox}{Example: ML-DSA Overall Usability Score}
+	\tiny
+	We calculate
+	\vspace{-4mm}
+	\begin{align*}
+		\textnormal{score\textsubscript{\itshape ML-DSA-44}} &= \textnormal{10} - \avg\left\{{\scriptsize
+		\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}\hspace{-1mm}\textnormal{, } %
+		\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faPen}\hspace{-1mm}\textnormal{, } %
+		\tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faQuestionCircle}\hspace{-1mm}\textnormal{, } %
+		\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}\hspace{-1mm}\textnormal{, } %
+		\doubleicon{\montserratbold 5}{\faKey}{themeorange}{0.6}\hspace{-1mm}
+		}\right\} = \textnormal{10} - \textnormal{2.8} = \textnormal{7.2}
+	\end{align*}
+	Similarly, we obtain \textnormal{score\textsubscript{\itshape ML-DSA-65}} = 7.0 and \textnormal{score\textsubscript{\itshape ML-DSA-87}} = 6.2. Furthermore, $\textnormal{categories}_\textnormal{\itshape ML-DSA}$ = 3 since ML-DSA offers the three security categories \doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}\hspace{-2mm}, \doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}\hspace{-2mm}, and \doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}\hspace{-2mm}, and $\textnormal{generality}_\textnormal{\itshape ML-DSA}$ = 0 since ML-DSA is a general purpose signature algorithm. This results in an overall usability score of 6.55:\\[\baselineskip]
+
+	\begin{minipage}[T]{0.25\textwidth}
+		\GreenAbsoluteSpeedometer(0,0)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{ML-DSA Overall Usability Score}{6.55}{10}{\tiny}{\tiny \montserratsemibold}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[T]{0.75\textwidth}
+	\vspace{-\baselineskip}
+		\begin{align*}
+			\textnormal{score\textsubscript{\itshape ML-DSA}} &= \max\left\{\textnormal{0, }\avg\left\{\textnormal{score}_\textnormal{\itshape ML-DSA-44}\textnormal{, score}_\textnormal{\itshape ML-DSA-65}\textnormal{, score}_\textnormal{\itshape ML-DSA-87}\right\} - \frac{\textnormal{1}}{\textnormal{8}}\cdot\left(\textnormal{5}-\textnormal{categories}_\textnormal{\itshape ML-DSA}\right) - \frac{\textnormal{1}}{\textnormal{8}}\cdot\textnormal{impl\textsubscript{\itshape ML-DSA}}- \textnormal{generality}_\textnormal{\itshape ML-DSA}\right\}\\
+			&=\max\left\{\textnormal{0, }\avg\left\{\textnormal{7.2, 7.0, 6.2}\right\} - \frac{\textnormal{1}}{\textnormal{8}}\cdot\left(\textnormal{5-3}\right) - \textnormal{0} - \textnormal{0}\right\}\\
+			&=\max\left\{\textnormal{0, }\textnormal{6.8} - \textnormal{0.25}\right\}\\
+			&=\max\left\{\textnormal{0, }\textnormal{6.55}\right\}\\
+			&=\textnormal{6.55}
+		\end{align*}
+	\textcolor{themeaccentsecondary}{TBD: We use \textnormal{impl\textsubscript{\itshape ML-DSA}} = 0 because the necessary values to compute it are still \tbd, cf. ML-DSA ID card. This will be corrected later.}\\
+	\end{minipage}
+\end{algorithmbox}

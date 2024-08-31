@@ -24,6 +24,11 @@ The cheat sheets are currently in **DRAFT** status and are still **work in progr
 
 No responsibility is taken for the correctness of the information contained in the document.
 
+### Algorithms
+
+**Signature:** ML-DSA (CRYSTALS-DILITHIUM), Falcon, SLH-DSA (SHPINCS+), XMSS/XMSSMT, LMS
+**Encryption/KEM**: ML-KEM (CRYSTALS-KYBER), BIKE, HQC, Classic McEliece, FrodoKEM
+
 ### Working with and Interpreting the Cheat Sheet
 **The goal of this cheat sheet is to make it as easy as possible to figure out which algorithm to pick for a given use case. Algorithm ID cards break down algorithm parameter sets, their important values and performance characteristics. The cheat sheet is intended to help users primarily in technical roles, such as engineers, architects or software developers working with post-quantum cryptography.**
 
@@ -53,6 +58,9 @@ All values thus have a lower bound of 0. We do not limit the upper end of scales
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-08.png"  alt="Page 8" width = 720px>
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-09.png"  alt="Page 9" width = 720px>
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-10.png"  alt="Page 10" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-11.png"  alt="Page 11" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-12.png"  alt="Page 12" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-13.png"  alt="Page 13" width = 720px>
 </p>
 
 
