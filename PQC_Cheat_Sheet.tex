@@ -95,27 +95,22 @@ Post-Quantum Cryptography Algorithm Cheat Sheets}{%	Title
 			\begin{tabbing}
 				\=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faKey}
 				\=$\mathcal{O}(5^n)$ CPU kilo cycles for key generation\\
-
 				\=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faPen}
 				\=$\mathcal{O}(5^n)$ CPU kilo cycles for signing\\
-
 				\=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faQuestionCircle}
 				\=$\mathcal{O}(5^n)$ CPU kilo cycles for signature verification\\
-
 				\=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faLock}
 				\=$\mathcal{O}(5^n)$ CPU kilo cycles for encryption / key encapsulation\\
-
 				\=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faUnlock}
 				\=$\mathcal{O}(5^n)$ CPU kilo cycles for decryption / key decapsulation\\
-
 				\>\doubleicon{\montserratbold n}{\faPen}{themegreylight!50}{0.6}
-				\>$\mathcal{O}(2^n)$ kB of signature size\\
+				\>$\mathcal{O}(2^n)$ KB of signature size\\
 				\>\doubleicon{\montserratbold n}{\faLock}{themegreylight!50}{0.6}
-				\> $\mathcal{O}(2^n)$ kB of ciphertext size\\
+				\> $\mathcal{O}(2^n)$ KB of ciphertext size\\
 				\>\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}
-				\> $\mathcal{O}(2^{(n-5)})$ kB of signature algorithm public key size\\
+				\> $\mathcal{O}(2^{(n-5)})$ KB of signature algorithm public key size\\
 				\>\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}
-				\> $\mathcal{O}(2^n)$ kB of encryption algorithm public key size\\
+				\> $\mathcal{O}(2^n)$ KB of encryption algorithm public key size\\
 			\end{tabbing}
 			\vspace{-6mm}
 		\end{algorithmbox}
@@ -123,8 +118,24 @@ Post-Quantum Cryptography Algorithm Cheat Sheets}{%	Title
 	\hfill
 	\begin{minipage}[t]{0.58\textwidth} % right
 		\vspace{-3mm}
-		\begin{algorithmbox}{How To Work With This Cheat Sheet}
-			\tbd
+		\begin{algorithmbox}{How To Interpret This Cheat Sheet}
+			\scriptsize
+			{\bfseries The goal of this cheat sheet is to make it as easy as possible to figure out which algorithm to pick for a given use case. Algorithm ID cards break down algorithm parameter sets, their important values and performance characteristics. The cheat sheet is intended to help users primarily in technical roles, such as engineers, architects or software developers working with post-quantum cryptography.}\\[\baselineskip]
+
+			The focus is to avoid giving specific numbers measured in bits, bytes or cycles as this makes makes comparing numbers across algorithms difficult. Instead, this complexity is simplified by only providing a
+			{\bfseries color-coded number indicating the order of magnitude of each metric}.\\[\baselineskip]
+
+			{\bfseries This approach prioritizes easy interpretation and comparability of metrics and in general quick informational gain over absolute precision of data -- remember this is a cheat sheet, not a standard! This document is not intended to replace the study of algorithm specifications. It just aims to point you in the right direction quickly.}\\[\baselineskip]
+
+			The approach of focusing on orders of magnitude walks a fine line between treating too many things as ``equal'' and not simplifying things enough to be easy to read and compare. ``In the same order of magnitude'' usually refers to ``equal up to a factor of at most 10'', which is a very coarse way of comparing numbers. Treating metrics that differ by a factor of e.g. 9.9 as ``equal'' because 9.9 < 10 paints a distorted picture. In cryptography, factors of 5 or even 2 can make a significant difference in performance, both in theory and in practice. In order to still tease out the differences in metrics without throwing too many things together that actually differ significantly, this cheat sheet applies different scaling and ``orders of magnitude'' (i.e., not regarding base 10) for different metrics.\\[\baselineskip]
+
+
+			It turns out that for {\bfseries metrics measured in (kilo) CPU cycle counts, i.e. algorithm performance, ``up to a factor of 5''} is a scale that is granular enough to work out the differences between algorithms while maintaining easy comparability. Those cycle counts heavily depend on the CPU used during measurement, hence the numbers need to be taken with a grain of salt, even if given exactly and not in terms of orders of magnitude.\\[\baselineskip]
+
+			For {\bfseries signature and ciphertext sizes as well as key sizes, measuring numbers in kilobytes ``up to a factor of 2''} is well suited to work out the differences between algorithms while allowing for quick comparison. Specifically for signature public key sizes only, we offset the corresponding color coding by 5 orders of magnitude. This is because SLH-DSA has extremely small pubic keys compared to all other signature algorithms, which would extend the scale into negative numbers (e.g. for SLH-DSA-SHA2-128s, the public key has 32=2\textsuperscript{5} bytes, which corresponds to an order of magnitude of -5 when measuring in orders magnitude of factor 2 and in kilobytes). This phenomenon of algorithm metrics spanning a very large range of orders of (base 2) magnitudes does not occur to this extent for encryption algorithms, making an offset unnecessary.\\[\baselineskip]
+
+			All values thus have a lower bound of 0. We do not limit the upper end of scales, but don't distinguish values greater than 10 anymore in terms of color coding. Please refer to the definitions on the left for symbol explanations, color coding and interpretation of numeric values.
+			\vspace{0.7cm}
 		\end{algorithmbox}
 	\end{minipage}
 
