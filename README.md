@@ -24,16 +24,21 @@ The cheat sheets are currently in **DRAFT** status and are still **work in progr
 
 No responsibility is taken for the correctness of the information contained in the document.
 
-### Working with the cheat sheet
-The document takes the approach of simplifying algorithm characteristic (e.g. key sizes, signature or ciphertext sizes, CPU cycle counts, etc.) by boiling them down to only their **order of magnitude** (of kilobytes / kilocycles) and by **color-coding** accordingly. Green is always good, red not so much.
+### Working with and Interpreting the Cheat Sheet
+**The goal of this cheat sheet is to make it as easy as possible to figure out which algorithm to pick for a given use case. Algorithm ID cards break down algorithm parameter sets, their important values and performance characteristics. The cheat sheet is intended to help users primarily in technical roles, such as engineers, architects or software developers working with post-quantum cryptography.**
 
-Yes, the order-of-magnitude-approach does make it impossible to spot differences that are smaller than a factor of 10 in the actual numbers, and yes, a factor of 10 is  definitely not negligible normally. This trade-off is however accepted as the goal of this cheat sheet is to make it as easy as possible to get a good **first impression** if an algorithm performs well in a certain category without having to interpret lots of specific byte numbers.
+The focus is to avoid giving specific numbers measured in bits, bytes or cycles as this makes makes comparing numbers across algorithms difficult. Instead, this complexity is simplified by only providing a
+**color-coded number indicating the order of magnitude of each metric.**
 
-Please provide feedback if this approach is diluting the information too much.
+**This approach prioritizes easy interpretation and comparability of metrics and in general quick informational gain over absolute precision of data -- remember this is a cheat sheet, not a standard! This document is not intended to replace the study of algorithm specifications. It just aims to point you in the right direction quickly.**
 
-The cheat sheet attempts to simplify things even further by assigning an overall **algorithm usability score** to each algorithm that takes into account all the different criteria.
+The approach of focusing on orders of magnitude walks a fine line between treating too many things as "equal" and not simplifying things enough to be easy to read and compare. "In the same order of magnitude" usually refers to "equal up to a factor of at most 10", which is a very coarse way of comparing numbers. Treating metrics that differ by a factor of e.g. 9.9 as "equal" because 9.9 < 10 paints a distorted picture. In cryptography, factors of 5 or even 2 can make a significant difference in performance, both in theory and in practice. In order to still tease out the differences in metrics without throwing too many things together that actually differ significantly, this cheat sheet applies different scaling and "orders of magnitude" (i.e., not regarding base 10) for different metrics.
 
-Again keep in mind that this is all about quick initial information and providing rules of thumb, not absolute truth and precision, so take the information with a grain of salt.
+It turns out that for **metrics measured in (kilo) CPU cycle counts, i.e. algorithm performance, "up to a factor of 5"** is a scale that is granular enough to work out the differences between algorithms while maintaining easy comparability. Those cycle counts heavily depend on the CPU used during measurement, hence the numbers need to be taken with a grain of salt, even if given exactly and not in terms of orders of magnitude.
+
+For **signature and ciphertext sizes as well as key sizes, measuring numbers in kilobytes "up to a factor of 2"** is well suited to work out the differences between algorithms while allowing for quick comparison. Specifically for signature public key sizes only, we offset the corresponding color coding by 5 orders of magnitude. This is because SLH-DSA has extremely small pubic keys compared to all other signature algorithms, which would extend the scale into negative numbers (e.g. for SLH-DSA-SHA2-128s, the public key has 32=2^5 bytes, which corresponds to an order of magnitude of -5 when measuring in orders magnitude of factor 2 and in kilobytes). This phenomenon of algorithm metrics spanning a very large range of orders of (base 2) magnitudes does not occur to this extent for encryption algorithms, making an offset unnecessary.
+
+All values thus have a lower bound of 0. We do not limit the upper end of scales, but don't distinguish values greater than 10 anymore in terms of color coding. Please refer to the definitions in the cheat sheet for symbol explanations, color coding and interpretation of numeric values.
 
 ### Preview
 
