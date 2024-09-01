@@ -104,7 +104,10 @@
             \tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faUnlock}
             & \hspace{3mm}\doubleicon{\montserratbold 4}{\faLock}{themeyellow}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 4}{\faKey}{themeyellow}{0.6}\\
-        \end{tabular}
+        \end{tabular}\\[2.5\baselineskip]
+
+        {\bfseries Note:}\\
+        \normalfont There are also ephemeral versions of FrodoKEM (eFrodoKEM-640, etc.), but BSI only recommends FrodoKEM-976 and FrodoKEM-1344 versions for long-term protection. The algorithm score also only includes the non-ephemeral versions listed above.
     \end{minipage}\\[\baselineskip]
     \hrule
     \vspace{1\baselineskip}
@@ -122,7 +125,5 @@
             \setlength\itemsep{0em}
             \item Not standardized by NIST because ML-KEM is more efficient.
         \end{itemize}
-    \end{minipage}\\[\baselineskip]
-
-    {\tiny  {\bfseries \scshape Note:} There are also ephemeral versions of FrodoKEM (eFrodoKEM-640, etc.). Note that BSI only recommends FrodoKEM-976 and FrodoKEM-1344 versions for long-term protection. The algorithm score only includes the non-ephemeral versions.}
+    \end{minipage}
 \end{algorithmbox}
