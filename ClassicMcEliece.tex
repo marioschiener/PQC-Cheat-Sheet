@@ -1,0 +1,169 @@
+% !TeX root = PQC_Cheat_Sheet.tex
+
+% Author: Mario Schiener, 2024
+% LinkedIn: https://www.linkedin.com/in/mario-schiener/
+% Github: https://github.com/marioschiener
+
+% ============================================================================================================
+% Classic McEliece
+% ============================================================================================================
+\begin{algorithmbox}{Classic McEliece}
+    \begin{minipage}[t]{0.38\textwidth}
+        \scriptsize
+        \begin{center}
+            \adjustbox{valign=t}{%
+                \GreenAbsoluteSpeedometer(0,-10)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{3.31}{10}{\tiny}{\tiny \montserratsemibold}\hspace{1.5cm}}
+        \end{center}
+        \begin{tabbing}
+            \bfseries \scshape Previous Name\hspace{2.5cm}\=Classic McEliece\\
+            \bfseries \scshape Specification\>\iconhref[\faLink]{https://classic.mceliece.org/index.html}{Project Page}\\
+            \bfseries \scshape Type\>Encryption/KEM\\
+            \bfseries \scshape Family\>Codes\\
+            \bfseries \scshape Suitable For General Use\>No / With Limitations\\
+            \bfseries \scshape Standardization Status\>4th round candidate (NIST)\\
+            \bfseries \scshape Recommended By\>BSI\\
+            \bfseries \scshape Naming\>mceliece[n][$\deg$(F(y))][[f]]\\
+            \> where n, F(y) are parameters\\
+            \> non-f versions: $(\mu,\nu)=(0,0)$\\
+            \> f versions: $(\mu,\nu)=(32,64)$
+        \end{tabbing}
+        \begin{tabular}[t]{l c  c  c}
+            \scshape\bfseries Implementation\hspace{1.5cm} &\textcolor{themegreydark}{\faKey}&\textcolor{themegreydark}{\faPen}&\textcolor{themegreydark}{\faQuestionCircle}\\
+            &&&\\
+            \hline\\
+
+
+            \scshape Complexity
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}\\[2mm]
+            \scshape Size
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}\\
+        \end{tabular}\\[1.5\baselineskip]
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.6\textwidth}
+        \scshape \scriptsize
+        \begin{tabular}[t]{c c  c  c  c  c}
+            \bfseries \makecell{Parameter\\Set} &  \bfseries \makecell{OID\\{}} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faLock\,\quad\quad\faUnlock}} &  \bfseries \makecell{Ciphertext\\Size} & \bfseries \makecell{Public Key\\Size}\\
+            &&&&&\\
+            \hline\\
+
+
+            mceliece348864
+            & \tbd
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faKey}
+            \tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 8}{\faKey}{themered}{0.6}\\
+
+            mceliece348864f
+            & \tbd
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold n/a}{\faMicrochip}{themeblue}{0.6}{\faLock}
+            \tripleicon[themewhite]{\montserratbold n/a}{\faMicrochip}{themeblue}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 8}{\faKey}{themered}{0.6}\\
+
+            mceliece460896
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeyellow}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 7}{\faMicrochip}{themered}{0.6}{\faKey}
+            \tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold 9}{\faKey}{themered!50!black}{0.6}\\
+
+            mceliece460896f
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeyellow}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 7}{\faMicrochip}{themered}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold n/a}{\faMicrochip}{themeblue}{0.6}{\faLock}
+            \tripleicon[themewhite]{\montserratbold n/a}{\faMicrochip}{themeblue}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold 9}{\faKey}{themered!50!black}{0.6}\\
+
+            mceliece6688128
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 8}{\faMicrochip}{themered}{0.6}{\faKey}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold 10}{\faKey}{themered!50!black}{0.6}\\
+
+            mceliece6688128f
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 7}{\faMicrochip}{themered}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold n/a}{\faMicrochip}{themeblue}{0.6}{\faLock}
+            \tripleicon[themewhite]{\montserratbold n/a}{\faMicrochip}{themeblue}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold 10}{\faKey}{themered!50!black}{0.6}\\
+
+            mceliece6960119
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 7}{\faMicrochip}{themered}{0.6}{\faKey}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold 10}{\faKey}{themered!50!black}{0.6}\\
+
+            mceliece6960119f
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 7}{\faMicrochip}{themered}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold n/a}{\faMicrochip}{themeblue}{0.6}{\faLock}
+            \tripleicon[themewhite]{\montserratbold n/a}{\faMicrochip}{themeblue}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold 10}{\faKey}{themered!50!black}{0.6}\\
+
+            mceliece8192128
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 8}{\faMicrochip}{themered}{0.6}{\faKey}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold 10}{\faKey}{themered!50!black}{0.6}\\
+
+            mceliece8192128f
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 8}{\faMicrochip}{themered}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold n/a}{\faMicrochip}{themeblue}{0.6}{\faLock}
+            \tripleicon[themewhite]{\montserratbold n/a}{\faMicrochip}{themeblue}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold 10}{\faKey}{themered!50!black}{0.6}\\
+        \end{tabular}
+    \end{minipage}\\
+    \hrule
+    \vspace{1\baselineskip}
+    \begin{minipage}[t]{0.49\textwidth}
+        \scriptsize\faThumbsUp\, {\bfseries / Pros / Use If:}
+        \begin{itemize}[leftmargin=*]
+            \setlength\itemsep{0em}
+            \item Possible alternative to ML-KEM not based on lattices.
+            \item Considered safe and recommended by BSI even though not standardized by NIST.
+            \item Use cases that allow for pre-sharing of keys where the large public key size is not a concern.
+        \end{itemize}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.49\textwidth}
+        \scriptsize \faThumbsDown\, {\bfseries / Cons / Don't Use If:}
+        \begin{itemize}[leftmargin=*]
+            \setlength\itemsep{0em}
+            \item Not yet standardized by NIST.
+            \item Not suitable for general use due to the very large public keys and poor performance of key generation.
+            \item Due to aforementioned point, likely not suitable for embedded devices.
+        \end{itemize}
+    \end{minipage}\\[\baselineskip]
+
+    {\tiny  {\bfseries \scshape Note:} No data available for the f versions for encryption/decryption cycle counts. The algorithm overall usability score is computed over non-f versions only. Non-f and f versions are interoperable, with f versions offering faster key generation and non-f versions having simpler key generation.}
+\end{algorithmbox}

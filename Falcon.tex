@@ -1,0 +1,97 @@
+% !TeX root = PQC_Cheat_Sheet.tex
+
+% Author: Mario Schiener, 2024
+% LinkedIn: https://www.linkedin.com/in/mario-schiener/
+% Github: https://github.com/marioschiener
+
+% ============================================================================================================
+% Falcon
+% ============================================================================================================
+\begin{algorithmbox}{Falcon (Fast-Fourier Lattice-Based Compact Signatures over NTRU)}
+    \begin{minipage}[t]{0.35\textwidth}
+        \scriptsize
+        \begin{center}
+            \adjustbox{valign=t}{%
+                \GreenAbsoluteSpeedometer(0,-10)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{5.73}{10}{\tiny}{\tiny \montserratsemibold}\hspace{1.5cm}}
+        \end{center}
+
+        \begin{tabbing}
+            \bfseries \scshape Previous Name\hspace{2.5cm}\=Falcon\\
+            \bfseries \scshape Specification\>\iconhref[\faLink]{https://falcon-sign.info/}{Project Page}\\
+            \bfseries \scshape Type\>Signature\\
+            \bfseries \scshape Family\>Lattice\\
+            \bfseries \scshape Suitable For General Use\>Yes\\
+            \bfseries \scshape Standardization Status\>\faCalendar\, Pending\\
+            \bfseries \scshape Recommended By\>\tbd\\
+            \bfseries \scshape Hashing\>\tbd\\
+            \bfseries \scshape Naming\>\tbd
+        \end{tabbing}
+        \begin{tabular}[t]{l c  c  c}
+            \scshape\bfseries Implementation\hspace{1.5cm} &\textcolor{themegreydark}{\faKey}&\textcolor{themegreydark}{\faPen}&\textcolor{themegreydark}{\faQuestionCircle}\\
+            &&&\\
+            \hline\\
+
+
+            \scshape Complexity
+            &\hspace{3mm}\tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C}
+            &\hspace{3mm}\tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}\\[2mm]
+            \scshape Size
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}\\
+        \end{tabular}\\[1.5\baselineskip]
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.64\textwidth}
+        \scshape \scriptsize
+        \begin{tabular}[t]{c c  c  c  c  c c}
+            \bfseries \makecell{Parameter\\Set} &  \bfseries \makecell{OID\\{}} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faPen\,\quad\quad\faQuestionCircle}} &  \bfseries \makecell{Signature\\Size} & \bfseries \makecell{Public Key\\Size} & \bfseries \makecell{Suitable\\Pre-Hashing} \\
+            &&&&&&\\
+            \hline\\
+
+            Falcon-512
+            & \tbd
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 8}{\faMicrochip}{themered}{0.6}{\faKey}
+            \tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faPen}
+            \tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faPen}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 4}{\faKey}{themeyellow}{0.6}
+            & \tbd\\
+
+            Falcon-1024
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon[themewhite]{\montserratbold 9}{\faMicrochip}{themered!50!black}{0.6}{\faKey}
+            \tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faPen}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faPen}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 5}{\faKey}{themeorange}{0.6}
+            & \tbd\\
+        \end{tabular}
+    \end{minipage}\\[\baselineskip]
+    \hrule
+    \vspace{1\baselineskip}
+    \begin{minipage}[t]{0.49\textwidth}
+        \scriptsize \faThumbsUp\, {\bfseries / Pros / Use If:}
+        \begin{itemize}[leftmargin=*]
+            \setlength\itemsep{0em}
+            \item Falcon has smaller signature sizes than ML-DSA:\\
+            \doubleicon{\montserratbold 0}{\faPen}{themegreen}{0.6}\hspace{-2mm} vs. \doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}\hspace{-2mm} resp. \doubleicon{\montserratbold 2}{\faPen}{themegreen}{0.6}\hspace{-2mm}
+            \item Falcon has smaller public key sizes than ML-DSA:\\
+            \doubleicon{\montserratbold 4}{\faKey}{themeyellow}{0.6}\hspace{-2mm} vs. \doubleicon{\montserratbold 5}{\faKey}{themeorange}{0.6}\hspace{-2mm} on Level I, \doubleicon{\montserratbold 5}{\faKey}{themeorange}{0.6}\hspace{-2mm} vs. \doubleicon{\montserratbold 6}{\faKey}{themeorange}{0.6}\hspace{-2mm} on Level V.
+        \end{itemize}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.49\textwidth}
+        \scriptsize \faThumbsDown\, {\bfseries / Cons / Don't Use If:}
+        \begin{itemize}[leftmargin=*]
+        \setlength\itemsep{0em}
+        \item You need a medium security category between \doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6} \hspace{-4mm} and \doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+        \item The algorithm is not yet standardized
+        \item The algorithm requires expensive floating point arithmetic
+        \item Key generation and signing are slower than for ML-DSA
+        \end{itemize}
+    \end{minipage}
+\end{algorithmbox}

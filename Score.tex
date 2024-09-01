@@ -3,6 +3,8 @@
 % Author: Mario Schiener, 2024
 % LinkedIn: https://www.linkedin.com/in/mario-schiener/
 % Github: https://github.com/marioschiener
+
+
 \vspace{-5mm}
 \begin{algorithmbox}{Algorithm Overall Usability Score}
 	\tiny
@@ -10,7 +12,7 @@
 
 	We define an algorithm's overall score as
 	\begin{align*}
-		\textnormal{\bfseries score\textsubscript{\itshape \bfseries algorithm}} = \textnormal{\bfseries max}\left\{\textnormal{\bfseries 0, }\textnormal{\bfseries avg}\left\{\textnormal{\bfseries score}_\textnormal{\itshape \bfseries parameterSet}\,|\, \textnormal{{\itshape\bfseries  parameterSet} \bfseries is a parameter set of {\itshape algorithm}}\right\} - \frac{\textnormal{\bfseries 1}}{\textnormal{\bfseries 8}}\cdot\left(\textnormal{\bfseries 5}-\textnormal{\bfseries categories}_\textnormal{\itshape\bfseries  algorithm}\right) - \frac{\textnormal{\bfseries 1}}{\textnormal{\bfseries 8}}\cdot\textnormal{\bfseries impl\textsubscript{\itshape\bfseries algorithm}}- \textnormal{\bfseries generality}_\textnormal{\itshape\bfseries  algorithm}\right\}
+		\textnormal{\bfseries score\textsubscript{\itshape \bfseries algorithm}} = \textnormal{\bfseries max}\left\{\textnormal{\bfseries 0, }\textnormal{\bfseries avg}\left\{\textnormal{\bfseries score}_\textnormal{\itshape \bfseries parameterSet}\,|\, \textnormal{{\itshape\bfseries  parameterSet} \bfseries is a parameter set of {\itshape algorithm}}\right\} - \frac{\textnormal{\bfseries 1}}{\textnormal{\bfseries 8}}\cdot\left(\textnormal{\bfseries 5}-\textnormal{\bfseries categories}_\textnormal{\itshape\bfseries  algorithm}\right) - \frac{\textnormal{\bfseries 1}}{\textnormal{\bfseries 4}}\cdot\textnormal{\bfseries impl\textsubscript{\itshape\bfseries algorithm}}- \textnormal{\bfseries generality}_\textnormal{\itshape\bfseries  algorithm}\right\}
 	\end{align*}
 	where \textnormal{score\textsubscript{\itshape parameterSet}} is a score for an individual algorithm parameter set. Depending on the type of algorithm, \textnormal{score\textsubscript{\itshape parameterSet}} is defined as
 	\begin{align*}
@@ -75,7 +77,7 @@
 	\begin{minipage}[T]{0.75\textwidth}
 	\vspace{-\baselineskip}
 		\begin{align*}
-			\textnormal{score\textsubscript{\itshape ML-DSA}} &= \max\left\{\textnormal{0, }\avg\left\{\textnormal{score}_\textnormal{\itshape ML-DSA-44}\textnormal{, score}_\textnormal{\itshape ML-DSA-65}\textnormal{, score}_\textnormal{\itshape ML-DSA-87}\right\} - \frac{\textnormal{1}}{\textnormal{8}}\cdot\left(\textnormal{5}-\textnormal{categories}_\textnormal{\itshape ML-DSA}\right) - \frac{\textnormal{1}}{\textnormal{8}}\cdot\textnormal{impl\textsubscript{\itshape ML-DSA}}- \textnormal{generality}_\textnormal{\itshape ML-DSA}\right\}\\
+			\textnormal{score\textsubscript{\itshape ML-DSA}} &= \max\left\{\textnormal{0, }\avg\left\{\textnormal{score}_\textnormal{\itshape ML-DSA-44}\textnormal{, score}_\textnormal{\itshape ML-DSA-65}\textnormal{, score}_\textnormal{\itshape ML-DSA-87}\right\} - \frac{\textnormal{1}}{\textnormal{8}}\cdot\left(\textnormal{5}-\textnormal{categories}_\textnormal{\itshape ML-DSA}\right) - \frac{\textnormal{1}}{\textnormal{4}}\cdot\textnormal{impl\textsubscript{\itshape ML-DSA}}- \textnormal{generality}_\textnormal{\itshape ML-DSA}\right\}\\
 			&=\max\left\{\textnormal{0, }\avg\left\{\textnormal{7.2, 7.0, 6.2}\right\} - \frac{\textnormal{1}}{\textnormal{8}}\cdot\left(\textnormal{5-3}\right) - \textnormal{0} - \textnormal{0}\right\}\\
 			&=\max\left\{\textnormal{0, }\textnormal{6.8} - \textnormal{0.25}\right\}\\
 			&=\max\left\{\textnormal{0, }\textnormal{6.55}\right\}\\

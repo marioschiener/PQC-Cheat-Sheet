@@ -1,0 +1,107 @@
+% !TeX root = PQC_Cheat_Sheet.tex
+
+% Author: Mario Schiener, 2024
+% LinkedIn: https://www.linkedin.com/in/mario-schiener/
+% Github: https://github.com/marioschiener
+
+
+% ============================================================================================================
+% ML-DSA
+% ============================================================================================================
+\newpage
+{\large \scshape \faPen\, Signature Algorithm Overview \& ID Cards}\\
+
+\begin{algorithmbox}{ML-DSA (Module-Lattice-Based Digital Signature Algorithm)}
+    \begin{minipage}[t]{0.35\textwidth}
+        \scriptsize
+        \begin{center}
+            \adjustbox{valign=t}{%
+                \GreenAbsoluteSpeedometer(0,-10)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{6.55}{10}{\tiny}{\tiny \montserratsemibold}\hspace{1.5cm}}
+        \end{center}
+
+        \begin{tabbing}
+            \bfseries \scshape Previous Name\hspace{2.5cm}\=CRYSTALS-DILITHIUM\\
+            \bfseries \scshape Specification\>\iconhref[\faLink]{https://csrc.nist.gov/pubs/fips/204/final}{FIPS 204}\\
+            \bfseries \scshape Type\>Signature\\
+            \bfseries \scshape Family\>Lattice\\
+            \bfseries \scshape Suitable For General Use\>Yes\\
+            \bfseries \scshape Standardization Status\>Standardized\\
+            \bfseries \scshape Recommended By\>NIST, BSI, ANSSI\\
+            \bfseries \scshape Hashing\>Pure, Pre-Hashing\\
+            \bfseries \scshape Naming\>by $k\times l$ matrix $A$\\
+            \>(e.g. $6\times5\,\rightarrow$ ML-DSA-65)
+        \end{tabbing}
+        \begin{tabular}[t]{l c  c  c}
+            \scshape\bfseries Implementation\hspace{1.5cm} &\textcolor{themegreydark}{\faKey}&\textcolor{themegreydark}{\faPen}&\textcolor{themegreydark}{\faQuestionCircle}\\
+            &&&\\
+            \hline\\
+
+            \scshape Complexity
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}\\[2mm]
+            \scshape Size
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+        \end{tabular}\\[1.5\baselineskip]
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.64\textwidth}
+        \scshape \scriptsize
+        \begin{tabular}[t]{c c  c  c  c  c c}
+            \bfseries \makecell{Parameter\\Set} &  \bfseries \makecell{OID\\{}} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faPen\,\quad\quad\faQuestionCircle}} &  \bfseries \makecell{Signature\\Size} & \bfseries \makecell{Public Key\\Size} & \bfseries \makecell{Suitable\\Pre-Hashing} \\
+            &&&&&&\\
+            \hline\\
+
+
+            ML-DSA-44
+            & 2.16.840.1.101.3.4.3.17
+            & \hspace{3mm}\doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faPen}
+            \tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 5}{\faKey}{themeorange}{0.6}
+            & SHA-256, SHA3-256\\
+
+            ML-DSA-65
+            & 2.16.840.1.101.3.4.3.18
+            & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeyellow}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faPen}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 5}{\faKey}{themeorange}{0.6}
+            & SHA-384, SHA3-384\\
+
+            ML-DSA-87
+            & 2.16.840.1.101.3.4.3.19
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faPen}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon{\montserratbold 2}{\faPen}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 6}{\faKey}{themeorange}{0.6}
+            & SHA-512, SHA3-512
+        \end{tabular}
+        \vfill
+    \end{minipage}\\[\baselineskip]
+    \hrule
+    \vspace{1\baselineskip}
+    \begin{minipage}[t]{0.49\textwidth}
+        \scriptsize\faThumbsUp\, {\bfseries / Pros / Use If:}
+        \begin{itemize}[leftmargin=*]
+            \setlength\itemsep{0em}
+            \item You need a general-purpose signature algorithm with decent specs in all categories
+        \end{itemize}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.49\textwidth}
+        \scriptsize \faThumbsDown\, {\bfseries / Cons / Don't Use If:}
+        \begin{itemize}[leftmargin=*]
+            \setlength\itemsep{0em}
+            \item You don't want a lattice-based algorithm
+        \end{itemize}
+    \end{minipage}
+\end{algorithmbox}

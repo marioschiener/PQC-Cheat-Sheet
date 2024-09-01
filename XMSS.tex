@@ -1,0 +1,195 @@
+% !TeX root = PQC_Cheat_Sheet.tex
+
+% Author: Mario Schiener, 2024
+% LinkedIn: https://www.linkedin.com/in/mario-schiener/
+% Github: https://github.com/marioschiener
+
+% ============================================================================================================
+% XMSS/LMS
+% ============================================================================================================
+\begin{algorithmbox}{XMSS / XMSS-MT (eXtended Merkle Signature Scheme / eXtended Merkle Signature Scheme Multi Tree)}
+    \begin{minipage}[t]{0.35\textwidth}
+        \scriptsize
+        \begin{center}
+            \adjustbox{valign=t}{%
+                \GreenAbsoluteSpeedometer(0,-10)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{0}{10}{\tiny}{\tiny \montserratsemibold}\hspace{1.5cm}}
+        \end{center}
+        \begin{tabbing}
+            \bfseries \scshape Previous Name\hspace{2.5cm}\=XMSS/XMSSMT\\
+            \bfseries \scshape Specification\>\iconhref[\faLink]{https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-208.pdf}{SP 800-208}, \iconhref[\faLink]{https://datatracker.ietf.org/doc/html/rfc8391}{RFC 8391}\\
+            \bfseries \scshape Type\>Signature\\
+            \bfseries \scshape Family\>Merkle Trees (stateful hash trees)\\
+            \bfseries \scshape Suitable For General Use\>No\\
+            \bfseries \scshape Standardization Status\>Standardized\\
+            \bfseries \scshape Recommended By\>NIST, BSI, ANSSI\\
+            \bfseries \scshape Hashing\>\tbd\\
+            \bfseries \scshape Naming\>XMSS-[Hashfamily]\_[h]\_[n]\\
+            \>XMSSMT-[Hashfamily]\_[h]/[d]\_[n]\\
+            \> where h is the tree height,\\
+            \> d is the number of layers, and\\
+            \> n is the message length in bits
+        \end{tabbing}
+        \begin{tabular}[t]{l c  c  c}
+            \scshape\bfseries Implementation\hspace{1.5cm} &\textcolor{themegreydark}{\faKey}&\textcolor{themegreydark}{\faPen}&\textcolor{themegreydark}{\faQuestionCircle}\\
+            &&&\\
+            \hline\\
+
+
+            \scshape Complexity
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}\\[2mm]
+            \scshape Size
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+            &\hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}
+        \end{tabular}\\[1.5\baselineskip]
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.64\textwidth}
+        \scshape \scriptsize
+        \begin{tabular}[t]{c c  c  c  c  c  c}
+            \bfseries \makecell{Parameter\\Set} &  \bfseries \makecell{Numeric\\Identifier} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faPen\,\quad\quad\faQuestionCircle}} &  \bfseries \makecell{Signature\\Size} & \bfseries \makecell{Maxiumum \\Signatures} & \bfseries \makecell{Number of\\layers} \\
+            &&&&&&\\
+            \hline\\
+
+
+            XMSS-SHA2\_10\_256
+            & 0x00000001
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+            & 2\textsuperscript{10}
+            & 1\\
+
+            XMSS-SHA2\_16\_256
+            & 0x00000002
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+            & 2\textsuperscript{16}
+            & 1\\
+
+            XMSS-SHA2\_20\_256
+            & 0x00000003
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+            & 2\textsuperscript{20}
+            & 1\\[\baselineskip]
+            &&&&&&\\
+
+            \hline\\
+            XMSSMT-SHA2\_20/2\_256
+            & 0x00000001
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+            & 2\textsuperscript{20}
+            & 2\\
+
+            XMSSMT-SHA2\_20/4\_256
+            & 0x00000002
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+            & 2\textsuperscript{20}
+            & 4\\
+
+            XMSSMT-SHA2\_40/2\_256
+            & 0x00000003
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+            & 2\textsuperscript{40}
+            & 2\\
+
+            XMSSMT-SHA2\_40/4\_256
+            & 0x00000004
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+            & 2\textsuperscript{40}
+            & 4\\
+
+            XMSSMT-SHA2\_40/8\_256
+            & 0x00000005
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+            & 2\textsuperscript{40}
+            & 8\\
+
+            XMSSMT-SHA2\_60/3\_256
+            & 0x00000006
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+            & 2\textsuperscript{60}
+            & 3\\
+
+            XMSSMT-SHA2\_60/6\_256
+            & 0x00000007
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+            & 2\textsuperscript{60}
+            & 6\\
+
+            XMSSMT-SHA2\_60/12\_256
+            & 0x00000008
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faKey}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faPen}
+            \tripleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold ?}{\faMicrochip}{themeaccentsecondary}{0.6}
+            & 2\textsuperscript{60}
+            & 12
+        \end{tabular}\\[2.5\baselineskip]
+
+        {\bfseries Note:}\\
+        \normalfont\iconhref[\faLink]{https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-208.pdf}{SP 800-208} defines further parameter sets not listed in \iconhref[\faLink]{https://datatracker.ietf.org/doc/html/rfc8391}{RFC 8391} using other hash functions (SHA256/192, SHAKE256/256, SHAKE256/192). Furthermore, \iconhref[\faLink]{https://datatracker.ietf.org/doc/html/rfc8391}{RFC 8391} lists optional parameter sets that are not approved in\\ \iconhref[\faLink]{https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-208.pdf}{SP 800-208}. All of those variants are omitted here as they are not likely to be widely used, in particular not after ML-DSA and SLH-DSA have been standardized in the meantime.
+    \end{minipage}\\
+    \hrule
+    \vspace{1\baselineskip}
+    \begin{minipage}[t]{0.49\textwidth}
+        \scriptsize\faThumbsUp\, {\bfseries / Pros / Use If:}
+        \begin{itemize}[leftmargin=*]
+            \setlength\itemsep{0em}
+            \item You can predict the maximum number of signatures that are going to be required
+            \item Firmware signing use cases
+            \item You want a signature scheme where the security only relies on the security of the hash function used without assuming the hardness of another mathematical problem.
+            \item Cf. \iconhref[\faLink]{https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-208.pdf}{SP 800-208, Section 1.1} for additional explanations
+        \end{itemize}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.49\textwidth}
+        \scriptsize \faThumbsDown\, {\bfseries / Cons / Don't Use If:}
+        \begin{itemize}[leftmargin=*]
+            \setlength\itemsep{0em}
+            \item You require an algorithm for general use
+            \item You cannot predict the maximum number of signatures that are going to be required, or the number of required signatures exceeds the maximum number of signatures enabled through the approved parameter sets
+            \item Your application does not allow for the careful state management and tracking of signatures performed that is required with this algorithm
+        \end{itemize}
+    \end{minipage}
+\end{algorithmbox}
