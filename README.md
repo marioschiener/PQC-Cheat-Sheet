@@ -85,8 +85,6 @@ All values thus have a lower bound of 0. We do not limit the upper end of scales
 
 Use LuaLaTeX for compiling the .tex files (PQC-Cheat-Sheet.tex is the root document). You may need to install the provided fonts in your system first. Set the -shell-escape option in order to reconvert the *.svg graphics after any change during compilation (this requires Inkscape to be installed).
 
-(Currently, all content except for the preamble is in one document on purpose. This is to make it easier to change formatting for each page using search/replace. Once everything stands, the content will be broken down into different smaller files.)
-
 # Credits and Further Reading<a name="credits"></a>
 
 TBD

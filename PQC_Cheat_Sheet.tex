@@ -4,19 +4,23 @@
 
 % Compile this with LuaLaTeX!
 
+% TODO Implementation complexities and sizes
+% TODO Export the exact data behind the simplified values as CSV or something similar as auxiliary information
 
 \documentclass[11pt,english,a4paper, landscape]{scrartcl}
 
-\input{Preamble}
+\input{sourcefiles/Preamble}
 
 
 % Color palette: themewhite, themegreylight, themegreymedium, themegreydark, themegreen, themeblue, themered, themeyellow,themeorange
 \colorlet{themeaccent}{themewhite}
 \colorlet{themeaccentsecondary}{themeblue}
 
-% ============================================================================================================
+
+
+% =================================================================================================================
 % Title,Date, Version, Document Status
-% ============================================================================================================
+% =================================================================================================================
 
 \newcommand{\docstatus}{\textcolor{themered}{\scshape Draft}}
 %\newcommand{\docstatus}{\textcolor{themeorangemedium}{\scshape Review}}
@@ -24,15 +28,14 @@
 %\newcommand{\docstatus}{\textcolor{themered}{\scshape Obsolete}}
 
 \setpagetheme{%
-Post-Quantum Cryptography Algorithm Cheat Sheets}{%	Title
-\copyright\, Mario Schiener\quad%	Author details for footer
-\href{https://www.linkedin.com/in/mario-schiener/}{\textcolor{themegreylight}{\faLinkedin}}\quad%
-\href{https://github.com/marioschiener}{\textcolor{themegreylight}{\faGithub}}}%
-{August 2024 -- v0.2}% Date, Version
-
-
-% TODO Implementation complexities and sizes
-% TODO Export the exact data behind the simplified values as CSV or something similar as auxiliary information
+	Post-Quantum Cryptography Algorithm Cheat Sheets %	Title
+	}{%	Author details for footer (left)
+	\copyright\, Mario Schiener\,\,%
+	\href{https://www.linkedin.com/in/mario-schiener/}{\textcolor{themegreylight}{\faLinkedin}}\,\,%
+	\href{https://github.com/marioschiener}{\textcolor{themegreylight}{\faGithub}}%
+	}{% Date, Version, Docstatus for footer (center)
+	01 September, 2024 -- v0.2 -- \docstatus%
+}
 
 
 \begin{document}
@@ -41,33 +44,33 @@ Post-Quantum Cryptography Algorithm Cheat Sheets}{%	Title
 	% Intro: Explanations and Algorithm Selection Guidance
 	% ============================================================================================================
 
-	\input{Explanations}
-	\input{AlgorithmSelection}
+	\input{sourcefiles/Explanations}
+	\input{sourcefiles/AlgorithmSelection}
 
 	% ============================================================================================================
 	% Signature Algorithm ID Cards
 	% ============================================================================================================
 
-	\input{MLDSA}
-	\input{Falcon}
-	\input{SLHDSA}
-	\input{XMSS}	% TODO
-	\input{LMS}		% TODO
+	\input{sourcefiles/MLDSA}
+	\input{sourcefiles/Falcon}
+	\input{sourcefiles/SLHDSA}
+	\input{sourcefiles/XMSS}	% TODO
+	\input{sourcefiles/LMS}		% TODO
 
 	% ============================================================================================================
 	% Encryption / KEM Algorithm ID Cards
 	% ============================================================================================================
 
-	\input{MLKEM}
-	\input{BIKE}
-	\input{HQC}
-	\input{FrodoKEM}
-	\input{ClassicMcEliece}
+	\input{sourcefiles/MLKEM}
+	\input{sourcefiles/BIKE}
+	\input{sourcefiles/HQC}
+	\input{sourcefiles/FrodoKEM}
+	\input{sourcefiles/ClassicMcEliece}
 
 	% ============================================================================================================
 	% Algorithm Scoring
 	% ============================================================================================================
 
-	\input{Score}
+	\input{sourcefiles/Score}
 
 \end{document}
