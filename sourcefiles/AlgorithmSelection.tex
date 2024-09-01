@@ -60,8 +60,8 @@
     \end{algorithmbox}
     \begin{algorithmbox}{Pure PQC vs PQ/T Hybrid}
         \scriptsize
-        This topic depends on too many factors (e.g. cost of migration, security considerations, risk profile, GRC requirements) to give general advice. {\bfseries For PQ/T hybrids, consider  ECC (e.g. secp256r1, Curve25519)} over RSA for the traditional component.
-        \vspace{-1mm}
+        This topic depends on too many factors (e.g. cost of migration, security considerations, risk profile, GRC requirements) to give general advice. Those aspects will differ greatly between different organizations. The main reasons to adopt PQ/T hybrids are to still have traditional algorithms in place in case a new algorithm turns out to be insecure, and that PQ/T might help to avoid a big bang migration as systems could simply ignore the PQC component if they do not support it yet. Consider recommendations from different government agencies: BSI and ANSSI recommend PQ/T hybrid strategies, whereas NIST is more reserved towards PQ/T. {\bfseries If using PQ/T hybrids, preferably use  ECC (e.g. secp256r1, brainpoolP256r1, Curve25519)} instead of RSA for the traditional component to keep key sizes as small as possible.
+        %\vspace{-1mm}
     \end{algorithmbox}
 \end{minipage}
 \begin{minipage}[t]{0.28\textwidth}
@@ -74,7 +74,8 @@
             \item Use \doubleicon{\montserratbold IV}{\faSun[regular]}{themeyellow}{0.6}\hspace{-3mm} or
             \doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}\hspace{-3mm} for more security if possible (i.e., if a decrease in performance is not a concern and if no constraints apply).\\
             \item Use \doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}\hspace{-3mm} or
-            \doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}\hspace{-3mm} {\bfseries if and only if} \doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}\hspace{-3mm} or higher is not an option due to constraints (e.g. performance, memory, etc.).\\[\baselineskip]
+            \doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}\hspace{-3mm} {\bfseries if and only if} \doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}\hspace{-3mm} or higher is not an option due to constraints (e.g. performance, memory, etc.).\\
+            \item Categories and their corresponding classical security level in bits: \doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}\hspace{-3mm} = 64 bits, \doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}\hspace{-3mm} = 85 bits, \doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}\hspace{-3mm} = 96 bits and \doubleicon{\montserratbold IV}{\faSun[regular]}{themeyellow}{0.6}\hspace{-3mm} = \doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}\hspace{-3mm} = 128 bits.\\[\baselineskip]
         \end{itemize}
     \end{algorithmbox}
     \begin{algorithmbox}{Pure vs. Pre-Hashing}

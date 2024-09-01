@@ -41,7 +41,7 @@ No responsibility is taken for the correctness of the information contained in t
 
 ## Algorithms<a name="algorithms"></a>
 
-**Signature:** ML-DSA (CRYSTALS-DILITHIUM), Falcon, SLH-DSA (SHPINCS+), XMSS/XMSSMT, LMS
+**Signature:** ML-DSA (CRYSTALS-DILITHIUM), Falcon, SLH-DSA (SHPINCS+), XMSS/XMSSMT, LMS/HSS
 
 **Encryption/KEM:** ML-KEM (CRYSTALS-KYBER), BIKE, HQC, Classic McEliece, FrodoKEM
 
