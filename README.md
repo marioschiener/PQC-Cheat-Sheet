@@ -10,27 +10,42 @@ A cheat sheet for the new post quantum cryptography (PQC) algorithms.
 #### Tech Stack
 ![LaTeX](https://img.shields.io/badge/LaTeX-LuaLaTex-green)
 
-## Target Audience and Objectives
+
+# Table of contents
+
+1. [Target Audience and Objectives](#target)
+2. [The PQC Cheat Sheet(s)](#cheatsheet)
+    1. [Algorithms](#algorithms)
+    2. [Working with and Interpreting the Cheat Sheet](#howto)
+3. [Preview](#preview)
+4. [Compiling the Source Files](#compiling)
+5. [Credit and Further Reading](#credits)
+3. [Disclaimer](#disclaimer)
+
+
+---
+
+# Target Audience and Objectives<a name="target"></a>
 
 The target audience are technical roles such as software developers, architects or engineers or simply anyone interested in cryptography and PQC. The cheat sheets aim to make it easier for them to select the right algorithm for their use cases, based on various different algorithm characteristics presented in a simplified form.
 
 **The main goal is quick information, not absolute precision! The cheat sheet is not intended to replace studying more specific specifications in a second step!**
 
 
-## The PQC Cheat Sheet(s)
+# The PQC Cheat Sheet(s)<a name="cheatsheet"></a>
 [PQC Cheat Sheet](https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/PQC_Cheat_Sheet.pdf)
 
 The cheat sheets are currently in **DRAFT** status and are still **work in progress**! They are still incomplete and likely contain mistakes. Feedback and corrections are appreciated!
 
 No responsibility is taken for the correctness of the information contained in the document.
 
-### Algorithms
+## Algorithms<a name="algorithms"></a>
 
 **Signature:** ML-DSA (CRYSTALS-DILITHIUM), Falcon, SLH-DSA (SHPINCS+), XMSS/XMSSMT, LMS
 
 **Encryption/KEM:** ML-KEM (CRYSTALS-KYBER), BIKE, HQC, Classic McEliece, FrodoKEM
 
-### Working with and Interpreting the Cheat Sheet
+## Working with and Interpreting the Cheat Sheet<a name="howto"></a>
 **The goal of this cheat sheet is to make it as easy as possible to figure out which algorithm to pick for a given use case. Algorithm ID cards break down algorithm parameter sets, their important values and performance characteristics. The cheat sheet is intended to help users primarily in technical roles, such as engineers, architects or software developers working with post-quantum cryptography.**
 
 The focus is to avoid giving specific numbers measured in bits, bytes or cycles as this makes makes comparing numbers across algorithms difficult. Instead, this complexity is simplified by only providing a
@@ -46,7 +61,7 @@ For **signature and ciphertext sizes as well as key sizes, measuring numbers in 
 
 All values thus have a lower bound of 0. We do not limit the upper end of scales, but don't distinguish values greater than 10 anymore in terms of color coding. Please refer to the definitions in the cheat sheet for symbol explanations, color coding and interpretation of numeric values.
 
-### Preview
+# Preview<a name="preview"></a>
 
 <p align="center">
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-01.png"  alt="Page 1" width = 720px>
@@ -66,9 +81,17 @@ All values thus have a lower bound of 0. We do not limit the upper end of scales
 
 
 
-## Compiling the Source Files
+# Compiling the Source Files<a name="compiling"></a>
+
 Use LuaLaTeX for compiling the .tex files (PQC-Cheat-Sheet.tex is the root document). You may need to install the provided fonts in your system first. Set the -shell-escape option in order to reconvert the *.svg graphics after any change during compilation (this requires Inkscape to be installed).
 
 (Currently, all content except for the preamble is in one document on purpose. This is to make it easier to change formatting for each page using search/replace. Once everything stands, the content will be broken down into different smaller files.)
 
+# Credits and Further Reading<a name="credits"></a>
 
+TBD
+
+---
+
+# Disclaimer<a name="disclaimer"></a>
+No responsibility is taken for the correctness of the information in this cheat sheet.
