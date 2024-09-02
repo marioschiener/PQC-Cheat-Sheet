@@ -77,6 +77,7 @@ The target audience are technical roles such as software developers, architects 
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-11.png"  alt="Page 11" width = 720px>
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-12.png"  alt="Page 12" width = 720px>
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-13.png"  alt="Page 13" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-14.png"  alt="Page 14" width = 720px>
 </p>
 
 
