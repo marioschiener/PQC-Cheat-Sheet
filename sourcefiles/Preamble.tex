@@ -4,6 +4,7 @@
 % LinkedIn: https://www.linkedin.com/in/mario-schiener/
 % Github: https://github.com/marioschiener
 
+% TODO This may include a few more imports than necessary and could be cleaned up a bit. That's just what happens when re-using prembles from other templates and documents.
 
 \usepackage[utf8]{inputenc}
 \usepackage[english,ngerman]{babel}
@@ -27,6 +28,7 @@
 \usepackage{siunitx}
 \usepackage{tabularray}
 \usepackage{tabularx}
+\usepackage{multirow}
 \usepackage{adjustbox}
 \usepackage{enumitem}
 \usepackage{makecell}
@@ -51,7 +53,7 @@
 \definecolor{themegreen}{RGB}{7,244,50}
 \definecolor{themered}{RGB}{244,14,56}
 \definecolor{themeyellow}{RGB}{255,204,7}
-\definecolor{themeorange}{RGB}{251,178,10}
+\definecolor{themeorange}{RGB}{251,151,10}
 \definecolor{themewhite}{RGB}{220,220,220}	% Black!50
 \definecolor{themegreylight}{RGB}{128,128,128}	% Black!50
 \definecolor{themegreymedium}{RGB}{68,70,74}
@@ -71,6 +73,7 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 
+% TODO is this used in this document?
 \newcommand{\highlight}[1]{\textit{\textcolor{themeaccent}{#1}}}
 
 \parindent=0pt
@@ -81,10 +84,11 @@
     pdfborderstyle={/S/U/W 1},
     linkcolor=black,
     linkbordercolor=themeyellow,
-    urlcolor=themeaccentsecondary,
+    urlcolor=themeblue,
     urlbordercolor=themeaccent,
     citecolor=themegreylight
     }
+
 
 
 \newcommand{\email}[2][]{\ifthenelse{\equal{#1}{}}{\href{mailto:#2}{\texttt{#2}}}{\href{mailto:#2}{\texttt{#1\,\,#2}}}}
@@ -103,9 +107,6 @@
 
 \newcommand{\vcenteredincludesvg}[2]{\begingroup\setbox0=\hbox{\includesvg[#2]{#1}}\parbox{\wd0}{\box0}\endgroup}
 \newcommand{\vcentered}[1]{\begingroup\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
-
-
-
 
 
 % ==========================================================================================================
@@ -148,6 +149,10 @@
 % ==========================================================================================================
 % ICONS
 % ==========================================================================================================
+
+% Note that for most icons, we will use some negative \hspace{- xyz} to shift folloing text closer to the icon. This is not done in the definition
+% of the icons here on purpose as the right amount of shifting needed for nice looking results depends on the font size used in surrounding text or tabular environments.
+% So, we do this right where we use the icons, even if it makes the code a bit ugly admittedly.
 
 \newcommand{\icon}[4]{%
 	\vcentered{%}
@@ -232,16 +237,17 @@
 
 \newenvironment{algorithmbox}[1]{%
 		\begin{tcolorbox}[colback=themewhite,colframe=themegreydark,title=#1, coltitle=themeaccent, fonttitle=\scshape, coltext=themegreydark, halign=left]
-		}%
-		{%
-		\end{tcolorbox}
-		}
+	}%
+	{%
+	\end{tcolorbox}
+}
 
 
 % ==========================================================================================================
 % Info Graphics
 % ==========================================================================================================
 
+% TODO maybe delete later, currently not used
 
 \newlength{\heightsymbols}
 \newlength{\heightbutton}
@@ -255,7 +261,6 @@
 	\pgfmathsetmacro{\bars}{int(round(\pgfmathresult))}
 	\pgfmathadd{\pgfmathresult}{1}
 	\pgfmathsetmacro{\barsnext}{int(round(\pgfmathresult)}
-
 
 
 	%Some measurements for vertically centering everything
@@ -293,7 +298,7 @@
 
 
 
-% Speedometer
+% Speedometers
 
 \pgfdeclarehorizontalshading{grad}{50bp}{
     color(0cm)=(themered);
@@ -301,6 +306,9 @@
     color(30bp)=(themeyellow);
     color(50bp)=(themegreen)
 }
+
+
+% TODO maybe delete later, currently not used (only green variant below)
 
 \def\RedAbsoluteSpeedometer(#1)[#2][#3]#4#5#6#7#8#9{%
 	\begin{tikzpicture}

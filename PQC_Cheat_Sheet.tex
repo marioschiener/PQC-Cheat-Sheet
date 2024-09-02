@@ -11,16 +11,17 @@
 
 \input{sourcefiles/Preamble}
 
-
-% Color palette: themewhite, themegreylight, themegreymedium, themegreydark, themegreen, themeblue, themered, themeyellow,themeorange
+% ================================================================================================================
+% Color palette quick access: themewhite, themegreylight, themegreymedium, themegreydark,
+% themegreen, themeblue, themered, themeyellow, themeorange
+% ================================================================================================================
 \colorlet{themeaccent}{themewhite}
 \colorlet{themeaccentsecondary}{themeblue}
 
 
-
-% =================================================================================================================
-% Title,Date, Version, Document Status
-% =================================================================================================================
+% ================================================================================================================
+% Title, Date, Version, Document Status
+% ================================================================================================================
 
 \newcommand{\docstatus}{\textcolor{themered}{\scshape Draft}}
 %\newcommand{\docstatus}{\textcolor{themeorangemedium}{\scshape Review}}
@@ -34,9 +35,14 @@
 	\href{https://www.linkedin.com/in/mario-schiener/}{\textcolor{themegreylight}{\faLinkedin}}\,\,%
 	\href{https://github.com/marioschiener}{\textcolor{themegreylight}{\faGithub}}%
 	}{% Date, Version, Docstatus for footer (center)
-	01 September, 2024 -- v0.2 -- \docstatus%
+	02 September, 2024 -- v0.2 -- \docstatus%
 }
 
+
+
+% ================================================================================================================
+% Document Content
+% ================================================================================================================
 
 \begin{document}
 
@@ -66,6 +72,12 @@
 	\input{sourcefiles/HQC}
 	\input{sourcefiles/FrodoKEM}
 	\input{sourcefiles/ClassicMcEliece}
+
+	% ============================================================================================================
+	% Security Levels Comparison
+	% ============================================================================================================
+
+	\input{sourcefiles/SecurityLevels}
 
 	% ============================================================================================================
 	% Algorithm Scoring

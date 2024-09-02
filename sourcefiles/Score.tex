@@ -4,11 +4,13 @@
 % LinkedIn: https://www.linkedin.com/in/mario-schiener/
 % Github: https://github.com/marioschiener
 
+% Note that formulas are made to look mostly like normal text on purpose as the usual look of mathematics wouldn't look good with the rest of the document.
+% Unfortunately, this makes the source code quite messy and unreadable since we need to use \textnormal excessively in order to be able to still utilize math environemts like align. So, this is done on prupose, not out of a lack of knowledge regarding formulas in LaTeX. Some vspacing and hspacing is needed to force the boxes onto one page.
 
 \vspace{-5mm}
 \begin{algorithmbox}{Algorithm Overall Usability Score}
 	\tiny
-	We try to measure an algorithm's overall usability for a general use case without any special characteristics by calculating a single number between 0 (worst) and 10 (best) for the algorithm. This calculation is taking into account all parameter sets, performance metrics, public key size, signature/ciphertext size, the number of security categories provided, whether or not it is suitable for general use, and the complexity and size of its implementation. \\
+	We try to measure an algorithm's overall usability for a general use case without any special characteristics by calculating a single number between 0 (worst) and 10 (best) for the algorithm. This calculation is taking into account all parameter sets, performance metrics, public key size, signature/ciphertext size, the number of security categories provided, whether or not it is suitable for general use, and the complexity and size of its implementation.\\
 
 	We define an algorithm's overall score as
 	\begin{align*}
