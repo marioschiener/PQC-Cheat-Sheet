@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/resources/Github-Logo.png"  alt="Logo" width = 450px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/resources/Github-Logo.png"  alt="Logo" width = 500px>
 </p>
 
 # The Post-Quantum Cryptopgraphy Cheat Sheets
