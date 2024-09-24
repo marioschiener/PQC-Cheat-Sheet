@@ -3,7 +3,7 @@
 </p>
 
 # The Post-Quantum Cryptopgraphy Cheat Sheets
-A series of cheat sheet for the new post-quantum cryptography (PQC) algorithms and about picking the right one.
+A series of cheat sheets for the new post-quantum cryptography (PQC) algorithms and about picking the right one for your application.
 
 
 #### Information
