@@ -9,8 +9,6 @@
 % ML-DSA
 % ============================================================================================================
 \newpage
-{\large \scshape \faPen\, Signature Algorithm ID Cards}\\
-
 \begin{algorithmbox}{ML-DSA (Module-Lattice-Based Digital Signature Algorithm)}
     \begin{minipage}[t]{0.35\textwidth}
         \scriptsize
@@ -94,6 +92,8 @@
         \begin{itemize}[leftmargin=*]
             \setlength\itemsep{0em}
             \item You need a general-purpose signature algorithm with decent specs in all categories
+            \item Usually the best option for a signature algorithm in most protocols (e.g. TLS, SSH, S/MIME, etc.).
+            \item Good choice for X.509 certificates, including CA certificates.
         \end{itemize}
     \end{minipage}
     \hfill

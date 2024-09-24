@@ -1,7 +1,8 @@
-PQC_Cheat_Sheet.aux
-PQC_Cheat_Sheet.acn
-PQC_Cheat_Sheet.log
-PQC_Cheat_Sheet.out
-PQC_Cheat_Sheet.synctex.gz
-PQC_Cheat_Sheet.synctex(busy)
-.PQC_Cheat_Sheet.tex.kate-swp
+*.aux
+*.acn
+*.log
+*.out
+*.synctex.gz
+*.synctex(busy)
+*.kate-swp
+Logo/*

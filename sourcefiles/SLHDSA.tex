@@ -190,6 +190,8 @@
             \setlength\itemsep{0em}
             \item Alternative to ML-DSA and Falcon that is not based on lattices
             \item Very small public keys
+            \item Generally good for use in most protocols, even if ML-DSA is the preferred option.
+            \item Use as a more conservative choice in use cases with less frequent algorithm execution, i.e. where latency or message size are not a big concern. For example, S/MIME, document or code signing, creation of CAs.
         \end{itemize}
     \end{minipage}
     \hfill

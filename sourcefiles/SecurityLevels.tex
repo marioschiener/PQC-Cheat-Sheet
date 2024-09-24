@@ -5,51 +5,59 @@
 % Github: https://github.com/marioschiener
 
 % ============================================================================================================
-% BIKE
+% Security Levels
 % ============================================================================================================
 \begin{algorithmbox}{Traditional vs. Post-Quantum Security Level Comparison \tbv}
     \scshape \tiny
     \begin{center}
         \begin{tabular}{cc|ccc|ccccc}
-        \multicolumn{2}{c|}{\bfseries Traditional Pre-Quantum Security} & \multirow{2}{*}{\makecell{\bfseries Attack in terms\\\bfseries of bit size n}} & \multirow{2}{*}{\makecell{\bfseries Algorithm\\\bfseries Examples}} & \multirow{2}{*}{\makecell{\bfseries NIST Security Categories\\\bfseries defined through attack}} & \multicolumn{5}{c}{\bfseries Post-Quantum Security}\\
-        Security [Bits] & \makecell{Classical Attack\\Complexity} &  &  &  & \makecell{Classical Attack\\Improvement} & \makecell{Quantum Attack\\Complexity} & Security [Bits] & \makecell{Signature\\Parameter Sets} & \makecell{Encryption/KEM\\Parameter Sets}\\
-        \hline
-        \hline
-        $n$ & $\mathcal{O}\left(2^{n}\right)$ & $n$-bit key space exhaustive key search & &  & Grover & $\mathcal{O}\left(2^{\frac{n}{2}}\right)$ & $\frac{n}{2}$ &  & \\
-        $n$ & $\mathcal{O}\left(2^{n}\right)$ & $n$-bit hash pre-image attack &  &  & Grover & $\mathcal{O}\left(2^{\frac{n}{2}}\right)$ & $\frac{n}{2}$ & \\
-        $n$ & $\mathcal{O}\left(2^{n}\right)$ & $n$-bit hash 2nd-pre-image attack &  &  & Grover & $\mathcal{O}\left(2^{\frac{n}{2}}\right)$ & $\frac{n}{2}$ & & \\
-        $\frac{n}{2}$ & $\mathcal{O}\left(2^{\frac{n}{2}}\right)$ & $n$-bit hash collision attack &  &  & Brassard et al. & $\mathcal{O}\left(2^{\frac{n}{3}}\right)$ & $\frac{n}{3}$ &  & \\
-        \hline
-        \hline
-        \multirow{4}{*}[-2.5mm]{128} & \multirow{4}{*}[-2.5mm]{$\mathcal{O}\left(2^{128}\right)$} & \cellcolor{themered!50!black}\textcolor{themewhite}{128-bit key space exhaustive key search} & \cellcolor{themered!50!black}\textcolor{themewhite}{AES-128} & \cellcolor{themered!50!black}\textcolor{themewhite}{Category 1} & \cellcolor{themered!50!black}\textcolor{themewhite}{Grover} & \cellcolor{themered!50!black}\textcolor{themewhite}{$\mathcal{O}\left(2^{64}\right)$} & \cellcolor{themered!50!black}\textcolor{themewhite}{64} & \cellcolor{themered!50!black} & \cellcolor{themered!50!black}\\
-        &  & \cellcolor{themered!50!black!50}128-bit hash pre-image attack & \cellcolor{themered!50!black!50}n/a & \cellcolor{themered!50!black!50} & \cellcolor{themered!50!black!50}Grover & \cellcolor{themered!50!black!50}$\mathcal{O}\left(2^{64}\right)$ & \cellcolor{themered!50!black!50}64 & \cellcolor{themered!50!black}\multirow{3}{*}{} & \cellcolor{themered!50!black}\multirow{3}{*}{}\\
-        &  & \cellcolor{themered!50!black!50}128-bit hash 2nd-pre-image attack & \cellcolor{themered!50!black!50}n/a & \cellcolor{themered!50!black!50} & \cellcolor{themered!50!black!50}Grover & \cellcolor{themered!50!black!50}$\mathcal{O}\left(2^{64}\right)$ & \cellcolor{themered!50!black!50}64 & \cellcolor{themered!50!black} \textcolor{themewhite}{\multirow[t]{-2}{*}[-0.5mm]{\shortstack{Falcon-512,\\SLH-DSA 128 variants}}}& \cellcolor{themered!50!black}\textcolor{themewhite}{\multirow[t]{-2}{*}[-2mm]{\shortstack{ML-KEM-512,\\BIKE-L1, HQC-128,\\FrodoKEM-640}}}\\
-        &  & \cellcolor{themered}256-bit hash collision attack & \cellcolor{themered}SHA-256, SHA3-256 & \cellcolor{themered}Category 2 & \cellcolor{themered}Brassard et al. & \cellcolor{themered}$\mathcal{O}\left(2^{85}\right)$ & \cellcolor{themered}85 & \cellcolor{themered}MLA-DSA-44 & \cellcolor{themered}\\
-        \hline
-        \multirow{4}{*}[-2.5mm]{192} & \multirow{4}{*}[-2.5mm]{$\mathcal{O}\left(2^{192}\right)$} & \cellcolor{themeorange}192-bit key space exhaustive key search & \cellcolor{themeorange}AES-192 & \cellcolor{themeorange}Category 3 & \cellcolor{themeorange}Grover & \cellcolor{themeorange}$\mathcal{O}\left(2^{96}\right)$ & \cellcolor{themeorange}96 & \cellcolor{themeorange} & \cellcolor{themeorange}\\
-        &  & \cellcolor{themeorange!35}192-bit hash pre-image attack & \cellcolor{themeorange!35}n/a & \cellcolor{themeorange!35} & \cellcolor{themeorange!35}Grover & \cellcolor{themeorange!35}$\mathcal{O}\left(2^{96}\right)$ & \cellcolor{themeorange!35}96 & \cellcolor{themeorange}\multirow{3}{*}{} & \cellcolor{themeorange}\multirow{3}{*}{}\\
-        &  & \cellcolor{themeorange!35}192-bit hash 2nd-pre-image attack & \cellcolor{themeorange!35}n/a & \cellcolor{themeorange!35} & \cellcolor{themeorange!35}Grover & \cellcolor{themeorange!35}$\mathcal{O}\left(2^{96}\right)$ & \cellcolor{themeorange!35}96 & \cellcolor{themeorange}\multirow[t]{-2}{*}[-0.5mm]{\shortstack{ML-DSA-67,\\SLH-DSA 192 variants}}& \cellcolor{themeorange}\multirow[t]{-2}{*}[-2mm]{\shortstack{ML-KEM-768,\\BIKE-L3, HQC-192,\\FrodoKEM-976}}\\
-        &  & \cellcolor{themeyellow}384-bit hash collision attack & \cellcolor{themeyellow}SHA-384, SHA3-384 & \cellcolor{themeyellow}Category 4 & \cellcolor{themeyellow}Brassard et al. & \cellcolor{themeyellow}$\mathcal{O}\left(2^{128}\right)$ & \cellcolor{themeyellow}128 & \cellcolor{themeyellow} & \cellcolor{themeyellow}\\
-        \hline
-        \multirow{4}{*}[-2.5mm]{256} & \multirow{4}{*}[-2.5mm]{$\mathcal{O}\left(2^{256}\right)$} & \cellcolor{themegreen}256-bit key space exhaustive key search & \cellcolor{themegreen}AES-256 & \cellcolor{themegreen}Category 5 & \cellcolor{themegreen}Grover & \cellcolor{themegreen}$\mathcal{O}\left(2^{128}\right)$ & \cellcolor{themegreen}128 & \cellcolor{themegreen} & \cellcolor{themegreen}\\
-        &  & \cellcolor{themegreen!50}256-bit hash pre-image attack & \cellcolor{themegreen!50}n/a & \cellcolor{themegreen!50} & \cellcolor{themegreen!50}Grover & \cellcolor{themegreen!50}$\mathcal{O}\left(2^{128}\right)$ & \cellcolor{themegreen!50}128 & \cellcolor{themegreen}\multirow{3}{*}{} & \cellcolor{themegreen}\multirow{3}{*}{}\\
-        &  & \cellcolor{themegreen!50}256-bit hash 2nd-pre-image attack & \cellcolor{themegreen!50}n/a & \cellcolor{themegreen!50} &\cellcolor{themegreen!50} Grover & \cellcolor{themegreen!50}$\mathcal{O}\left(2^{128}\right)$ &\cellcolor{themegreen!50}128 & \cellcolor{themegreen}\multirow[t]{-2}{*}[-2mm]{\shortstack{ML-DSA-85,\\SLH-DSA 256 variants\\XMSS**}}& \cellcolor{themegreen}\multirow[t]{-2}{*}[-2mm]{\shortstack{ML-KEM-1024,\\BIKE-L5, HQC-256,\\FrodoKEM-1344}}\\
-        &  & 512-bit hash collision attack & SHA-512, SHA3-512 &  & Brassard et al. & $\mathcal{O}\left(2^{170}\right)$ & 170 &  & \\
-        \hline
-        \multirow{4}{*}[-2.5mm]{384} & \multirow{4}{*}[-2.5mm]{$\mathcal{O}\left(2^{384}\right)$} & 384-bit key space exhaustive key search & n/a &  & Grover & $\mathcal{O}\left(2^{192}\right)$ & 192 &  & \\
-        &  & 384-bit hash pre-image attack & SHA-384, SHA3-384 &  & Grover & $\mathcal{O}\left(2^{192}\right)$ & 192 &  & \\
-        &  & 384-bit hash 2nd-pre-image attack & SHA-384, SHA3-384 &  & Grover & $\mathcal{O}\left(2^{192}\right)$ & 192 & & \\
-        &  & 768-bit hash collision attack & n/a &  & Brassard et al. & $\mathcal{O}\left(2^{256}\right)$ & 256 &  & \\
-        \hline
-        \multirow{4}{*}[-2.5mm]{512} & \multirow{4}{*}[-2.5mm]{$\mathcal{O}\left(2^{512}\right)$} & 512-bit key space exhaustive key search & n/a &  & Grover & $\mathcal{O}\left(2^{256}\right)$ & 256 &  & \\
-        &  & 512-bit hash pre-image attack & SHA-512, SHA3-512 &  & Grover & $\mathcal{O}\left(2^{256}\right)$ & 256 &  & \\
-        &  & 512-bit hash 2nd-pre-image attack & SHA-512, SHA3-512 &  & Grover & $\mathcal{O}\left(2^{256}\right)$ & 256 & & \\
-        &  & 1024-bit hash collision attack & n/a &  & Brassard et al. & $\mathcal{O}\left(2^{341}\right)$ & 341 &  & \\
-        \hline
+            \multicolumn{2}{c|}{\bfseries Traditional Pre-Quantum Security} & \multirow{2}{*}{\makecell{\bfseries Attack in terms\\\bfseries of bit size n}} & \multirow{2}{*}{\makecell{\bfseries Algorithm\\\bfseries Examples}} & \multirow{2}{*}{\makecell{\bfseries NIST Security Categories\\\bfseries defined through attack}} & \multicolumn{5}{c}{\bfseries Post-Quantum Security}\\
+            Security [Bits] & \makecell{Classical Attack\\Complexity} &  &  &  & \makecell{Classical Attack\\Improvement} & \makecell{Quantum Attack\\Complexity} & Security [Bits] & \makecell{Signature\\Parameter Sets} & \makecell{Encryption/KEM\\Parameter Sets}\\
+            \hline
+            \hline
+            $n$ & $\mathcal{O}\left(2^{n}\right)$ & $n$-bit key space exhaustive key search & AES &  & Grover & $\mathcal{O}\left(2^{\frac{n}{2}}\right)$ & $\frac{n}{2}$ &  & \\
+            $n$ & $\mathcal{O}\left(2^{n}\right)$ & $n$-bit hash pre-image attack & SHA-2, SHA-3 &  & Grover & $\mathcal{O}\left(2^{\frac{n}{2}}\right)$ & $\frac{n}{2}$ & \\
+            $n$ & $\mathcal{O}\left(2^{n}\right)$ & $n$-bit hash 2nd-pre-image attack & SHA-2, SHA-3 &  & Grover & $\mathcal{O}\left(2^{\frac{n}{2}}\right)$ & $\frac{n}{2}$ & & \\
+            $\frac{n}{2}$ & $\mathcal{O}\left(2^{\frac{n}{2}}\right)$ & $n$-bit hash collision attack & SHA-2, SHA-3 &  & Brassard et al. & $\mathcal{O}\left(2^{\frac{n}{3}}\right)$ & $\frac{n}{3}$ &  & \\
+            \hline
+            \hline
+            \multirow{4}{*}[-2.5mm]{128} & \multirow{4}{*}[-2.5mm]{$\mathcal{O}\left(2^{128}\right)$} & \cellcolor{themered!50!black}\textcolor{themewhite}{128-bit key space exhaustive key search} & \cellcolor{themered!50!black}\textcolor{themewhite}{AES-128} & \cellcolor{themered!50!black}\textcolor{themewhite}{Category 1} & \cellcolor{themered!50!black}\textcolor{themewhite}{Grover} & \cellcolor{themered!50!black}\textcolor{themewhite}{$\mathcal{O}\left(2^{64}\right)$} & \cellcolor{themered!50!black}\textcolor{themewhite}{64} & \cellcolor{themered!50!black} & \cellcolor{themered!50!black}\\
+            &  & \cellcolor{themered!50!black!50}128-bit hash pre-image attack & \cellcolor{themered!50!black!50}n/a & \cellcolor{themered!50!black!50} & \cellcolor{themered!50!black!50}Grover & \cellcolor{themered!50!black!50}$\mathcal{O}\left(2^{64}\right)$ & \cellcolor{themered!50!black!50}64 & \cellcolor{themered!50!black}\multirow{3}{*}{} & \cellcolor{themered!50!black}\multirow{3}{*}{}\\
+            &  & \cellcolor{themered!50!black!50}128-bit hash 2nd-pre-image attack & \cellcolor{themered!50!black!50}n/a & \cellcolor{themered!50!black!50} & \cellcolor{themered!50!black!50}Grover & \cellcolor{themered!50!black!50}$\mathcal{O}\left(2^{64}\right)$ & \cellcolor{themered!50!black!50}64 & \cellcolor{themered!50!black} \textcolor{themewhite}{\multirow[t]{-2}{*}[-0.5mm]{\shortstack{Falcon-512,\\SLH-DSA 128 variants}}}& \cellcolor{themered!50!black}\textcolor{themewhite}{\multirow[t]{-2}{*}[-2mm]{\shortstack{ML-KEM-512,\\BIKE-L1, HQC-128,\\FrodoKEM-640}}}\\
+            &  & \cellcolor{themered}256-bit hash collision attack & \cellcolor{themered}SHA-256, SHA3-256 & \cellcolor{themered}Category 2 & \cellcolor{themered}Brassard et al. & \cellcolor{themered}$\mathcal{O}\left(2^{85}\right)$ & \cellcolor{themered}85 & \cellcolor{themered}MLA-DSA-44, \tbv LMS & \cellcolor{themered}\\
+            \hline
+            \multirow{4}{*}[-2.5mm]{192} & \multirow{4}{*}[-2.5mm]{$\mathcal{O}\left(2^{192}\right)$} & \cellcolor{themeorange}192-bit key space exhaustive key search & \cellcolor{themeorange}AES-192 & \cellcolor{themeorange}Category 3 & \cellcolor{themeorange}Grover & \cellcolor{themeorange}$\mathcal{O}\left(2^{96}\right)$ & \cellcolor{themeorange}96 & \cellcolor{themeorange} & \cellcolor{themeorange}\\
+            &  & \cellcolor{themeorange!35}192-bit hash pre-image attack & \cellcolor{themeorange!35}n/a & \cellcolor{themeorange!35} & \cellcolor{themeorange!35}Grover & \cellcolor{themeorange!35}$\mathcal{O}\left(2^{96}\right)$ & \cellcolor{themeorange!35}96 & \cellcolor{themeorange}\multirow{3}{*}{} & \cellcolor{themeorange}\multirow{3}{*}{}\\
+            &  & \cellcolor{themeorange!35}192-bit hash 2nd-pre-image attack & \cellcolor{themeorange!35}n/a & \cellcolor{themeorange!35} & \cellcolor{themeorange!35}Grover & \cellcolor{themeorange!35}$\mathcal{O}\left(2^{96}\right)$ & \cellcolor{themeorange!35}96 & \cellcolor{themeorange}\multirow[t]{-2}{*}[-0.5mm]{\shortstack{ML-DSA-67,\\SLH-DSA 192 variants}}& \cellcolor{themeorange}\multirow[t]{-2}{*}[-2mm]{\shortstack{ML-KEM-768,\\BIKE-L3, HQC-192,\\FrodoKEM-976}}\\
+            &  & \cellcolor{themeyellow}384-bit hash collision attack & \cellcolor{themeyellow}SHA-384, SHA3-384 & \cellcolor{themeyellow}Category 4 & \cellcolor{themeyellow}Brassard et al. & \cellcolor{themeyellow}$\mathcal{O}\left(2^{128}\right)$ & \cellcolor{themeyellow}128 & \cellcolor{themeyellow} & \cellcolor{themeyellow}\\
+            \hline
+            \multirow{4}{*}[-2.5mm]{256} & \multirow{4}{*}[-2.5mm]{$\mathcal{O}\left(2^{256}\right)$} & \cellcolor{themegreen}256-bit key space exhaustive key search & \cellcolor{themegreen}AES-256 & \cellcolor{themegreen}Category 5 & \cellcolor{themegreen}Grover & \cellcolor{themegreen}$\mathcal{O}\left(2^{128}\right)$ & \cellcolor{themegreen}128 & \cellcolor{themegreen} & \cellcolor{themegreen}\\
+            &  & \cellcolor{themegreen!50}256-bit hash pre-image attack & \cellcolor{themegreen!50}n/a & \cellcolor{themegreen!50} & \cellcolor{themegreen!50}Grover & \cellcolor{themegreen!50}$\mathcal{O}\left(2^{128}\right)$ & \cellcolor{themegreen!50}128 & \cellcolor{themegreen}\multirow{3}{*}{} & \cellcolor{themegreen}\multirow{3}{*}{}\\
+            &  & \cellcolor{themegreen!50}256-bit hash 2nd-pre-image attack & \cellcolor{themegreen!50}n/a & \cellcolor{themegreen!50} &\cellcolor{themegreen!50} Grover & \cellcolor{themegreen!50}$\mathcal{O}\left(2^{128}\right)$ &\cellcolor{themegreen!50}128 & \cellcolor{themegreen}\multirow[t]{-2}{*}[-2mm]{\shortstack{ML-DSA-85,\\SLH-DSA 256 variants\\\tbv XMS}}& \cellcolor{themegreen}\multirow[t]{-2}{*}[-2mm]{\shortstack{ML-KEM-1024,\\BIKE-L5, HQC-256,\\FrodoKEM-1344}}\\
+            &  & 512-bit hash collision attack & SHA-512, SHA3-512 &  & Brassard et al. & $\mathcal{O}\left(2^{170}\right)$ & 170 &  & \\
+            \hline
+            \multirow{4}{*}[-2.5mm]{384} & \multirow{4}{*}[-2.5mm]{$\mathcal{O}\left(2^{384}\right)$} & 384-bit key space exhaustive key search & n/a &  & Grover & $\mathcal{O}\left(2^{192}\right)$ & 192 &  & \\
+            &  & 384-bit hash pre-image attack & SHA-384, SHA3-384 &  & Grover & $\mathcal{O}\left(2^{192}\right)$ & 192 &  & \\
+            &  & 384-bit hash 2nd-pre-image attack & SHA-384, SHA3-384 &  & Grover & $\mathcal{O}\left(2^{192}\right)$ & 192 & & \\
+            &  & 768-bit hash collision attack & n/a &  & Brassard et al. & $\mathcal{O}\left(2^{256}\right)$ & 256 &  & \\
+            \hline
+            \multirow{4}{*}[-2.5mm]{512} & \multirow{4}{*}[-2.5mm]{$\mathcal{O}\left(2^{512}\right)$} & 512-bit key space exhaustive key search & n/a &  & Grover & $\mathcal{O}\left(2^{256}\right)$ & 256 &  & \\
+            &  & 512-bit hash pre-image attack & SHA-512, SHA3-512 &  & Grover & $\mathcal{O}\left(2^{256}\right)$ & 256 &  & \\
+            &  & 512-bit hash 2nd-pre-image attack & SHA-512, SHA3-512 &  & Grover & $\mathcal{O}\left(2^{256}\right)$ & 256 & & \\
+            &  & 1024-bit hash collision attack & n/a &  & Brassard et al. & $\mathcal{O}\left(2^{341}\right)$ & 341 &  & \\
+            \hline
         \end{tabular}
     \end{center}
-    \scriptsize
-    \tbd\ additional comments and explanations to readers for how this is to be interpreted; explain lighter colors. XMSS, LMS?
+    {\bfseries Notes \& Takeaways}
+    \normalfont
+    \begin{itemize}
+        \item The above is still a simplified view. It does not dive into the specific assumptions made in the new algorithms' security proofs and the possible attacks on those algorithms (e.g., is a collision attack on a hash function enough, or would a pre-image be required to break the signature scheme using that hash function). It is also not including considering practical considerations and predictions about quantum computers, such as runtime or quantum circuit depth. Cf. \iconhref[\faLink]{https://csrc.nist.gov/CSRC/media/Projects/Post-Quantum-Cryptography/documents/call-for-proposals-final-dec-2016.pdf}{NIST PQC Evaluation Criteria, 4.A.5} for further details.
+        \item A pre-quantum security level can have different post-quantum security levels equivalents. It all depends on the specific attack in question, resp. the security assumption a new post-quantum algorithm is based on or must be secure against. For hashing, the often cited ``SHA-256 offers 128 bits of security'' is not wrong, but only part of the picture: it offers 256 bits of security against pre-image and 2nd-preimage-attacks. The $n$ bits of security against 2nd-preimage attacks is still a slightly simplified and harmonized view to avoid different formulas for different hash functions. Cf. \iconhref[\faLink]{https://csrc.nist.gov/projects/hash-functions}{NIST: Hash Functions} for details.
+        \item The fact that the exact level of post-quantum security still depends on so many assumptions about CRQCs, comparing pre-quantum and post-quantum security levels remains an apples and oranges comparison to some degree. Such comparisons should be taken with a grain of salt, especially when done only on a rather superficial level.
+        \item The lines marked with colors \textcolor{themered!50!black}{\blacksquare}, \textcolor{themered}{\blacksquare}, \textcolor{themeorange}{\blacksquare}, \textcolor{themeyellow}{\blacksquare} and \textcolor{themegreen!50}{\blacksquare}
+        are the ones used by NIST to define categories I, II, III, IV and V. The lines marked in lighter colors
+        \textcolor{themered!50!black!50}{\blacksquare}, \textcolor{themeorange!35}{\blacksquare}, and \textcolor{themegreen}{\blacksquare} have the same post-quantum security as the defining lines of categories I, III and V, respectively. They therefore fulfill the ``comparable to or greater than'' clause in NIST's category definitions. Note that categories IV and V are differentiated despite having 128 bits of post-quantum security -- again highlighting the fact that a precise categorization is difficult and requires a detailed analysis of many aspects.
+    \end{itemize}
 \end{algorithmbox}
 
 

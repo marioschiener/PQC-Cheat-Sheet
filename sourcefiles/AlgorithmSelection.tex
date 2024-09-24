@@ -13,7 +13,7 @@
     % ============================================================================================================
     % Orders of Preference
     % ============================================================================================================
-    \begin{algorithmbox}{Algorithm Choice Guidance: Rules Of Thumb}
+    \begin{algorithmbox}{Algorithm Choice Guidance: Rules Of Thumb \tbv}
         {\scriptsize The following orders of preference should be considered as general rules of thumb applicable to most use cases. They should however not be considered to be universal truths. Unstandardized algorithms are listed for the sake of completeness.\\}
         % ============================================================================================================
         % Signature Algorithms
@@ -21,18 +21,18 @@
         \begin{minipage}[t]{0.5\textwidth}
             \vspace{0pt}
             {\scshape \faPen\, Signature Algorithms}\\
-            {\scriptsize \bfseries Objective: Best All-Around Package \tbv}\\[0.1\baselineskip]
+            {\scriptsize \bfseries Objective: Best All-Around Package}\\[0.1\baselineskip]
             \ranking{}{%
             \bfseries{ML-DSA},\bfseries{Falcon} \faCalendar,\bfseries{SLH-DSA},\bfseries{XMSS/LMS}*,\textcolor{themewhite}{\bfseries{New Candidates**} \faCalendar}}{}{0.6}\\[0.75\baselineskip]
-            {\scriptsize \bfseries Objective: Performance of Key Generation \tbv}\\[0.1\baselineskip]
+            {\scriptsize \bfseries Objective: Performance of Key Generation}\\[0.1\baselineskip]
             \ranking{}{\bfseries{ML-DSA},\bfseries{SLH-DSA\\f variants},\bfseries{SLH-DSA\\s variants},\bfseries{Falcon} \faCalendar}{}{0.6}\\[0.75\baselineskip]
-            {\scriptsize \bfseries Objective: Performance of Signing \tbv}\\[0.1\baselineskip]
+            {\scriptsize \bfseries Objective: Performance of Signing}\\[0.1\baselineskip]
             \ranking{}{\bfseries{ML-DSA},\bfseries{Falcon} \faCalendar, \bfseries{SLH-DSA\\f variants},\bfseries{SLH-DSA\\s variants}}{}{0.6}\\[0.75\baselineskip]
-            {\scriptsize \bfseries Objective: Performance of Verification \tbv}\\[0.1\baselineskip]
+            {\scriptsize \bfseries Objective: Performance of Verification}\\[0.1\baselineskip]
             \ranking{}{\bfseries{Falcon} \faCalendar,\bfseries{ML-DSA},\bfseries{SLH-DSA\\s variants},\bfseries{SLH-DSA\\f variants}}{}{0.6}\\[0.75\baselineskip]
-            {\scriptsize \bfseries Objective: Small Signatures \tbv}\\[0.1\baselineskip]
+            {\scriptsize \bfseries Objective: Small Signatures}\\[0.1\baselineskip]
             \ranking{}{\bfseries{Falcon} \faCalendar,\bfseries{ML-DSA},\bfseries{SLH-DSA\\s variants},\bfseries{SLH-DSA\\f variants}}{}{0.6}\\[0.75\baselineskip]
-            {\scriptsize \bfseries Objective: Small Public Keys \tbv}\\[0.1\baselineskip]
+            {\scriptsize \bfseries Objective: Small Public Keys}\\[0.1\baselineskip]
             \ranking{}{\bfseries{SLH-DSA},\bfseries{Falcon} \faCalendar,\bfseries{ML-DSA}}{}{0.6}\\[0.75\baselineskip]
             {\tiny * \,\,XMSS/LMS is not suitable for general purpose signatures}\\[-0.5\baselineskip]
             {\tiny ** Security still unclear, none recommended yet at the moment}
@@ -44,18 +44,19 @@
         \begin{minipage}[t]{0.5\textwidth}
             \vspace{0pt}
             {\scshape \faLock\, Encryption/Key Encapsulation Algorithms}\\
-            {\scriptsize \bfseries Objective: Best All-Around Package \tbv}\\[0.1\baselineskip]
-            \ranking{}{\bfseries{ML-KEM},\bfseries{BIKE} \faCalendar, \bfseries{HQC} \faCalendar, \bfseries{FrodoKEM} \faExclamationCircle, \textcolor{themewhite}{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
-            {\scriptsize \bfseries Objective: Performance of Key Generation \tbv}\\[0.1\baselineskip]
-            \ranking{}{\bfseries{ML-KEM},\bfseries{HQC} \faCalendar, \bfseries{BIKE} \faCalendar, \bfseries{FrodoKEM} \faExclamationCircle, {\textcolor{themewhite}{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle}}}{}{0.6}\\[0.75\baselineskip]
-            {\scriptsize \bfseries Objective: Performance of Encryption \tbv}\\[0.1\baselineskip]
-            \ranking{}{{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle},\bfseries{ML-KEM},\bfseries{BIKE} \faCalendar,  \bfseries{HQC} \faCalendar, \textcolor{themewhite}{\bfseries{FrodoKEM} \faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
-            {\scriptsize \bfseries Objective: Performance of Decryption \tbv}\\[0.1\baselineskip]
-            \ranking{}{\bfseries{ML-KEM}, {\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle},\bfseries{HQC} \faCalendar, \bfseries{BIKE} \faCalendar , \textcolor{themewhite}{\bfseries{FrodoKEM} \faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
-            {\scriptsize \bfseries Objective: Small Ciphertext \tbv}\\[0.1\baselineskip]
-            \ranking{}{{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle}, \bfseries{ML-KEM},\bfseries{BIKE} \faCalendar, \bfseries{HQC} \faCalendar, \textcolor{themewhite}{\bfseries{FrodoKEM} \faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
-            {\scriptsize \bfseries Objective: Small Public Keys \tbv}\\[0.1\baselineskip]
-            \ranking{}{\bfseries{ML-KEM},\bfseries{BIKE} \faCalendar, \bfseries{HQC} \faCalendar, \bfseries{FrodoKEM} \faExclamationCircle, {\textcolor{themewhite}{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle}}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Best All-Around Package}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{ML-KEM},\bfseries{BIKE} \faCalendar, \bfseries{HQC} \faCalendar, \bfseries{FrodoKEM} \faExclamationCircle, \textcolor{themewhite}{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle \bfseries *}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Performance of Key Generation}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{ML-KEM},\bfseries{HQC} \faCalendar, \bfseries{BIKE} \faCalendar, \bfseries{FrodoKEM} \faExclamationCircle, {\textcolor{themewhite}{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle \bfseries *}}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Performance of Encryption}\\[0.1\baselineskip]
+            \ranking{}{{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle \bfseries *},\bfseries{ML-KEM},\bfseries{BIKE} \faCalendar,  \bfseries{HQC} \faCalendar, \textcolor{themewhite}{\bfseries{FrodoKEM} \faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Performance of Decryption}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{ML-KEM}, {\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle \bfseries *},\bfseries{HQC} \faCalendar, \bfseries{BIKE} \faCalendar , \textcolor{themewhite}{\bfseries{FrodoKEM} \faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Small Ciphertext}\\[0.1\baselineskip]
+            \ranking{}{{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle \bfseries *}, \bfseries{ML-KEM},\bfseries{BIKE} \faCalendar, \bfseries{HQC} \faCalendar, \textcolor{themewhite}{\bfseries{FrodoKEM} \faExclamationCircle}}{}{0.6}\\[0.75\baselineskip]
+            {\scriptsize \bfseries Objective: Small Public Keys}\\[0.1\baselineskip]
+            \ranking{}{\bfseries{ML-KEM},\bfseries{BIKE} \faCalendar, \bfseries{HQC} \faCalendar, \bfseries{FrodoKEM} \faExclamationCircle, {\textcolor{themewhite}{\bfseries{C. McEliece} \faCalendar\,\faExclamationCircle \bfseries *}}}{}{0.6}\\[0.75\baselineskip]
+            {\tiny * Classic McEliece is only suitable for general encryption with limitations}\\[-0.5\baselineskip]
         \end{minipage}
     \end{algorithmbox}
     \vfill
@@ -71,7 +72,7 @@
         \scriptsize
         \begin{itemize}[leftmargin=*]
             \setlength\itemsep{0em}
-            \item First, consider using \doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}\hspace{-3mm} as a baseline.\\
+            \item As a baseline, first consider using \doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}\hspace{-3mm} parameters.\\
             \item Use \doubleicon{\montserratbold IV}{\faSun[regular]}{themeyellow}{0.6}\hspace{-3mm} or
             \doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}\hspace{-3mm} for more security if possible (i.e., if a decrease in performance is not a concern and if no constraints apply).\\
             \item Use \doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}\hspace{-3mm} or
@@ -86,14 +87,14 @@
         \begin{itemize}[leftmargin=*]
             \setlength\itemsep{0em}
             \item {\bfseries First, consider using  pure} (i.e., without pre-hashing) as this is the general recommendation.\\
-            \item {\bfseries Pre-Hashing may be considered if one or more of the following applies:}
+            \item {\bfseries Pre-Hashing may be considered if one or more of the following apply:}
             \begin{itemize}[leftmargin=*]
                 \setlength\itemsep{0em}
-                \item The message {\itshape M} is too large to be sent to cryptographic module (CM) for hashing without significantly impacting performance. This may be the case e.g. in CMS related use cases such as S/MIME or code signing, or in cases of very narrow communication channels to the CM (e.g. between APDUs exchanged between smartcard and smartcard reader).
+                \item The message {\itshape M} is too large to be sent to the cryptographic module (CM) for hashing without significantly impacting performance. This may be the case e.g. in CMS related use cases such as S/MIME or code signing, or in cases of very narrow communication channels to the CM (e.g. between APDUs exchanged between smartcard and smartcard reader).
                 \item The hash needs to be signed with different algorithms and would be computed repeatedly without pre-hashing.
                 \item The specific hash function is not supported in a CM.
             \end{itemize}
-            \vspace{3mm}
+            %\vspace{3mm}
         \end{itemize}
     \end{algorithmbox}
 \end{minipage}

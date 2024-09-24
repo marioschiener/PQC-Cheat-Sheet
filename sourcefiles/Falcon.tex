@@ -77,6 +77,7 @@
         \scriptsize \faThumbsUp\, {\bfseries / Pros / Use If:}
         \begin{itemize}[leftmargin=*]
             \setlength\itemsep{0em}
+            \item Generally good for use in most protocols (e.g. TLS, SSH, S/MIME, etc.). Exceptions may apply in cases of repeated generation of ephemeral keys (poor performance).
             \item Falcon has smaller signature sizes than ML-DSA:\\
             \doubleicon{\montserratbold 0}{\faPen}{themegreen}{0.6}\hspace{-2mm} vs. \doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}\hspace{-2mm} resp. \doubleicon{\montserratbold 2}{\faPen}{themegreen}{0.6}\hspace{-2mm}
             \item Falcon has smaller public key sizes than ML-DSA:\\
@@ -92,6 +93,7 @@
         \item The algorithm is not yet standardized
         \item The algorithm requires expensive floating point arithmetic
         \item Key generation and signing are slower than for ML-DSA
+        \item Less suitable in applications involving the creation of lots of ephemeral keys/certificates (key generation is slow).
         \end{itemize}
     \end{minipage}
 \end{algorithmbox}

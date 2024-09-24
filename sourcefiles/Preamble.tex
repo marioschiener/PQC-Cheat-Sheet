@@ -8,6 +8,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[english,ngerman]{babel}
+\usepackage{pdfpages}
 \usepackage{tgadventor} % font
 \usepackage{fontspec}% requires XeLaTex or LuaLaTeX
 \usepackage{fontawesome5}
@@ -73,6 +74,17 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 
+
+\newcommand\supertiny{\fontsize{5pt}{4pt}\selectfont}
+
+\newcommand\tinytitlefont{\fontsize{12pt}{14pt}\selectfont \scshape}
+\newcommand\minititlefont{\fontsize{16pt}{18pt}\selectfont \scshape}
+\newcommand\smalltitlefont{\fontsize{20pt}{22pt}\selectfont \scshape}
+\newcommand\mediumtitlefont{\fontsize{24pt}{26pt}\selectfont}
+\newcommand\middletitlefont{\fontsize{32pt}{36pt}\selectfont}
+\newcommand\bigtitlefont{\fontsize{62pt}{66pt}\selectfont \scshape}
+\newcommand\bigthintitlefont{\fontsize{62pt}{32pt}\selectfont \scshape \textlf}
+
 % TODO is this currently used in this document?
 \newcommand{\highlight}[1]{\textit{\textcolor{themeaccent}{#1}}}
 
@@ -110,37 +122,73 @@
 
 
 % ==========================================================================================================
-% PAGE THEME& GEOMETRY
+% PAGE THEMES & GEOMETRY
 % ==========================================================================================================
 
-\newcommand{\setpagetheme}[3]{
-
-	\pagestyle{scrheadings}
-	\clearpairofpagestyles
+\newcommand{\coverpage}{
+	\thispagestyle{scrheadings}
+	%\clearpairofpagestyles
 	%\clearscrheadfoot
-	\automark[subsection]{section}
-
+	%\automark[subsection]{section}
 
 	% Margins and Background
-	\newgeometry{left=1cm,right=1cm,top=2.4cm,bottom=0.75cm,headsep=0.75cm, footskip=2cm,includefoot}
+	\newgeometry{left=0cm,right=0cm,top=0cm,bottom=0cm}
+
+	\AddToHookNext{shipout/background}{
+		\begin{tikzpicture}[remember picture,overlay]
+   				 \node[opacity=1] at (current page.center) {\includesvg{resources/Cover}};
+		\end{tikzpicture}
+	}
+
+	\begin{center}
+		\vspace*{14cm}
+		\middletitlefont \montserratsemibold \textcolor{themewhite}{\doctitle}\\
+		\vspace{0.5cm}
+		\LARGE \montserratthin \textcolor{themegreylight}{\docauthor}\\
+		%\LARGE \montserratthin \textcolor{themegreylight}{\docauthorsocial}
+		\vspace{0.5cm}
+		\large \montserratthin \textcolor{themegreylight}{\docdate\\\docversion\,\,\docstatus}
+	\end{center}
+}
+
+
+\newcommand{\dividerpage}[2]{
+	\pagebreak
+	\begin{center}
+		\begin{tikzpicture}[remember picture,overlay]
+			\node[opacity=0.65] at (current page.center) {\includegraphics[height=20cm]{resources/Logo.png}};
+			\node[opacity=1] at (current page.center) {\middletitlefont \montserratsemibold \textcolor{themegreydark}{#1}};
+			\node[opacity=1,yshift=-2cm] at (current page.center) {\LARGE \montserratsemibold \textcolor{themegreylight}{#2}};
+		\end{tikzpicture}
+	\end{center}
+	\pagebreak
+}
+
+
+\newcommand{\setpagetheme}{
+	\clearpairofpagestyles
+
+	% Margins and Background
+	\newgeometry{left=1cm,right=1cm,top=2.4cm,bottom=0.75cm,headsep=0.25cm, footskip=2cm, includefoot}
 
 
 	% Picture
 	\AddToHook{shipout/background}{
 		\begin{tikzpicture}[remember picture,overlay]
-   				 \node[opacity=1] at (current page.center) {\includesvg{resources/Header}};
+   				 \node[opacity=1] at (current page.center) {\includesvg{resources/HeaderFooter}};
 		\end{tikzpicture}
 	}
 
 	\addtokomafont{pagenumber}{\scshape\color{themegreylight}}
 
 	%Header
-	\ihead{\Huge \montserrat \textcolor{themeaccent}{#1}}
+	\ihead{\Huge \montserrat \textcolor{themeaccent}{\docshorttitle}}
+	\ohead{\includegraphics[height=2cm]{resources/Logo.png}}
 
 	%Footer
-	\ofoot{\textcolor{themegreylight}{\pagemark}}
-	\ifoot{\normalfont\scshape \textcolor{themegreylight}{#2}}
-	\cfoot{\normalfont\scshape \textcolor{themegreylight}{#3}\\\textcolor{themegreylight}{\tiny No responsibility is taken for the correctness of this information.}}
+	\ofoot{\textcolor{themegreylight}{\pagemark\\}}
+	\ifoot{\normalfont\scshape \textcolor{themegreylight}{\copyright\, \docauthor\,\,\docauthorsocial\\}}
+	\cfoot{\normalfont\scshape \textcolor{themegreylight}{\docdate\, -- \docversion\, -- \docstatus}\\\textcolor{themegreylight}{\tiny No responsibility is taken for the correctness of this information.}}
 }
 
 

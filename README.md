@@ -1,6 +1,7 @@
-# PQC Cheat Sheet(s)
-A cheat sheet for the new post quantum cryptography (PQC) algorithms.
-(OK, actually multiple cheat sheets, it's just a little too much for one one page...)
+<img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Logo/Logo.png"  alt="Logo" width = 720px>
+
+# The Post-Quantum Cryptopgraphy Cheat Sheets
+A series of cheat sheet for the new post-quantum cryptography (PQC) algorithms and about picking the right one.
 
 
 #### Information
@@ -40,7 +41,7 @@ No responsibility is taken for the correctness of the information contained in t
 **Encryption/KEM:** ML-KEM (CRYSTALS-KYBER), BIKE, HQC, Classic McEliece, FrodoKEM
 
 ## Working with and Interpreting the Cheat Sheet<a name="howto"></a>
-**The goal of this cheat sheet is to make it as easy as possible to figure out which algorithm to pick for a given use case. Algorithm ID cards break down algorithm parameter sets, their important values and performance characteristics. The cheat sheet is intended to help users primarily in technical roles, such as engineers, architects or software developers working with post-quantum cryptography.**
+**The goal of this series of cheat sheets is to make it as easy as possible to figure out which algorithm to pick for a given use case. Algorithm ID cards break down algorithm parameter sets, their important values and performance characteristics. The cheat sheets are intended to help users primarily in technical roles, such as engineers, architects or software developers working with post-quantum cryptography.**
 
 The focus is to avoid giving specific numbers measured in bits, bytes or cycles as this makes makes comparing numbers across algorithms difficult. Instead, this complexity is simplified by only providing a
 **color-coded number indicating the order of magnitude of each metric.**
@@ -59,7 +60,7 @@ All values thus have a lower bound of 0. We do not limit the upper end of scales
 
 The target audience are technical roles such as software developers, architects or engineers or simply anyone interested in cryptography and PQC. The cheat sheets aim to make it easier for them to select the right algorithm for their use cases, based on various different algorithm characteristics presented in a simplified form.
 
-**The main goal is quick information, not absolute precision! The cheat sheet is not intended to replace studying more specific specifications in a second step!**
+**The main goal is quick information, not absolute precision! The cheat sheets are not intended to replace studying more specific specifications in a second step!**
 
 # Preview<a name="preview"></a>
 
@@ -78,6 +79,13 @@ The target audience are technical roles such as software developers, architects 
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-12.png"  alt="Page 12" width = 720px>
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-13.png"  alt="Page 13" width = 720px>
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-14.png"  alt="Page 14" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-15.png"  alt="Page 15" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-16.png"  alt="Page 16" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-17.png"  alt="Page 17" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-18.png"  alt="Page 18" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-19.png"  alt="Page 19" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-20.png"  alt="Page 21" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-21.png"  alt="Page 21" width = 720px>
 </p>
 
 

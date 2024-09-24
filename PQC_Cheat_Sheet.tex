@@ -20,23 +20,23 @@
 
 
 % ================================================================================================================
-% Title, Date, Version, Document Status
+% Title, Author, Social media, Date, Version, Document Status
 % ================================================================================================================
+
+\def\doctitle{THE POST-QUANTUM CRYPTOGRAPHY ALGORITHM CHEAT SHEETS}
+\def\docshorttitle{THE PQC ALGORITHM CHEAT SHEETS}
+\def\docauthor{Mario Schiener}
+\def\docauthorsocial{\href{https://www.linkedin.com/in/mario-schiener/}{\textcolor{themegreylight}{\faLinkedin}}\,\,%
+	\href{https://github.com/marioschiener}{\textcolor{themegreylight}{\faGithub}}}
+\def\docdate{24 September 2024}
+\def\docversion{v0.4}
 
 \newcommand{\docstatus}{\textcolor{themered}{\scshape Draft}}
 %\newcommand{\docstatus}{\textcolor{themeorangemedium}{\scshape Review}}
 %\newcommand{\docstatus}{\textcolor{themewhite}{\scshape Released}}
 %\newcommand{\docstatus}{\textcolor{themered}{\scshape Obsolete}}
 
-\setpagetheme{%
-	Post-Quantum Cryptography Algorithm Cheat Sheets %	Title
-	}{%	Author details for footer (left)
-	\copyright\, Mario Schiener\,\,%
-	\href{https://www.linkedin.com/in/mario-schiener/}{\textcolor{themegreylight}{\faLinkedin}}\,\,%
-	\href{https://github.com/marioschiener}{\textcolor{themegreylight}{\faGithub}}%
-	}{% Date, Version, Docstatus for footer (center)
-	02 September, 2024 -- v0.2 -- \docstatus%
-}
+
 
 
 
@@ -45,17 +45,18 @@
 % ================================================================================================================
 
 \begin{document}
-
 	% ============================================================================================================
 	% Intro: Explanations and Algorithm Selection Guidance
 	% ============================================================================================================
+	\coverpage
+	\setpagetheme
 
 	\input{sourcefiles/Explanations}
 	\input{sourcefiles/AlgorithmSelection}
-
 	% ============================================================================================================
 	% Signature Algorithm ID Cards
 	% ============================================================================================================
+	\dividerpage{SIGNATURE ALGORITHMS}{ID Cards}
 
 	\input{sourcefiles/MLDSA}
 	\input{sourcefiles/Falcon}
@@ -66,23 +67,27 @@
 	% ============================================================================================================
 	% Encryption / KEM Algorithm ID Cards
 	% ============================================================================================================
+	\dividerpage{ENCRYPTION / KEM ALGORITHMS}{ID Cards}
 
 	\input{sourcefiles/MLKEM}
 	\input{sourcefiles/BIKE}
 	\input{sourcefiles/HQC}
 	\input{sourcefiles/FrodoKEM}
 	\input{sourcefiles/ClassicMcEliece}
+	\input{sourcefiles/NTRU}
 
 	% ============================================================================================================
-	% Security Levels Comparison
+	% Hash Algorithm ID Cards
 	% ============================================================================================================
+	\dividerpage{HASHING}{Overview}
+	\input{sourcefiles/Hashing}
+
+	% ============================================================================================================
+	% Appendix: Security Levels Comparison, Algorithm Scoring
+	% ============================================================================================================
+	\dividerpage{APPENDIX}{}
 
 	\input{sourcefiles/SecurityLevels}
-
-	% ============================================================================================================
-	% Algorithm Scoring
-	% ============================================================================================================
-
 	\input{sourcefiles/Score}
 
 \end{document}
