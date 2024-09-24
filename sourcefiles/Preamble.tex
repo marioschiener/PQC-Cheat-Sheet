@@ -249,6 +249,21 @@
 	}
 }
 
+\newcommand{\quadicon}[7][themegreydark]{%
+	\vcentered{%}
+	\begin{tikzpicture}[scale=#5, transform shape]%
+		\draw[draw=none,fill=#4] (0,0) circle (0.4);%
+		\draw[draw=none,fill=themegreydark] (0.35,-0.2) circle (0.19);%
+		\draw[draw=none,fill=themegreydark] (0.35,0.2) circle (0.19);%
+		\draw[draw=none,fill=themegreydark] (-0.35,-0.2) circle (0.19);%
+		\node[color=#1](icon) at (0,0) {\normalsize #2};%
+		\node[color=themewhite](icon) at (0.35,-0.2) {#3};%
+		\node[color=themewhite,scale=0.9](icon) at (0.35,0.2) {#7};%
+		\node[color=themewhite,scale=0.9](icon) at (-0.35,-0.2) {#6};%
+	\end{tikzpicture}
+	}
+}
+
 \newcommand{\lettericon}[4]{%
 	\vcentered{%}
 		\begin{tikzpicture}[scale=#4, transform shape]%

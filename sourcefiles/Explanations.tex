@@ -47,13 +47,13 @@
         Higher is more secure.\\[\baselineskip]
 
         {\bfseries Implementation complexity and size}\\[0.5\baselineskip]
-        \tripleicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries C}
-        \tripleicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries C}
-        \tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C} Low/Medium/High implementation complexity\\
-        \tripleicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries S}
-        \tripleicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries S}
-        \tripleicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries S} Low/Medium/High implementation size\\[\baselineskip]
-        Lower is better.\\[\baselineskip]
+        \quadicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries C}{\bfseries \faAsterisk}
+        \quadicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries C}{\bfseries \faAsterisk}
+        \quadicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C}{\bfseries \faAsterisk} Low/Medium/High implementation complexity\\
+        \quadicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries S}{\bfseries \faAsterisk}
+        \quadicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries S}{\bfseries \faAsterisk}
+        \quadicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries S}{\bfseries \faAsterisk} Low/Medium/High implementation size\\[\baselineskip]
+        Lower is better. {\scriptsize \faAsterisk} can be {\scriptsize \faKey}, {\scriptsize \faPen}, {\scriptsize \faQuestion}, {\scriptsize \faLock}, or {\scriptsize \faUnlock}.\\[\baselineskip]
 
         {\bfseries Rating scales for parameter sizes and performance}\\[0.5\baselineskip]
         Best to Worst: \textcolor{themegreen}{$\blacksquare$} $n\leq2$, \textcolor{themeyellow}{$\blacksquare$} $n\{3,4\}$, \textcolor{themeorange}{$\blacksquare$} $n\in\{5,6\}$, \textcolor{themered}{$\blacksquare$} $n\in\{7,8\}$, \textcolor{themered!65!black}{$\blacksquare$} $n\geq9$
@@ -77,7 +77,7 @@
             \>\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}
             \> $\mathcal{O}(2^n)$ KB of encryption algorithm public key size\\
         \end{tabbing}
-        \vspace{-6mm}
+        \vspace{-6.5mm}
     \end{algorithmbox}
 \end{minipage}
 \hfill
