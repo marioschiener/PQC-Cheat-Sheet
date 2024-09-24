@@ -1,4 +1,4 @@
-<img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Logo/Logo.png"  alt="Logo" width = 720px>
+<img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Logo/Github-Logo.png"  alt="Logo" width = 360px>
 
 # The Post-Quantum Cryptopgraphy Cheat Sheets
 A series of cheat sheet for the new post-quantum cryptography (PQC) algorithms and about picking the right one.
