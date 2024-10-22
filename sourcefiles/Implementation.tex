@@ -1,0 +1,38 @@
+% !TeX root = ../PQC_Cheat_Sheet.tex
+
+% Author: Mario Schiener, 2024
+% LinkedIn: https://www.linkedin.com/in/mario-schiener/
+% Github: https://github.com/marioschiener
+
+\vspace{-5mm}
+\begin{algorithmbox}{Algorithm Implementation Complexity and Size \tbd}
+	\scriptsize
+	{\bfseries Size}\\[\baselineskip]
+	In some contexts, algorithm implementation size can be important. For example, on smartcards or embedded devices with little storage or memory capacity and limited computational resources, an algorithms ``footprint'' may be a relevant factor. Developers may have to determine it is even possible to fit an algorithms implementation on a particular device and execute it. For that reason, this cheat sheet aims to include indicators for algorithms' implementation size for key generation, signature generation and verification resp. encryption and decryption.\\[\baselineskip]
+
+	However, it is difficult to define a useful way to measure an implementation's size: possible metrics could be lines of source code or the size of a compiled binary measured in bytes. However, those measurements would depend on factors such as programming language, compiler, and platform architecture. They are thus not ideal.\\[2\baselineskip]
+
+
+	{\bfseries Complexity}\\[\baselineskip]
+	Similarly, some developers may be concerned with an algorithm's implementation complexity. Here, ``complexity'' refers not to running time or space complexity, but rather to the level of difficulty of implementing an algorithm correctly without introducing vulnerabilites by mistake. The question of how difficult it is to implement a particular algorithm compared to another has repeatedly come up in exchanges on cryptography mailing lists or forums. It is also not specific to PQC (e.g. it is often claimed that ECDSA is harder to implement without vulnerabilites than RSA). Therefore, this cheat sheet also aims to include indicators about that complexity/difficulty.\\[\baselineskip]
+
+	However, as with an algorithm's size, there is no obvious and objective way to measure this complexity.\\[3\baselineskip]
+
+    For the aforementioned reasons, all algorithm ID cards contain tables for implementation complexity and size, which are however not filled with actual values for the time being. The intention is to complete these tables with simple values of Low, Medium, or High: \quadicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries C}{\faAsterisk}\hspace{-2mm}, \quadicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries S}{\faAsterisk}\hspace{-2mm}, \quadicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries C}{\faAsterisk}\hspace{-2mm}, \quadicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries S}{\faAsterisk}\hspace{-2mm}, \quadicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C}{\faAsterisk}\hspace{-2mm}, \quadicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries S}{\faAsterisk}\hspace{-2mm}.\\[\baselineskip]
+
+    \textcolor{themeblue}{\bfseries To complete this part of the cheat sheets in a useful manner, suggestions and contributions from the cryptography community for how to do so are welcome and necessary!}\\[3\baselineskip]
+
+    {\bfseries General considerations for developers implementing cryptographic algorithms}\\[\baselineskip]
+
+    For implementations of cryptography, unlike other algorithms, getting the correct outputs is not sufficient. For a secure implementation, it is crucial that no sensitive and confidential information leaks in any way, not even through side channel attacks. Such a leak could occur in many different ways and places in an implementation (e.g. leaked nonces, biased bits in (pseudo-)random numbers, prime numbers, execution times of certain parts of the code, etc.). Compilers, code generation tools or even an IDE applying code formatting rules may try to optimize code to make it more performant - but introduce a vulnerability while doing so.\\[2\baselineskip]
+
+    \begin{minipage}[t]{0.05\textwidth} % right
+        \icon{\large\faExclamationTriangle}{themegreydark}{themeaccent}{0.9}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[T]{0.94\textwidth} % right
+        \bfseries Developers should be aware of the possible pitfalls of implementing cryptography on their own. Caution is advised, and if possible, it is recommended to use well-known cryptographic libraries and products developed by experts instead of using self-developed implementations.
+    \end{minipage}
+
+
+\end{algorithmbox}

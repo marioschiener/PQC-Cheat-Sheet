@@ -46,7 +46,7 @@ No responsibility is taken for the correctness of the information contained in t
 **The goal of this series of cheat sheets is to make it as easy as possible to figure out which algorithm to pick for a given use case. Algorithm ID cards break down algorithm parameter sets, their important values and performance characteristics. The cheat sheets are intended to help users primarily in technical roles, such as engineers, architects or software developers working with post-quantum cryptography.**
 
 The focus is to avoid giving specific numbers measured in bits, bytes or cycles as this makes makes comparing numbers across algorithms difficult. Instead, this complexity is simplified by only providing a
-**color-coded number indicating the order of magnitude of each metric.**
+**color-coded number indicating the order of magnitude of each metric.** Furthermore, an **"Algorithm Overall Usability Score"** is assigned to each algorithm. This score aims to make it visible at first glance how good of an overall package the algorithm offers (refer to the appendix for the definition of the score).
 
 **This approach prioritizes easy interpretation and comparability of metrics and in general quick informational gain over absolute precision of data -- remember this is a cheat sheet, not a standard! This document is not intended to replace the study of algorithm specifications. It just aims to point you in the right direction quickly.**
 
@@ -88,6 +88,7 @@ The target audience are technical roles such as software developers, architects 
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-19.png"  alt="Page 19" width = 720px>
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-20.png"  alt="Page 21" width = 720px>
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-21.png"  alt="Page 21" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-22.png"  alt="Page 22" width = 720px>
 </p>
 
 
