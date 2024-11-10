@@ -8,7 +8,7 @@
 % SLH-DSA
 % ============================================================================================================
 \begin{algorithmbox}{SLH-DSA (Stateless Hash-Based Digital Signature Standard)}
-    \begin{minipage}[t]{0.3\textwidth}
+    \begin{minipage}[t]{0.35\textwidth}
         \scriptsize
         \begin{center}
             \adjustbox{valign=t}{%
@@ -43,75 +43,72 @@
         \end{tabular}\\[1.5\baselineskip]
     \end{minipage}
     \hfill
-    \begin{minipage}[t]{0.68\textwidth}
+    \begin{minipage}[t]{0.64\textwidth}
         \scshape \scriptsize
         \begin{tabular}[t]{c c c c c c c}
-            \bfseries \makecell{Parameter\\Set} &  \bfseries \makecell{OID\\{}} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faPen\,\quad\quad\faQuestionCircle}} &  \bfseries \makecell{Signature\\Size} & \bfseries \makecell{Public Key\\Size} & \bfseries \makecell{Suitable\\Pre-Hashing} \\
+            \bfseries \makecell{Parameter\\Set} &  \bfseries \makecell{OID\\{(Pure, \textit{Pre-hash})}} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faPen\,\quad\quad\faQuestionCircle}} &  \bfseries \makecell{Signature\\Size} & \bfseries \makecell{Public Key\\Size} & \bfseries \makecell{Pre-Hashing\\} \\
             &&&&&&\\
-            \hline\\
-
+            \hline
             SLH-DSA-SHA2-128s
-            & 2.16.840.1.101.3.4.3.20
+            & \makecell{\tiny 2.16.840.1.101.3.4.3.20\\ \tiny \textit{2.16.840.1.101.3.4.3.35}}
             & \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 8}{\faMicrochip}{themered}{0.6}{\faKey}
             \tripleicon[themewhite]{\montserratbold 9}{\faMicrochip}{themered!50!black}{0.6}{\faPen}
             \tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 2}{\faPen}{themegreen}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}
-            & SHA-256, SHA3-256\\
-
+            & SHA-256\\
+            \hline
             SLH-DSA-SHA2-128f
-            & 2.16.840.1.101.3.4.3.21
+            & \makecell{\tiny 2.16.840.1.101.3.4.3.21\\ \tiny \textit{2.16.840.1.101.3.4.3.36}}
             & \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faKey}
             \tripleicon{\montserratbold 7}{\faMicrochip}{themered}{0.6}{\faPen}
             \tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 4}{\faPen}{themeyellow}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}
-            & SHA-256, SHA3-256\\
-
-
+            & SHA-256\\
+            \hline
             SLH-DSA-SHA2-192s
-            & 2.16.840.1.101.3.4.3.22
+            & \makecell{\tiny 2.16.840.1.101.3.4.3.22\\ \tiny \textit{2.16.840.1.101.3.4.3.37}}
             & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 8}{\faMicrochip}{themered}{0.6}{\faKey}
             \tripleicon[themewhite]{\montserratbold 9}{\faMicrochip}{themered!50!black}{0.6}{\faPen}
             \tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 4}{\faPen}{themeyellow}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}
-            & SHA-384, SHA3-384\\
-
+            & SHA-512\\
+            \hline
             SLH-DSA-SHA2-192f
-            & 2.16.840.1.101.3.4.3.23
+            & \makecell{\tiny 2.16.840.1.101.3.4.3.23\\ \tiny \textit{2.16.840.1.101.3.4.3.38}}
             & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faKey}
             \tripleicon{\montserratbold 7}{\faMicrochip}{themered}{0.6}{\faPen}
             \tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 5}{\faPen}{themeorange}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 1}{\faKey}{themegreen}{0.6}
-            & SHA-384, SHA3-384\\
-
-
+            & SHA-512\\
+            \hline
             SLH-DSA-SHA2-256s
-            & 2.16.840.1.101.3.4.3.24
+            & \makecell{\tiny 2.16.840.1.101.3.4.3.24\\ \tiny \textit{2.16.840.1.101.3.4.3.39}}
             & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 7}{\faMicrochip}{themered}{0.6}{\faKey}
             \tripleicon[themewhite]{\montserratbold 9}{\faMicrochip}{themered!50!black}{0.6}{\faPen}
             \tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 4}{\faPen}{themeyellow}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}
-            & SHA-512, SHA3-512\\
-
+            & SHA-512\\
+            \hline
             SLH-DSA-SHA2-256f
-            & 2.16.840.1.101.3.4.3.25
+            & \makecell{\tiny 2.16.840.1.101.3.4.3.25\\ \tiny \textit{2.16.840.1.101.3.4.3.40}}
             & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faKey}
             \tripleicon{\montserratbold 8}{\faMicrochip}{themered}{0.6}{\faPen}
             \tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 5}{\faPen}{themeorange}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 1}{\faKey}{themegreen}{0.6}
-            & SHA-512, SHA3-512\\
-
+            & SHA-512\\
+            \hline
 
 
 
@@ -120,66 +117,66 @@
 
 
             SLH-DSA-SHAKE-128s
-            & 2.16.840.1.101.3.4.3.26
+            & \makecell{\tiny 2.16.840.1.101.3.4.3.26\\ \tiny \textit{2.16.840.1.101.3.4.3.41}}
             & \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 8}{\faMicrochip}{themered}{0.6}{\faKey}
             \tripleicon[themewhite]{\montserratbold 9}{\faMicrochip}{themered!50!black}{0.6}{\faPen}
             \tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 2}{\faPen}{themegreen}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}
-            & SHA-256, SHA3-256\\
-
+            & SHAKE128\\
+            \hline
             SLH-DSA-SHAKE-128f
-            & 2.16.840.1.101.3.4.3.27
+            & \makecell{\tiny 2.16.840.1.101.3.4.3.27\\ \tiny \textit{2.16.840.1.101.3.4.3.42}}
             & \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faKey}
             \tripleicon{\montserratbold 7}{\faMicrochip}{themered}{0.6}{\faPen}
             \tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 4}{\faPen}{themeyellow}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}
-            & SHA-256, SHA3-256\\
-
+            & SHAKE128\\
+            \hline
 
             SLH-DSA-SHAKE-192s
-            & 2.16.840.1.101.3.4.3.28
+            & \makecell{\tiny 2.16.840.1.101.3.4.3.28\\ \tiny \textit{2.16.840.1.101.3.4.3.43}}
             & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 8}{\faMicrochip}{themered}{0.6}{\faKey}
             \tripleicon[themewhite]{\montserratbold 9}{\faMicrochip}{themered!50!black}{0.6}{\faPen}
             \tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 4}{\faPen}{themeyellow}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}
-            & SHA-384, SHA3-384\\
-
+            & SHAKE256\\
+            \hline
             SLH-DSA-SHAKE-192f
-            & 2.16.840.1.101.3.4.3.29
+            & \makecell{\tiny 2.16.840.1.101.3.4.3.29\\ \tiny \textit{2.16.840.1.101.3.4.3.44}}
             & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faKey}
             \tripleicon{\montserratbold 7}{\faMicrochip}{themered}{0.6}{\faPen}
             \tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 5}{\faPen}{themeorange}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 1}{\faKey}{themegreen}{0.6}
-            & SHA-384, SHA3-384\\
-
+            & SHAKE256\\
+            \hline
 
             SLH-DSA-SHAKE-256s
-            & 2.16.840.1.101.3.4.3.30
+            & \makecell{\tiny 2.16.840.1.101.3.4.3.30\\ \tiny \textit{2.16.840.1.101.3.4.3.45}}
             & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 7}{\faMicrochip}{themered}{0.6}{\faKey}
             \tripleicon[themewhite]{\montserratbold 9}{\faMicrochip}{themered!50!black}{0.6}{\faPen}
             \tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 4}{\faPen}{themeyellow}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}
-            & SHA-512, SHA3-512\\
-
+            & SHAKE256\\
+            \hline
             SLH-DSA-SHAKE-256f
-            & 2.16.840.1.101.3.4.3.31
+            & \makecell{\tiny 2.16.840.1.101.3.4.3.31\\ \tiny \textit{2.16.840.1.101.3.4.3.46}}
             & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faKey}
             \tripleicon{\montserratbold 8}{\faMicrochip}{themered}{0.6}{\faPen}
             \tripleicon{\montserratbold 6}{\faMicrochip}{themeorange}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 5}{\faPen}{themeorange}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 1}{\faKey}{themegreen}{0.6}
-            & SHA-512, SHA3-512\\
+            & SHAKE256\\
         \end{tabular}
     \end{minipage}\\[\baselineskip]
     \hrule

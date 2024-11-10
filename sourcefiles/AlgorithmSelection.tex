@@ -13,8 +13,8 @@
     % ============================================================================================================
     % Orders of Preference
     % ============================================================================================================
-    \begin{algorithmbox}{Algorithm Choice Guidance: Rules Of Thumb \tbv}
-        {\scriptsize The following orders of preference should be considered as general rules of thumb applicable to most use cases. They should however not be considered to be universal truths. Unstandardized algorithms are listed for the sake of completeness.\\}
+    \begin{algorithmbox}{Algorithm Choice Guidance: Rules Of Thumb}
+        {\scriptsize The following orders of preference should be considered as general rules of thumb applicable to most use cases. They should however not be considered to be universal truths. Unstandardized algorithms are listed for the sake of completeness. All information is valid at the time of writing (\docdate) only. Note that cryptography may become obsolete in the future.\\}
         % ============================================================================================================
         % Signature Algorithms
         % ============================================================================================================
@@ -59,11 +59,11 @@
             {\tiny * Classic McEliece is only suitable for general encryption with limitations}\\[-0.5\baselineskip]
         \end{minipage}
     \end{algorithmbox}
-    \vfill
+    %\vfill
     \begin{algorithmbox}{Pure PQC vs PQ/T Hybrid}
         \scriptsize
-        This topic depends on too many factors (e.g. cost of migration, security considerations, risk profile, GRC requirements) to give general advice. Those aspects will differ greatly between different organizations. The main reasons to adopt PQ/T hybrids are to still have traditional algorithms in place in case a new algorithm turns out to be insecure, and that PQ/T might help to avoid a big bang migration as systems could simply ignore the PQC component if they do not support it yet. Consider recommendations from different government agencies: BSI and ANSSI recommend PQ/T hybrid strategies, whereas NIST is more reserved towards PQ/T. {\bfseries If using PQ/T hybrids, preferably use  ECC (e.g. secp256r1, brainpoolP256r1, Curve25519)} instead of RSA for the traditional component to keep key sizes as small as possible.\\
-        \vspace{0.4mm}
+        This topic depends on too many factors (e.g. cost of migration, security considerations, risk profile, GRC requirements) to give general advice. Those aspects will differ greatly between different organizations. The main reasons to adopt PQ/T hybrids are to still have traditional algorithms in place in case a new algorithm turns out to be insecure, and that PQ/T might help to avoid a big bang migration as systems could simply ignore the PQC component if they do not support it yet. Consider recommendations from different government agencies: BSI and ANSSI recommend PQ/T hybrid strategies, whereas NIST is more reserved towards PQ/T. {\bfseries If using PQ/T hybrids, preferably use  ECC (e.g. secp256r1, brainpoolP256r1, Curve25519)} instead of RSA for the traditional component to keep key sizes as small as possible.%\\
+       % \vspace{0.4mm}
     \end{algorithmbox}
 \end{minipage}
 \begin{minipage}[t]{0.28\textwidth}
