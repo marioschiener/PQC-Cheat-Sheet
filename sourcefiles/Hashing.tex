@@ -5,27 +5,33 @@
 % Github: https://github.com/marioschiener
 
 
-\begin{algorithmbox}{Overview: Hash Algorithms and Extendable Output Functions (XOF) \tbv}
+\begin{algorithmbox}{Overview: Hash Algorithms and Extendable Output Functions (XOF)}
     \scshape \tiny
     \begin{center}
-        \begin{tabular}{ccccc|ccc|ccc|c}
-            \bfseries Family & \bfseries Variant & \bfseries Output Size [Bits] & \bfseries Rounds & \bfseries Construction & \multicolumn{3}{c|}{\bfseries Traditional Pre-Quantum Security [Bits]} & \multicolumn{3}{c|}{\bfseries Post-Quantum Security [Bits]} & \bfseries Performance\\
-            & & & & & Collision & Pre-Image & 2nd Pre-Image & Collision & Pre-Image & 2nd Pre-Image & \\
+        \begin{tabular}{ccccc|ccc|ccc|cc|c}
+            \bfseries Family & \bfseries Variant & \bfseries Output Size [Bits] & \bfseries Rounds & \bfseries Construction & \multicolumn{3}{c|}{\bfseries Traditional Pre-Quantum Security [Bits]} & \multicolumn{3}{c|}{\bfseries Post-Quantum Security [Bits]} & \multicolumn{2}{c|}{\bfseries{Security Category}} & \bfseries Performance\\
+            & & & & & Collision & Pre-Image & 2nd Pre-Image & Collision & Pre-Image & 2nd Pre-Image & Collission & Preimage & \\
             \hline
-            \hline
-            \multirow{6}{*}{SHA-2} & SHA-224 & 224 & 64 & Merkle–Damgård construction & 112 & 224 & 224 & 74 & 112 & 112 & 7.62\\
-            & SHA-256 & 256 & 64 & Merkle–Damgård construction & 128 & 256 & 256 & 85 & 128 & 128 & 7.63\\
-            & SHA-384 & 384 & 80 & Merkle–Damgård construction & 192 & 384 & 384 & 128 & 192 & 192 & 5.12\\
-            & SHA-512 & 512 & 80 & Merkle–Damgård construction & 256 & 512 & 512 & 170 & 256 & 256 & 5.06\\
-            & SHA-512/224 & 224 & 80 & Merkle–Damgård construction & 112 & 224 & 224 & \tbd & \tbd & \tbd & $\approx$ SHA-384\\
-            & SHA-512/256 & 256 & 80 & Merkle–Damgård construction & 128 & 256 & 256 & \tbd & \tbd & \tbd & $\approx$ SHA-384\\
-            \hline
-            \normalfont \multirow{6}{*}{SHA-3} & SHA3-224 & 224 & 24 & Keccak sponge construction & 112 & 224 & 224 & 74 & 112 & 112 & 8.12\\
-            & SHA3-256 & 256 & 24 & Keccak sponge construction & 128 & 256 & 256 & 85 & 128 & 128 & 8.59\\
-            & SHA3-384 & 384 & 24 & Keccak sponge construction & 192 & 384 & 384 & 128 & 192 & 192 & 11.06\\
-            & SHA3-512 & 512 & 24 & Keccak sponge construction & 256 & 512 & 512 & 170 & 256 & 256 & 15.88\\
-            & SHAKE128 & $d$ (arbitrary) & 24 & Keccak sponge construction & $\min\left(\frac{d}{2}; 128\right)$ & $\min\left(\frac{d}{2}; 128\right)$ & $\min\left(\frac{d}{2}; 128\right)$ & $\min\left(\frac{d}{3}; 128\right)$ & $\min\left(\frac{d}{2}; 128\right)$ & $\min\left(\frac{d}{2}; 128\right)$ & 7.08\\
-            & SHAKE256 & $d$ (arbitrary) & 24 & Keccak sponge construction & $\min\left(\frac{d}{2}; 256\right)$ & $\min\left(\frac{d}{2}; 256\right)$ & $\min\left(\frac{d}{2}; 256\right)$ & $\min\left(\frac{d}{3}; 256\right)$ & $\min\left(\frac{d}{2}; 256\right)$ & $\min\left(\frac{d}{2}; 256\right)$ & 8.59\\
+            \hline\\
+            \multirow{6}{*}[-7.5mm]{SHA-2} & SHA-224 & 224 & 64 & Merkle–Damgård construction & 112 & 224 & 224 & 74 & 112 & 112 & \hspace{3mm}\doubleicon[themewhite]{\montserratbold <I}{\faSun[regular]}{themered!65!black}{0.6} & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6} & 7.62\\[2mm]
+
+            & SHA-512/224 & 224 & 80 & Merkle–Damgård construction & 112 & 224 & 224 & \tbd & \tbd & \tbd & \hspace{3mm}\doubleicon[themewhite]{\montserratbold <I}{\faSun[regular]}{themered!65!black}{0.6} & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6} & $\approx$ SHA-384\\[2mm]
+
+            & SHA-256 & 256 & 64 & Merkle–Damgård construction & 128 & 256 & 256 & 85 & 128 & 128 & \hspace{3mm}\doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6} & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6} & 7.63\\[2mm]
+
+            & SHA-512/256 & 256 & 80 & Merkle–Damgård construction & 128 & 256 & 256 & \tbd & \tbd & \tbd & \hspace{3mm}\doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6} & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6} & $\approx$ SHA-384\\[2mm]
+
+            & SHA-384 & 384 & 80 & Merkle–Damgård construction & 192 & 384 & 384 & 128 & 192 & 192 & \hspace{3mm}\doubleicon{\montserratbold IV}{\faSun[regular]}{themeyellow}{0.6} & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6} & 5.12\\[2mm]
+
+            & SHA-512 & 512 & 80 & Merkle–Damgård construction & 256 & 512 & 512 & 170 & 256 & 256 & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6} & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6} & 5.06\\[2mm]
+
+            \hline\\
+            \normalfont \multirow{6}{*}[-7.5mm]{SHA-3} & SHA3-224 & 224 & 24 & Keccak sponge construction & 112 & 224 & 224 & 74 & 112 & 112 & \hspace{3mm}\doubleicon[themewhite]{\montserratbold <I}{\faSun[regular]}{themered!65!black}{0.6} & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6} & 8.12\\[2mm]
+            & SHA3-256 & 256 & 24 & Keccak sponge construction & 128 & 256 & 256 & 85 & 128 & 128 & \hspace{3mm}\doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6} & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6} & 8.59\\[2mm]
+            & SHA3-384 & 384 & 24 & Keccak sponge construction & 192 & 384 & 384 & 128 & 192 & 192 & \hspace{3mm}\doubleicon{\montserratbold IV}{\faSun[regular]}{themeyellow}{0.6} & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6} & 11.06\\[2mm]
+            & SHA3-512 & 512 & 24 & Keccak sponge construction & 256 & 512 & 512 & 170 & 256 & 256 & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6} & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6} & 15.88\\[2mm]
+            & SHAKE128 & $d$ (arbitrary) & 24 & Keccak sponge construction & $\min\left(\frac{d}{2}; 128\right)$ & $\min\left(\frac{d}{2}; 128\right)$ & $\min\left(\frac{d}{2}; 128\right)$ & $\min\left(\frac{d}{3}; 128\right)$ & $\min\left(\frac{d}{2}; 128\right)$ & $\min\left(\frac{d}{2}; 128\right)$ & \hspace{3mm}\doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6} & \hspace{3mm}\doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6} & 7.08\\[2mm]
+            & SHAKE256 & $d$ (arbitrary) & 24 & Keccak sponge construction & $\min\left(\frac{d}{2}; 256\right)$ & $\min\left(\frac{d}{2}; 256\right)$ & $\min\left(\frac{d}{2}; 256\right)$ & $\min\left(\frac{d}{3}; 256\right)$ & $\min\left(\frac{d}{2}; 256\right)$ & $\min\left(\frac{d}{2}; 256\right)$ & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6} & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6} & 8.59\\[2mm]
             \hline
         \end{tabular}
     \end{center}

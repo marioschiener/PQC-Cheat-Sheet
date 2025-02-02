@@ -56,26 +56,26 @@
         Lower is better. {\scriptsize \faAsterisk} can be {\scriptsize \faKey}, {\scriptsize \faPen}, {\scriptsize \faQuestion}, {\scriptsize \faLock}, or {\scriptsize \faUnlock}.\\[\baselineskip]
 
         {\bfseries Rating scales for parameter sizes and performance}\\[0.5\baselineskip]
-        Best to Worst: \textcolor{themegreen}{$\blacksquare$} $n\leq2$, \textcolor{themeyellow}{$\blacksquare$} $n\{3,4\}$, \textcolor{themeorange}{$\blacksquare$} $n\in\{5,6\}$, \textcolor{themered}{$\blacksquare$} $n\in\{7,8\}$, \textcolor{themered!65!black}{$\blacksquare$} $n\geq9$
+        Best to Worst: \textcolor{themegreen}{$\blacksquare$} $n\leq2$, \textcolor{themeyellow}{$\blacksquare$} $n\in\{3,4\}$, \textcolor{themeorange}{$\blacksquare$} $n\in\{5,6\}$, \textcolor{themered}{$\blacksquare$} $n\in\{7,8\}$, \textcolor{themered!65!black}{$\blacksquare$} $n\geq9$
         \begin{tabbing}
             \=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faKey}
-            \=$\mathcal{O}(5^n)$ CPU kilo cycles for key generation\\
+            \=$\left[5^n,5^{n+1}\right]$ CPU kilo cycles for key generation\\
             \=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faPen}
-            \=$\mathcal{O}(5^n)$ CPU kilo cycles for signing\\
+            \=$\left[5^n,5^{n+1}\right]$ CPU kilo cycles for signing\\
             \=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faQuestionCircle}
-            \=$\mathcal{O}(5^n)$ CPU kilo cycles for signature verification\\
+            \=$\left[5^n,5^{n+1}\right]$ CPU kilo cycles for signature verification\\
             \=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faLock}
-            \=$\mathcal{O}(5^n)$ CPU kilo cycles for encryption / key encapsulation\\
+            \=$\left[5^n,5^{n+1}\right]$ CPU kilo cycles for encryption / key encapsulation\\
             \=\tripleicon{\montserratbold n}{\faMicrochip}{themegreylight!50}{0.6}{\faUnlock}
-            \=$\mathcal{O}(5^n)$ CPU kilo cycles for decryption / key decapsulation\\
+            \=$\left[5^n,5^{n+1}\right]$ CPU kilo cycles for decryption / key decapsulation\\
             \>\doubleicon{\montserratbold n}{\faPen}{themegreylight!50}{0.6}
-            \>$\mathcal{O}(2^n)$ KB of signature size\\
+            \>$\left[2^n,2^{n+1}\right]$ KB of signature size\\
             \>\doubleicon{\montserratbold n}{\faLock}{themegreylight!50}{0.6}
-            \> $\mathcal{O}(2^n)$ KB of ciphertext size\\
+            \> $\left[2^n,2^{n+1}\right]$ KB of ciphertext size\\
             \>\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}
-            \> $\mathcal{O}(2^{(n-5)})$ KB of signature algorithm public key size\\
+            \> $\left[2^{n-5},2^{n-4}\right]$ KB of signature algorithm public key size\\
             \>\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}
-            \> $\mathcal{O}(2^n)$ KB of encryption algorithm public key size\\
+            \> $\left[2^n,2^{n+1}\right]$ KB of encryption algorithm public key size\\
         \end{tabbing}
         \vspace{-6.6mm}
     \end{algorithmbox}
@@ -90,7 +90,7 @@
         The focus is to avoid giving specific numbers measured in bits, bytes or cycles as this makes makes comparing numbers across algorithms difficult. Instead, this complexity is simplified by only providing a
         {\bfseries color-coded number indicating the order of magnitude of each metric.} Furthermore, an {\bfseries ``Algorithm Overall Usability Score''} is assigned to each algorithm. This score aims to make it visible at first glance how good of an overall package the algorithm offers (refer to the appendix for the definition of the score).\\[\baselineskip]
 
-        {\bfseries This approach prioritizes easy interpretation and comparability of metrics and in general quick informational gain over absolute precision of data -- remember this is a cheat sheet, not a standard! This document is not intended to replace the study of algorithm specifications. It just aims to point you in the right direction quickly.}\\[\baselineskip]
+        {\bfseries This approach prioritizes easy interpretation and comparability of metrics and in general quick informational gain over absolute precision of data -- remember this is a cheat sheet, not a standard! This document is not intended to replace the study of algorithm specifications. It just aims to point you in the right direction quickly.} If you are looking for the original and precise data, you can find it \iconhref[\faLink]{https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Data/Data_Evaluation.ods}{here}.\\[\baselineskip]
 
         The approach of focusing on orders of magnitude walks a fine line between treating too many things as ``equal'' and not simplifying things enough to be easy to read and compare. ``In the same order of magnitude'' usually refers to ``equal up to a factor of at most 10'', which is a very coarse way of comparing numbers. Treating metrics that differ by a factor of e.g. 9.9 as ``equal'' because 9.9 < 10 paints a distorted picture. In cryptography, factors of 5 or even 2 can make a significant difference in security or performance, both in theory and in practice. In order to still tease out the differences in metrics without throwing too many things together that actually differ significantly, this cheat sheet applies different scaling and ``orders of magnitude'' (i.e., not regarding base 10) for different metrics.\\[\baselineskip]
 
