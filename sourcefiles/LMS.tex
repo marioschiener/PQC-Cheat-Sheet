@@ -110,6 +110,7 @@
             \setlength\itemsep{0em}
             \item You can predict the maximum number of signatures that are going to be required
             \item Firmware signing use cases
+            \item low volume, occasional signing, low payload signatures
             \item You want a signature scheme where the security only relies on the security of the hash function used without assuming the hardness of another mathematical problem.
             \item Cf. \iconhref[\faLink]{https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-208.pdf}{SP 800-208, Section 1.1} for additional explanations
         \end{itemize}
@@ -118,11 +119,14 @@
     \begin{minipage}[t]{0.49\textwidth}
         \scriptsize \faThumbsDown\, {\bfseries / Cons / Don't Use If:}
         \begin{itemize}[leftmargin=*]
+        \tiny
             \setlength\itemsep{0em}
             \item You require an algorithm for general use
             \item You cannot predict the maximum number of signatures that are going to be required, or the number of required signatures exceeds the maximum number of signatures enabled through the approved parameter sets
             \item Your application does not allow for the careful state management and tracking of signatures performed that is required with this algorithm
-            \item Rather difficult to set up correctly and configure and fine tune all necessary parameters
+            \item Rather difficult to set up correctly and configure and fine tune all necessary parameters. Databases for state management can become very large (GBs or even TBs) quickly.
+            \item Signing of CRLs, unless it is known they will remain very small
+            \item No multi-thread access to the signing keys to ensure proper state management (no re-use of any signing key)
         \end{itemize}
     \end{minipage}
 \end{algorithmbox}

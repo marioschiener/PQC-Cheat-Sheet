@@ -89,6 +89,12 @@ The target audience are technical roles such as software developers, architects 
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-20.png"  alt="Page 21" width = 720px>
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-21.png"  alt="Page 21" width = 720px>
     <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-22.png"  alt="Page 22" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-23.png"  alt="Page 23" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-24.png"  alt="Page 24" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-25.png"  alt="Page 25" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-26.png"  alt="Page 26" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-27.png"  alt="Page 27" width = 720px>
+    <img src="https://github.com/marioschiener/PQC-Cheat-Sheet/blob/main/Screenshots/PQC-Cheat-Sheet-28.png"  alt="Page 28" width = 720px>
 </p>
 
 

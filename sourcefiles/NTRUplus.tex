@@ -1,0 +1,144 @@
+% !TeX root = ../PQC_Cheat_Sheet.tex
+
+% Author: Mario Schiener, 2024
+% LinkedIn: https://www.linkedin.com/in/mario-schiener/
+% Github: https://github.com/marioschiener
+
+% ============================================================================================================
+% NTRU+
+% ============================================================================================================
+\newpage
+\begin{algorithmbox}{NTRU+ (Number Theory Research Unit / Number Theorists 'R' Us +)}
+    \begin{minipage}[t]{0.38\textwidth}
+        \scriptsize
+        \begin{center}
+            \adjustbox{valign=t}{%
+                \GreenAbsoluteSpeedometer(0,-10)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{7.95}{10}{\tiny}{\tiny \montserratsemibold}\hspace{1.5cm}}
+        \end{center}
+        \begin{tabbing}
+            \bfseries \scshape Previous Name\hspace{2.5cm}\=n/a\\
+            \bfseries \scshape Specification\>\iconhref[\faLink]{https://www.kpqc.or.kr/images/pdf/NTRU+_Document.pdf}{Specification}\\
+            \bfseries \scshape Type\>Encryption/KEM\\
+            \bfseries \scshape Family\>Lattice\\
+            \bfseries \scshape Suitable For General Use\>Yes\\
+            \bfseries \scshape Standardization Status\>Standardized\\
+            \bfseries \scshape Recommended By\>Korea (KpqC)\\
+            \bfseries \scshape Naming\>NTRU+\{PKE|KEM\}$n$, where\\
+            \>$n$ polynomial degree of the ring\\
+            \>PKE=Public Key Encryption
+        \end{tabbing}
+        \begin{tabular}[t]{l c  c  c}
+            \scshape\bfseries Implementation\hspace{1.5cm} &\textcolor{themegreydark}{\faKey}&\textcolor{themegreydark}{\faPen}&\textcolor{themegreydark}{\faQuestionCircle}\\
+            &&&\\
+            \hline\\
+
+
+            \scshape Complexity
+            &\hspace{3mm}\quadicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}{\faKey}
+            &\hspace{3mm}\quadicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}{\faLock}
+            &\hspace{3mm}\quadicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries C}{\faUnlock}\\[2mm]
+            \scshape Size
+            &\hspace{3mm}\quadicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}{\faKey}
+            &\hspace{3mm}\quadicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}{\faLock}
+            &\hspace{3mm}\quadicon[themewhite]{\montserratbold ?}{\faCode}{themeaccentsecondary}{0.6}{\bfseries S}{\faUnlock}\\
+        \end{tabular}\\[1.5\baselineskip]
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.6\textwidth}
+        \scshape \scriptsize
+        \begin{tabular}[t]{c c  c  c  c  c}
+            \bfseries \makecell{Parameter\\Set} &  \bfseries \makecell{OID\\{}} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faLock\,\quad\quad\faUnlock}} &  \bfseries \makecell{Ciphertext\\Size} & \bfseries \makecell{Public Key\\Size}\\
+            &&&&&\\
+            \hline\\
+            NTRU+KEM576
+            & \tbd
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}\\
+
+            NTRU+KEM768
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}\\
+
+            NTRU+KEM864
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}\\
+
+            NTRU+KEM1152
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}\\
+
+            NTRU+PKE576
+            & \tbd
+            & \hspace{3mm}\doubleicon[themewhite]{\montserratbold I}{\faSun[regular]}{themered!65!black}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}\\
+
+            NTRU+PKE768
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}\\
+
+            NTRU+PKE864
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}\\
+
+            NTRU+PKE1152
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faLock}
+            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faUnlock}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faLock}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faKey}{themegreen}{0.6}\\
+        \end{tabular}
+    \end{minipage}\\[\baselineskip]
+    \hrule
+    \vspace{1\baselineskip}
+    \begin{minipage}[t]{0.49\textwidth}
+        \scriptsize\faThumbsUp\, {\bfseries / Pros / Use If:}
+        \begin{itemize}[leftmargin=*]
+            \setlength\itemsep{0em}
+            \item Good performance, similar to MK-KEM
+        \end{itemize}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.49\textwidth}
+        \scriptsize \faThumbsDown\, {\bfseries / Cons / Don't Use If:}
+        \begin{itemize}[leftmargin=*]
+            \setlength\itemsep{0em}
+            \item Only standardized in Korea, possible lack of support and interoperability issues in other countries
+            \item More complicated implementation than ML-KEM
+        \end{itemize}
+    \end{minipage}
+\end{algorithmbox}

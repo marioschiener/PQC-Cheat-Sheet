@@ -8,7 +8,7 @@
 % Unfortunately, this makes the source code quite messy and unreadable since we need to use \textnormal excessively in order to be able to still utilize math environemts like align. So, this is done on prupose, not out of a lack of knowledge regarding formulas in LaTeX. Some vspacing and hspacing is needed to force the boxes onto one page.
 
 \vspace{-5mm}
-\begin{algorithmbox}{Algorithm Overall Usability Score}
+\begin{algorithmbox}{Algorithm Overall Usability Score Definition}
 	\tiny
 	We try to measure an algorithm's overall usability for a general use case (i.e., a use case without any special characteristics and constraints) by calculating a single number between 0 (worst) and 10 (best) for the algorithm. This calculation is taking into account all parameter sets, performance metrics, public key size, signature/ciphertext size, the number of security categories provided, whether or not it is suitable for general use, and the complexity and size of its implementation. There are many possible ways to define a formula for this purpose and weigh in different individual metrics into overall usability. Here, we define an algorithm's overall score as
 	\begin{align*}
@@ -32,7 +32,9 @@
 		\doubleicon{\montserratbold n}{\faKey}{themegreylight!50}{0.6}\hspace{-1mm}
 		}\right\}\textnormal{.}
 	\end{align*}
-	Furthermore, $\textnormal{1}\leq\textnormal{categories}_\textnormal{\itshape algorithm}\leq\textnormal{5}$ denotes the number of different NIST security categories offered by {\itshape algorithm}. By assigning numeric values of 0 = \quadicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries C}{\faAsterisk}\hspace{-2mm}= \quadicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries S}{\faAsterisk}\hspace{-2mm}, 1 = \quadicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries C}{\faAsterisk}\hspace{-2mm}= \quadicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries S}{\faAsterisk}\hspace{-2mm} and 2 = \quadicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C}{\faAsterisk}\hspace{-2mm}= \quadicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries S}{\faAsterisk}\hspace{-2mm}, we set
+	The average of all score$_\textnormal{\itshape parameterSet}$ values forms the baseline of the scoring formula. This baseline is then adjusted through three ``punishing elements'', which subtract from the score if an algorithm is not suitable for general purpose usage, doesn't offer parameter sets for all five security categories, or has bad implementation complexity and size. A general purpose algorithm offering parameters for all five security levels and with minimal implementation complexity and size would not get penalized at all through the formula. The weights (coefficients) are chosen in a way that the punishing elements impact the score noticeably without impacting the final score too much. Their choice is however arbitrary and could be changed to emphasize certain punishing elements more or less.\\
+
+	We denote by $\textnormal{1}\leq\textnormal{categories}_\textnormal{\itshape algorithm}\leq\textnormal{5}$ the number of different NIST security categories offered by {\itshape algorithm}. By assigning numeric values of 0 = \quadicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries C}{\faAsterisk}\hspace{-2mm}= \quadicon{\montserratbold L}{\faCode}{themegreen}{0.6}{\bfseries S}{\faAsterisk}\hspace{-2mm}, 1 = \quadicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries C}{\faAsterisk}\hspace{-2mm}= \quadicon{\montserratbold M}{\faCode}{themeyellow}{0.6}{\bfseries S}{\faAsterisk}\hspace{-2mm} and 2 = \quadicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries C}{\faAsterisk}\hspace{-2mm}= \quadicon{\montserratbold H}{\faCode}{themered}{0.6}{\bfseries S}{\faAsterisk}\hspace{-2mm}, we set
 	\begin{align*}
 		\textnormal{impl\textsubscript{\itshape signature-algorithm}} = \avg\left\{{
 		\quadicon{\montserratbold ?}{\faCode}{themegreylight!50}{0.6}{\bfseries C}{\faKey}\hspace{-1mm}\textnormal{, }
@@ -58,7 +60,7 @@
 		\textnormal{2} & \textnormal{else}
 		\end{cases}
 	\end{align*}
-	to take into account if the algorithm is suitable for general use (i.e., algorithms not suitable for general use are penalized by subtracting two usability points).\\
+	to take into account if the algorithm is suitable for general use (i.e., algorithms not suitable for general use are penalized by subtracting two usability points).\\[\baselineskip]
 
 	\textcolor{themeaccentsecondary}{TBD: In the algorithm scores given in ID cards, we currently use \textnormal{impl\textsubscript{\itshape algorithm}} = 0 in the respective computations because the necessary values for implementation complexity and size are still \tbd. This will be corrected later.}
 \end{algorithmbox}

@@ -6,28 +6,28 @@
 
 
 % ============================================================================================================
-% ML-DSA
+% HAETAE
 % ============================================================================================================
 \newpage
-\begin{algorithmbox}{ML-DSA (Module-Lattice-Based Digital Signature Algorithm)}
+\begin{algorithmbox}{HAETAE (Hyperball bimodAl modulE rejecTion signAture schemE)}
     \begin{minipage}[t]{0.35\textwidth}
         \scriptsize
         \begin{center}
             \adjustbox{valign=t}{%
-                \GreenAbsoluteSpeedometer(0,-10)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{6.55}{10}{\tiny}{\tiny \montserratsemibold}\hspace{1.5cm}}
+                \GreenAbsoluteSpeedometer(0,-10)[2.25cm][0.75]{Unusable/1-3,Poor/4-5,Good/6-8,Perfect/9-10}{Algorithm Overall Usability Score}{6.08}{10}{\tiny}{\tiny \montserratsemibold}\hspace{1.5cm}}
         \end{center}
 
         \begin{tabbing}
-            \bfseries \scshape Previous Name\hspace{2.5cm}\=CRYSTALS-DILITHIUM\\
-            \bfseries \scshape Specification\>\iconhref[\faLink]{https://csrc.nist.gov/pubs/fips/204/final}{FIPS 204}\\
+            \bfseries \scshape Previous Name\hspace{2.5cm}\=n/a\\
+            \bfseries \scshape Specification\>\iconhref[\faLink]{https://www.kpqc.or.kr/images/pdf/HAETAE_Document.pdf}{Specification}\\
             \bfseries \scshape Type\>Signature\\
             \bfseries \scshape Family\>Lattice\\
             \bfseries \scshape Suitable For General Use\>Yes\\
             \bfseries \scshape Standardization Status\>Standardized\\
-            \bfseries \scshape Recommended By\>NIST, BSI, ANSSI\\
-            \bfseries \scshape Hashing\>Pure, Pre-Hashing\\
-            \bfseries \scshape Naming\>by $k\times l$ matrix $A$\\
-            \>(e.g. $6\times5\,\rightarrow$ ML-DSA-65)
+            \bfseries \scshape Recommended By\>Korea (KpqC)\\
+            \bfseries \scshape Hashing\>\tbd\\
+            \bfseries \scshape Naming\>HAETAE-$\lambda$, where\\
+            \> the security level is $\lambda$ bits\\
         \end{tabbing}
         \begin{tabular}[t]{l c  c  c}
             \scshape\bfseries Implementation\hspace{1.5cm} &\textcolor{themegreydark}{\faKey}&\textcolor{themegreydark}{\faPen}&\textcolor{themegreydark}{\faQuestionCircle}\\
@@ -51,35 +51,35 @@
             \bfseries \makecell{Parameter\\Set} &  \bfseries \makecell{OID\\{}} &\bfseries \makecell{Security\\Category} & \bfseries \makecell{Performance\\{\faKey\,\quad\quad\faPen\,\quad\quad\faQuestionCircle}} &  \bfseries \makecell{Signature\\Size} & \bfseries \makecell{Public Key\\Size} & \bfseries \makecell{Pre-Hashing\\} \\
             &&&&&&\\
             \hline
-            ML-DSA-44
-            & \makecell{\tiny 2.16.840.1.101.3.4.3.17\\ \tiny \textit{2.16.840.1.101.3.4.3.32}}
+            HAETAE-120
+            & \tbd
             & \hspace{3mm}\doubleicon{\montserratbold II}{\faSun[regular]}{themered}{0.6}
-            & \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
-            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faPen}
-            \tripleicon{\montserratbold 2}{\faMicrochip}{themegreen}{0.6}{\faQuestionCircle}
-            & \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
-            & \hspace{3mm}\doubleicon{\montserratbold 5}{\faKey}{themeorange}{0.6}
-            & SHA512\\
-            \hline
-            ML-DSA-65
-            & \makecell{\tiny 2.16.840.1.101.3.4.3.18\\ \tiny \textit{2.16.840.1.101.3.4.3.33}}
-            & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
-            & \hspace{3mm}\tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faKey}
-            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faPen}
+            & \hspace{3mm}\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faPen}
             \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon{\montserratbold 0}{\faPen}{themegreen}{0.6}
+            & \hspace{3mm}\doubleicon{\montserratbold 4}{\faKey}{themeyellow}{0.6}
+            & \tbd\\
+
+            HAETAE-180
+            & \tbd
+            & \hspace{3mm}\doubleicon{\montserratbold III}{\faSun[regular]}{themeorange}{0.6}
+            & \hspace{3mm}\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faKey}
+            \tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faPen}
+            \tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
             & \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 5}{\faKey}{themeorange}{0.6}
-            & SHA512\\
-            \hline
-            ML-DSA-87
-            & \makecell{\tiny 2.16.840.1.101.3.4.3.19\\ \tiny \textit{2.16.840.1.101.3.4.3.34}}
+            & \tbd\\
+
+            HAETAE-260
+            & \tbd
             & \hspace{3mm}\doubleicon{\montserratbold V}{\faSun[regular]}{themegreen}{0.6}
             & \hspace{3mm}\tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faKey}
-            \tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faPen}
-            \tripleicon{\montserratbold 3}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
-            & \hspace{3mm}\doubleicon{\montserratbold 2}{\faPen}{themegreen}{0.6}
+            \tripleicon{\montserratbold 5}{\faMicrochip}{themeorange}{0.6}{\faPen}
+            \tripleicon{\montserratbold 4}{\faMicrochip}{themeyellow}{0.6}{\faQuestionCircle}
+            & \hspace{3mm}\doubleicon{\montserratbold 1}{\faPen}{themegreen}{0.6}
             & \hspace{3mm}\doubleicon{\montserratbold 6}{\faKey}{themeorange}{0.6}
-            & SHA512\\
+            & \tbd\\
         \end{tabular}
         \vfill
     \end{minipage}\\[\baselineskip]
@@ -89,9 +89,7 @@
         \scriptsize\faThumbsUp\, {\bfseries / Pros / Use If:}
         \begin{itemize}[leftmargin=*]
             \setlength\itemsep{0em}
-            \item You need a general-purpose signature algorithm with decent specs in all categories
-            \item Usually the best option for a signature algorithm in most protocols (e.g. TLS, SSH, S/MIME, etc.).
-            \item Good choice for X.509 certificates, including CA certificates.
+            \item Similar to ML-DSA with smaller signature sizes
         \end{itemize}
     \end{minipage}
     \hfill
@@ -99,7 +97,7 @@
         \scriptsize \faThumbsDown\, {\bfseries / Cons / Don't Use If:}
         \begin{itemize}[leftmargin=*]
             \setlength\itemsep{0em}
-            \item You don't want a lattice-based algorithm
+            \item Only standardized in Korea, possible lack of support and interoperability issues in other countries
         \end{itemize}
     \end{minipage}
 \end{algorithmbox}
